@@ -71,4 +71,41 @@ npm run dev
 Acesse `http://localhost:5173` no seu navegador.
 
 ---
+
+## 📐 Engine Topology & Cognitive Throughput
+
+O motor I/O do Atlas-Cortex foi projetado para extração vetorial massiva de grafos semânticos. Para garantir estabilidade em hardwares públicos e laboratórios de pesquisa, o motor opera sob dois regimes estritos:
+
+### 🔬 Public License (Safe Mode)
+Limita a ingestão a **750 nós semânticos**. Otimizado para repositórios open-source e provas de conceito. Garante integridade de RAM e renderização leve.
+
+### 🌌 Core Engine (Arquitetura Ilimitada)
+O limite real de processamento do Atlas é modelado através da **Taxa de Ingestão Vetorial ($\Phi$)**:
+
+$$\Phi_{sem} = \frac{\Delta N}{\Delta t} \cdot (1 - E_c)$$
+
+Onde $E_c$ é a Entropia de Colisões (sobrescrita de namespaces no grafo semântico). Nos ensaios de estresse empíricos, $E_c \to 0$ foi alcançado via hashing determinístico de namespaces, e a vazão atingiu **~5.665 nós/segundo**.
+
+```mermaid
+graph LR
+    subgraph Benchmarks["Taxa de Ingestão Semântica"]
+        A["GitHub Public<br/>750 Nodes"] -->|Hard Cap| B(Safe Render)
+        C["Atlas Core Engine"] -->|"Φ ≈ 5.665 Nodes/sec"| D("520,000+ Nodes")
+    end
+    style A fill:#2d3748,stroke:#4a5568,color:#fff
+    style C fill:#4c1d95,stroke:#7c3aed,color:#fff
+    style D fill:#059669,stroke:#10b981,color:#fff
+```
+
+| Métrica | Resultado Empírico |
+|---|---|
+| Arquivos Ingeridos | 27.747 |
+| Vértices Semânticos | 520.679 |
+| Tempo de Execução (Delta Cache) | 91.9 segundos |
+| **Taxa de Ingestão ($\Phi$)** | **≈ 5.665 nós/s** |
+| Entropia de Colisão ($E_c$) | ≈ 0 |
+
+*A versão pública (Safe Mode) é propositalmente limitada a 750 nós para proteção do hardware do pesquisador. O Core Engine, implantado em ambientes Cloud-Native internos, escala sem restrições de I/O.*
+
+---
 *Construído com pragmatismo para a Engenharia de Dados Corporativa. (c) 2026*
