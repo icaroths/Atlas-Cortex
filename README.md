@@ -25,6 +25,14 @@ Para proteger a propriedade intelectual e o segredo industrial do Roteador em Ca
 - **Local:** `bin/atlas-cortex-cli.exe`
 - O binário é um executável portátil construído para ambientes Windows, capaz de varrer diretórios e arquivos zip caóticos puramente em memória (I/O livre de gargalos) e gerar o **MOC** (Map of Content) em formato de Grafo JSON a impressionantes **0.003s**.
 
+### ⚖️ Licenciamento & Cota Gratuita (Freemium)
+
+O Atlas-Cortex opera sob um modelo de adoção livre para desenvolvedores e laboratórios de IA. 
+
+O binário distribuído neste repositório permite o processamento vitalício de até **500 MB de texto puro**. Essa cota é colossal para provas de conceito, automação pessoal e testes laboratoriais (equivalente a milhares de livros e documentos). O sistema contabiliza e trava a execução localmente utilizando ancoragem física de hardware (Hardware Lock).
+
+Ao atingir o limite, a ferramenta exibirá um aviso. **Para uso corporativo em larga escala ou pipelines de Big Data, é necessária a aquisição da licença Enterprise.** Entre em contato com o autor para destravar o limite de processamento.
+
 ### 💻 Como Usar o Executável?
 
 A ferramenta é um utilitário de linha de comando (CLI) 100% *plug-and-play*. **Não é necessário instalar Python, bibliotecas ou dependências.** Tudo já está embutido.
