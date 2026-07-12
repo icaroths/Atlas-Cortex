@@ -25,6 +25,29 @@ Para proteger a propriedade intelectual e o segredo industrial do Roteador em Ca
 - **Local:** `bin/atlas-cortex-cli.exe`
 - O binário é um executável portátil construído para ambientes Windows, capaz de varrer diretórios e arquivos zip caóticos puramente em memória (I/O livre de gargalos) e gerar o **MOC** (Map of Content) em formato de Grafo JSON a impressionantes **0.003s**.
 
+### 💻 Como Usar o Executável?
+
+A ferramenta é um utilitário de linha de comando (CLI) 100% *plug-and-play*. **Não é necessário instalar Python, bibliotecas ou dependências.** Tudo já está embutido.
+
+Abra o **PowerShell** ou o **Prompt de Comando (CMD)** na pasta onde o executável se encontra e rode os comandos abaixo.
+
+**1. Ver a ajuda e comandos disponíveis:**
+```powershell
+.\bin\atlas-cortex-cli.exe --help
+```
+
+**2. Ingerir e indexar todos os arquivos Markdown de uma pasta específica:**
+```powershell
+.\bin\atlas-cortex-cli.exe ingest --path "C:\Caminho\Para\Seus\Documentos" --type md
+```
+
+**3. Testar o Benchmark do Roteador (Needle-In-A-Haystack):**
+```powershell
+.\bin\atlas-cortex-cli.exe niah
+```
+
+O Atlas vai varrer a pasta, respeitar as barreiras estruturais do seu texto e devolver o RAG (Map of Content) extremamente limpo.
+
 ---
 
 ## 🖥️ Dashboard Web Interativo (Frontend)
