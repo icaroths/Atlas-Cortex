@@ -29,7 +29,7 @@ Para proteger a propriedade intelectual e o segredo industrial do Roteador em Ca
 
 O Atlas-Cortex opera sob um modelo de adoção livre para desenvolvedores e laboratórios de IA. 
 
-O binário distribuído neste repositório permite o processamento vitalício de até **50 MB de texto puro**. Essa cota é generosa para provas de conceito, automação pessoal e testes laboratoriais (equivalente a milhares de páginas e documentos). O sistema contabiliza e trava a execução localmente utilizando ancoragem física de hardware (Hardware Lock).
+O binário distribuído neste repositório permite o processamento vitalício de até **5.000 Nós Semânticos**. Essa cota é generosa para provas de conceito, automação pessoal e testes laboratoriais (equivalente a dezenas de livros e manuais). O sistema contabiliza os nós gerados e trava a execução localmente utilizando ancoragem física de hardware (Hardware Lock).
 
 Ao atingir o limite, a ferramenta exibirá um aviso. **Para uso corporativo em larga escala ou pipelines de Big Data, é necessária a aquisição da licença Enterprise.** Entre em contato com o autor para destravar o limite de processamento.
 
