@@ -36,9 +36,10 @@ Para proteger a propriedade intelectual e o segredo industrial do Roteador em Ca
 
 O Atlas-Cortex opera sob um modelo de adoção livre para desenvolvedores e laboratórios de IA. 
 
-O binário distribuído neste repositório permite o processamento gratuito de até **750 Nós Semânticos**. Essa cota é calculada para provas de conceito, automação pessoal e testes laboratoriais (equivalente a repositórios de código médios ou alguns livros curtos). O sistema contabiliza os nós gerados e trava a execução localmente utilizando ancoragem física de hardware (Hardware Lock).
+O binário distribuído neste repositório permite o processamento gratuito de até **750 Nós Semânticos**, restrito a **3 execuções diárias**. Essa cota é calculada para provas de conceito, automação pessoal e testes laboratoriais (equivalente a repositórios de código médios ou alguns livros curtos). O sistema contabiliza os nós e acessos diários, travando a execução localmente utilizando ancoragem física de hardware (Hardware Lock).
 
-Ao atingir o limite, a ferramenta exibirá um aviso. **Para uso corporativo em larga escala ou pipelines de Big Data, é necessária a aquisição da licença Enterprise.** Entre em contato com o autor para destravar o limite de processamento.
+Ao atingir o limite (nós ou execuções diárias), a ferramenta exibirá um aviso. **Para uso corporativo em larga escala ou pipelines de Big Data, é necessária a aquisição da licença Enterprise (sem limites).**
+Para adquirir a licença ilimitada, suporte ou relatar problemas, contate: **icaro.thares@gmail.com**.
 
 ### 💻 Requisitos de Sistema
 
@@ -94,7 +95,8 @@ Acesse `http://localhost:5173` no seu navegador.
 O motor I/O do Atlas-Cortex foi projetado para extração vetorial massiva de grafos semânticos. Para garantir estabilidade em hardwares públicos e laboratórios de pesquisa, o motor opera sob dois regimes estritos:
 
 ### 🔬 Public License (Safe Mode)
-Limita a ingestão a **750 nós semânticos**. Otimizado para repositórios open-source e provas de conceito. Garante integridade de RAM e renderização leve.
+Limita a ingestão a **750 nós semânticos** e **3 execuções por dia**. Otimizado para repositórios open-source e provas de conceito. Garante integridade de RAM e renderização leve.
+**Contato Enterprise:** icaro.thares@gmail.com
 
 ### 🌌 Core Engine (Arquitetura Ilimitada)
 O limite real de processamento do Atlas é modelado através da **Taxa de Ingestão Vetorial ($\Phi$)**:
