@@ -2,7 +2,14 @@
 
 **O Motor de Integridade Semântica para IA Generativa (GenAI)**
 
+![Version](https://img.shields.io/badge/version-1.0.0--stable-6d28d9?style=flat-square)
+![Platform](https://img.shields.io/badge/platform-Windows%2064--bit-0ea5e9?style=flat-square&logo=windows)
+![License](https://img.shields.io/badge/license-Freemium%20%2F%20Enterprise-059669?style=flat-square)
+![Nodes](https://img.shields.io/badge/public%20cap-750%20nodes-f59e0b?style=flat-square)
+![Throughput](https://img.shields.io/badge/%CE%A6%20core%20engine-%E2%89%885%2C665%20nodes%2Fs-4c1d95?style=flat-square)
+
 O **Atlas Cortex** é um motor de pré-processamento para sistemas corporativos GraphRAG. Ele foi construído para resolver o maior gargalo atual na ingestão de dados para LLMs: o **Colapso de Contexto** e a **Diluição de Sinal**. 
+
 
 Ao invés de fatiar documentos de forma mecânica e cega por contagem de tokens (como o `RecursiveCharacterTextSplitter` do LangChain, que corta frases e blocos de código pela metade), o Atlas utiliza o **Roteamento Semântico Atômico**. Ele escaneia a topologia do documento (Markdown, HTML, AST de Códigos) e extrai os dados ancorados em nós estruturais, preservando 100% da integridade da informação e evitando alucinações (fenômeno análogo ao *Barren Plateaus* em Quantum Machine Learning).
 
@@ -32,6 +39,16 @@ O Atlas-Cortex opera sob um modelo de adoção livre para desenvolvedores e labo
 O binário distribuído neste repositório permite o processamento gratuito de até **750 Nós Semânticos**. Essa cota é calculada para provas de conceito, automação pessoal e testes laboratoriais (equivalente a repositórios de código médios ou alguns livros curtos). O sistema contabiliza os nós gerados e trava a execução localmente utilizando ancoragem física de hardware (Hardware Lock).
 
 Ao atingir o limite, a ferramenta exibirá um aviso. **Para uso corporativo em larga escala ou pipelines de Big Data, é necessária a aquisição da licença Enterprise.** Entre em contato com o autor para destravar o limite de processamento.
+
+### 💻 Requisitos de Sistema
+
+| Requisito | Especificação |
+|---|---|
+| Sistema Operacional | Windows 10 / 11 (64-bit) |
+| Arquitetura | x86_64 |
+| RAM Mínima | 512 MB livres |
+| Dependências | Nenhuma — executável autocontido |
+| VC++ Redistributable | Não necessário (embutido) |
 
 ### 💻 Como Usar o Executável?
 

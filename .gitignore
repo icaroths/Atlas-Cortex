@@ -1,5 +1,36 @@
-﻿node_modules/
-.env
+# --- Build Outputs ---
+node_modules/
 dist/
 build/
 .DS_Store
+
+# --- Environment & Secrets ---
+.env
+.env.*
+*.secret
+secrets/
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.spec
+.venv/
+venv/
+
+# --- Runtime / Tracking Data ---
+*.log
+*.cache
+*.tmp
+*.bak
+*.zip
+hardware_id.*
+tracking_data.*
+.atlas_cache.*
+*_aegis_cache.json
+*_Aegis_Graph.zip
+
+# --- OS ---
+Thumbs.db
+Desktop.ini

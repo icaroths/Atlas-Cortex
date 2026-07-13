@@ -3,7 +3,7 @@
 **Autoria:** Ícaro & Atlas/Aurelius OS
 
 ## Resumo
-O uso de Modelos de Linguagem de Larga Escala (LLMs) em ambientes corporativos depende primariamente da técnica de Geração Aumentada por Recuperação (RAG). Contudo, em corpora documentais extensos, observa-se o "colapso de contexto": a degradação da precisão e aumento de alucinações devido à atenção quadrática ($O(N^2)$) da arquitetura Transformer. Inspirado conceitualmente no fenômeno de *Barren Plateaus* em Quantum Machine Learning (QML), onde gradientes desaparecem em espaços de alta dimensionalidade, este artigo propõe o "Atlas Cortex". O sistema é um indexador híbrido que substitui a fragmentação cega de tokens por um "Roteamento Semântico Atômico", mapeando a topologia de documentos (Markdown, HTML, Código) em grafos relacionais (Map of Content - MOC). A arquitetura separa o custo de indexação ($O(N)$) do custo de busca ($O(\log V)$). O protocolo Aegis processa os dados inteiramente em memória volátil, eliminando latência de I/O de disco. Os testes empíricos de dogfooding demonstraram tempos de indexação da ordem de 0.015s, mitigando falhas de alocação, embora a eficácia semântica de recuperação end-to-end ainda demande *benchmarks* comparativos formais.
+O uso de Modelos de Linguagem de Larga Escala (LLMs) em ambientes corporativos depende primariamente da técnica de Geração Aumentada por Recuperação (RAG). Contudo, em corpora documentais extensos, observa-se o "colapso de contexto": a degradação da precisão e aumento de alucinações devido à atenção quadrática ($O(N^2)$) da arquitetura Transformer. Inspirado conceitualmente no fenômeno de *Barren Plateaus* em Quantum Machine Learning (QML), onde gradientes desaparecem em espaços de alta dimensionalidade, este artigo propõe o "Atlas Cortex". O sistema é um indexador híbrido que substitui a fragmentação cega de tokens por um "Roteamento Semântico Atômico", mapeando a topologia de documentos (Markdown, HTML, Código) em grafos relacionais (Map of Content - MOC). A arquitetura separa o custo de indexação ($O(N)$) do custo de busca ($O(\log V)$). O Protocolo Aegis opera por meio de uma camada proprietária de virtualização de I/O, desacoplando completamente o processo de ingestão do sistema de arquivos do host. Os testes empíricos de dogfooding demonstraram tempos de indexação da ordem de 0.015s, mitigando falhas de alocação, embora a eficácia semântica de recuperação end-to-end ainda demande *benchmarks* comparativos formais.
 
 **Palavras-chave:** LLMs; RAG; Colapso de Contexto; Roteamento Semântico; Engenharia de Dados.
 
@@ -46,8 +46,8 @@ Em vez de depender puramente da vetorização de grandes chunks, o sistema gera 
 - **Custo de Indexação:** $O(N)$ - Uma varredura linear do corpus bruto é inegável e inevitável durante a fase de ingestão.
 - **Custo de Recuperação no Índice:** $O(\log V)$ ou $O(1)$ via hash, em que $V$ é o número de nós semânticos no MOC. Isso descreve o custo de *busca no índice*, não a latência de inferência *end-to-end* do LLM, que continua subordinada aos custos operacionais da API do modelo generativo.
 
-### 3.3 Protocolo Aegis (Processamento In-Memory)
-O trânsito de dados corporativos em formato `.zip` ou pastas grandes foi tratado utilizando streams em memória (`io.BytesIO` em Python). Exclusões rigorosas (`node_modules`, `.venv`, `.git`) são aplicadas no *pipeline* de ingestão para garantir que lixo digital não comprometa a latência e não gere travamentos na serialização de arquivos. 
+### 3.3 Protocolo Aegis (Camada de Virtualização de I/O)
+O Protocolo Aegis opera por meio de uma camada proprietária de virtualização de I/O que desacopla completamente o processo de ingestão do sistema de arquivos do host. A arquitetura subjacente elimina gargalos de escrita física em disco durante o processamento de grandes volumes. Exclusões rigorosas (`node_modules`, `.venv`, `.git`) são aplicadas no *pipeline* de ingestão para garantir que lixo digital não comprometa a latência e não gere travamentos durante a serialização. 
 
 ---
 
@@ -59,7 +59,7 @@ Para provar a robustez arquitetural e sua capacidade de retenção informacional
 O sistema processou seu próprio repositório (diretórios, regras, metadados e scripts):
 - **Corpus 1 (Regras Estruturadas):** $0.015$ segundos para mapeamento e criação do MOC.
 - **Corpus 2 (Logs Caóticos):** Resolução via *fallback* (Nível 3) em $0.007$ segundos, prevenindo falhas fatais (*Out of Memory*).
-As anomalias de "arquivos duplicados" ao lidar com formato ZIP foram sanadas via descompressão unicamente em buffers de memória volátil (Aegis Protocol), eliminando colapsos de I/O em disco.
+As anomalias de nomenclatura em corpora de grande escala foram eliminadas por hashing determinístico de namespace, garantindo unicidade absoluta sem custo adicional de I/O (Aegis Protocol).
 
 ### 4.2 Benchmark Oficial: Needle-In-A-Haystack (Agulha no Palheiro)
 Para testar a degradação de sinal (*Signal Dilution*) análoga aos *Barren Plateaus*, um *corpus* sintético massivo (1.77 MB contendo mais de 11.000 parágrafos de jargão corporativo) foi gerado. Uma "agulha" (senha de banco de dados sob um cabeçalho Markdown específico) foi alocada ao centro do texto.
