@@ -1,17 +1,18 @@
 # Atlas Cortex 🌐
 
-**O Motor de Integridade Semântica para IA Generativa (GenAI)**
+**Motor de Pré-processamento Estrutural para RAG Corporativo**
 
 ![Version](https://img.shields.io/badge/version-1.0.0--stable-6d28d9?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-Windows%2064--bit-0ea5e9?style=flat-square&logo=windows)
 ![License](https://img.shields.io/badge/license-Freemium%20%2F%20Enterprise-059669?style=flat-square)
 ![Nodes](https://img.shields.io/badge/public%20cap-750%20nodes-f59e0b?style=flat-square)
-![Throughput](https://img.shields.io/badge/%CE%A6%20core%20engine-%E2%89%885%2C665%20nodes%2Fs-4c1d95?style=flat-square)
 
-O **Atlas Cortex** é um motor de pré-processamento para sistemas corporativos GraphRAG. Ele foi construído para resolver o maior gargalo atual na ingestão de dados para LLMs: o **Colapso de Contexto** e a **Diluição de Sinal**. 
+O **Atlas Cortex** é um motor de pré-processamento para sistemas corporativos GraphRAG. Ele foi construído para mitigar um dos gargalos centrais na ingestão de dados para LLMs: o **Colapso de Contexto** e a **Diluição de Sinal**, causados pela fragmentação mecânica de documentos longos.
 
+Ao invés de fatiar documentos de forma cega por contagem de tokens (como o `RecursiveCharacterTextSplitter` do LangChain, que pode cortar frases e blocos de código pela metade), o Atlas utiliza o **Roteamento Semântico Atômico**: ele escaneia a topologia do documento (headers Markdown, tags HTML, AST de código) e particiona os dados ancorados em nós estruturais.
 
-Ao invés de fatiar documentos de forma mecânica e cega por contagem de tokens (como o `RecursiveCharacterTextSplitter` do LangChain, que corta frases e blocos de código pela metade), o Atlas utiliza o **Roteamento Semântico Atômico**. Ele escaneia a topologia do documento (Markdown, HTML, AST de Códigos) e extrai os dados ancorados em nós estruturais, preservando 100% da integridade da informação e evitando alucinações (fenômeno análogo ao *Barren Plateaus* em Quantum Machine Learning).
+> **O que já foi validado empiricamente:** o roteamento preserva a integridade *estrutural* dos chunks (nós não são cortados no meio de uma seção ou função) e evita falhas de indexação (OOM) mesmo em corpora caóticos, via *fallback* gracioso.
+> **O que ainda não foi medido:** o impacto disso na taxa de alucinação ou na precisão/recall do *retrieval* final do LLM — essas métricas exigem benchmarks end-to-end (ex: RAGAS, MS MARCO/BEIR) ainda não executados. Ver limitações detalhadas na documentação abaixo.
 
 ---
 
@@ -22,24 +23,18 @@ O arcabouço teórico e as provas de conceito empíricas encontram-se disponíve
 - 🇧🇷 [Artigo Científico Principal (Português)](docs/Paper_Atlas_Cortex_PT.md) - *Recomendado*
 - 🇺🇸 [Main Whitepaper (English)](docs/Paper_Atlas_Cortex_EN.md)
 - 📊 [Benchmark Empírico (Needle-In-A-Haystack e Dogfooding)](docs/QML_Ingestion_Proof.md)
+- 📏 [Nota Técnica: Dimensionamento de Nós (bytes/tokens)](docs/Node_Sizing_Metrics.md)
+
+Todos os documentos acima incluem, explicitamente, as limitações metodológicas de cada teste — recomendamos a leitura da seção "Discussão e Limitações" do artigo principal antes de qualquer avaliação de adoção.
 
 ---
 
 ## ⚡ Motor de Ingestão (Binário Fechado)
 
-Para proteger a propriedade intelectual e o segredo industrial do Roteador em Cascata, o algoritmo original não está exposto. Disponibilizamos o motor compilado (`.exe`) via protocolo Aegis.
+Para proteger a propriedade intelectual do Roteador em Cascata, o algoritmo original não está exposto neste repositório. Disponibilizamos o motor compilado (`.exe`) via protocolo Aegis.
 
 - **Local:** `bin/atlas-cortex-cli.exe`
-- O binário é um executável portátil construído para ambientes Windows, capaz de varrer diretórios e arquivos zip caóticos puramente em memória (I/O livre de gargalos) e gerar o **MOC** (Map of Content) em formato de Grafo JSON a impressionantes **0.003s**.
-
-### ⚖️ Licenciamento & Cota Gratuita (Freemium)
-
-O Atlas-Cortex opera sob um modelo de adoção livre para desenvolvedores e laboratórios de IA. 
-
-O binário distribuído neste repositório permite o processamento gratuito de até **750 Nós Semânticos**, restrito a **3 execuções diárias**. Essa cota é calculada para provas de conceito, automação pessoal e testes laboratoriais (equivalente a repositórios de código médios ou alguns livros curtos). O sistema contabiliza os nós e acessos diários, travando a execução localmente utilizando ancoragem física de hardware (Hardware Lock).
-
-Ao atingir o limite (nós ou execuções diárias), a ferramenta exibirá um aviso. **Para uso corporativo em larga escala ou pipelines de Big Data, é necessária a aquisição da licença Enterprise (sem limites).**
-Para adquirir a licença ilimitada, suporte ou relatar problemas, contate: **icaro.thares@gmail.com**.
+- O binário é um executável portátil construído para ambientes Windows, capaz de varrer diretórios e arquivos zip caóticos puramente em memória, gerando o **MOC** (Map of Content) em formato de Grafo JSON.
 
 ### 💻 Requisitos de Sistema
 
@@ -53,7 +48,7 @@ Para adquirir a licença ilimitada, suporte ou relatar problemas, contate: **ica
 
 ### 💻 Como Usar o Executável?
 
-A ferramenta é um utilitário de linha de comando (CLI) 100% *plug-and-play*. **Não é necessário instalar Python, bibliotecas ou dependências.** Tudo já está embutido.
+A ferramenta é um utilitário de linha de comando (CLI) *plug-and-play*. Não é necessário instalar Python, bibliotecas ou dependências.
 
 Abra o **PowerShell** ou o **Prompt de Comando (CMD)** na pasta onde o executável se encontra e rode os comandos abaixo.
 
@@ -72,13 +67,13 @@ Abra o **PowerShell** ou o **Prompt de Comando (CMD)** na pasta onde o executáv
 .\bin\atlas-cortex-cli.exe niah
 ```
 
-O Atlas vai varrer a pasta, respeitar as barreiras estruturais do seu texto e devolver o RAG (Map of Content) extremamente limpo.
+O Atlas vai varrer a pasta, respeitar as barreiras estruturais do seu texto e devolver o índice (Map of Content) particionado por nó semântico.
 
 ---
 
 ## 🖥️ Dashboard Web Interativo (Frontend)
 
-O repositório também inclui uma Landing Page construída em React/Vite com efeito *Glassmorphism* para ilustrar visualmente o problema do colapso de contexto e exibir os dados do *benchmark* (Suporte a PT-BR e EN).
+O repositório também inclui uma landing page construída em React/Vite para ilustrar visualmente o problema do colapso de contexto e exibir os dados do benchmark (suporte a PT-BR e EN).
 
 Para rodar o painel interativo localmente:
 ```bash
@@ -90,41 +85,23 @@ Acesse `http://localhost:5173` no seu navegador.
 
 ---
 
-## 📐 Engine Topology & Cognitive Throughput
+## 🏷️ Modelo Comercial (Licenciamento & Cotas)
 
-O motor I/O do Atlas-Cortex foi projetado para extração vetorial massiva de grafos semânticos. Para garantir estabilidade em hardwares públicos e laboratórios de pesquisa, o motor opera sob dois regimes estritos:
+> Esta seção descreve o **produto** distribuído neste repositório (o binário `.exe`) — condições de uso, cotas e planos. Ela é independente das seções de pesquisa/documentação acima: os números aqui refletem política comercial, não resultados de benchmark publicados.
 
-### 🔬 Public License (Safe Mode)
-Limita a ingestão a **750 nós semânticos** e **3 execuções por dia**. Otimizado para repositórios open-source e provas de conceito. Garante integridade de RAM e renderização leve.
-**Contato Enterprise:** icaro.thares@gmail.com
+### Freemium (Safe Mode)
 
-### 🌌 Core Engine (Arquitetura Ilimitada)
-O limite real de processamento do Atlas é modelado através da **Taxa de Ingestão Vetorial ($\Phi$)**:
+O binário distribuído neste repositório permite o processamento gratuito de até **750 Nós Semânticos**, restrito a **3 execuções diárias**. Essa cota é dimensionada para provas de conceito, automação pessoal e testes laboratoriais (equivalente a repositórios de código médios ou alguns livros curtos). O sistema contabiliza nós e acessos diários, e trava a execução localmente via ancoragem de hardware (*Hardware Lock*).
 
-$$\Phi_{sem} = \frac{\Delta N}{\Delta t} \cdot (1 - E_c)$$
+Ao atingir o limite (nós ou execuções diárias), a ferramenta exibirá um aviso.
 
-Onde $E_c$ é a Entropia de Colisões (sobrescrita de namespaces no grafo semântico). Nos ensaios de estresse empíricos, $E_c \to 0$ foi alcançado via hashing determinístico de namespaces, e a vazão atingiu **~5.665 nós/segundo**.
+### Enterprise (Sem Limites)
 
-```mermaid
-graph LR
-    subgraph Benchmarks["Taxa de Ingestão Semântica"]
-        A["GitHub Public<br/>750 Nodes"] -->|Hard Cap| B(Safe Render)
-        C["Atlas Core Engine"] -->|"Φ ≈ 5.665 Nodes/sec"| D("520,000+ Nodes")
-    end
-    style A fill:#2d3748,stroke:#4a5568,color:#fff
-    style C fill:#4c1d95,stroke:#7c3aed,color:#fff
-    style D fill:#059669,stroke:#10b981,color:#fff
-```
+Para uso corporativo em larga escala ou pipelines de Big Data, é necessária a aquisição da licença Enterprise. O plano Enterprise remove os limites de nós e execuções diárias do Safe Mode.
 
-| Métrica | Resultado Empírico |
-|---|---|
-| Arquivos Ingeridos | 27.747 |
-| Vértices Semânticos | 520.679 |
-| Tempo de Execução (Delta Cache) | 91.9 segundos |
-| **Taxa de Ingestão ($\Phi$)** | **≈ 5.665 nós/s** |
-| Entropia de Colisão ($E_c$) | ≈ 0 |
+**Nota de transparência:** as cifras de vazão divulgadas para o plano Enterprise (nós/segundo em escala de centenas de milhares) referem-se a ensaios internos, executados em ambiente próprio, sem metodologia ou corpus publicados neste repositório — portanto, não devem ser lidas como benchmark reproduzível ou comparável aos testes documentados em `docs/`. Uma publicação formal desses números, com metodologia e corpus descritos, está nos planos de trabalhos futuros.
 
-*A versão pública (Safe Mode) é propositalmente limitada a 750 nós para proteção do hardware do pesquisador. O Core Engine, implantado em ambientes Cloud-Native internos, escala sem restrições de I/O.*
+Para aquisição de licença, suporte ou relato de problemas, contate: **icaro.thares@gmail.com**.
 
 ---
 *Construído com pragmatismo para a Engenharia de Dados Corporativa. (c) 2026*
