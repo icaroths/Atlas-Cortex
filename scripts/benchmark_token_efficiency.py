@@ -56,7 +56,7 @@ def simulate_langchain_retrieval(chunks: list, query: str, top_k: int = 3) -> in
     return sum(count_tokens(c) for c in retrieved)
 
 def main():
-    print("=== Benchmark de Eficiência de Tokens (TF-IDF Real) ===")
+    print("=== Benchmark de Eficiência de Tokens (Sentence Embeddings) ===")
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     corpus_path = os.path.join(base_dir, "docs", "core-protocol_benchmark_corpus.md")
     moc_path = os.path.join(base_dir, "docs", "core-protocol_benchmark_corpus.moc.json")

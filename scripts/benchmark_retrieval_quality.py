@@ -7,14 +7,25 @@ from sklearn.metrics.pairwise import cosine_similarity
 from benchmark_token_efficiency import retrieve_top_k
 
 def run_ollama_judge(query: str, retrieved_context: str) -> bool:
-    """
-    Simula uma chamada a um juiz LLM (Ollama) para verificar se o contexto
-    recuperado é suficiente para responder à pergunta.
-    Retorna True se for suficiente, False caso contrário.
-    """
-    # Para testes rápidos e evitar gargalos sem ollama ativo local, usaremos um stub simulado.
-    # Em produção, você ativaria a chamada real à API Ollama aqui.
-    return len(retrieved_context) > 100
+    import subprocess
+    prompt = f"""You are an expert judge. Given the context below, can you answer the following question?
+Question: {query}
+Context: {retrieved_context}
+Reply only with 'YES' if the context contains enough information to answer the question, or 'NO' if it does not."""
+    
+    try:
+        # Tenta executar o ollama localmente. Se não estiver disponível, falhará de forma limpa.
+        result = subprocess.run(
+            ["ollama", "run", "qwen2.5-coder:7b", prompt],
+            capture_output=True,
+            encoding="utf-8",
+            timeout=120
+        )
+        return "yes" in result.stdout.strip().lower()
+    except Exception as e:
+        print(f"Erro ao chamar Ollama: {str(e).encode('utf-8', 'replace').decode('utf-8')}")
+        # Se falhar (ex: ollama não instalado), não mascara como sucesso.
+        return False
 
 def main():
     print("=== Benchmark de Qualidade de Retrieval (LLM-as-a-judge) ===")
@@ -46,10 +57,12 @@ def main():
 
     for i, item in enumerate(qa_dataset):
         q = item["question"]
+        print(f"[{i+1}/{len(qa_dataset)}] Julgando: {q[:50]}...")
         retrieved = retrieve_top_k(corpus, q, top_k)
         retrieved_context = "\n".join(retrieved)
         
         is_correct = run_ollama_judge(q, retrieved_context)
+        print(f" -> Resultado Ollama: {'PASS' if is_correct else 'FAIL'}")
         if is_correct:
             correct_retrievals += 1
 
@@ -63,7 +76,7 @@ def main():
         "top_k": top_k,
         "correct_retrievals": correct_retrievals,
         "accuracy_percentage": round(accuracy, 2),
-        "methodology": "Scikit-Learn TF-IDF Cosine Similarity + Ollama-as-a-judge"
+        "methodology": "Sentence Embeddings (all-MiniLM-L6-v2) + Ollama-as-a-judge"
     }
 
     out_file = os.path.join(base_dir, "docs", "benchmarks", "retrieval_quality_result.json")
