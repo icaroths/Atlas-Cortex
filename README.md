@@ -70,21 +70,21 @@ Sistemas tradicionais de vetorização baseados em *character splitting* exigem 
 
 O **Roteamento Semântico Atômico** do Atlas gera nós que já são autocontidos estruturalmente (uma função, uma seção ou um parágrafo lógico inteiro). Isso elimina a necessidade de *overlap*, garantindo que, para alcançar a mesma completude informacional (*recall equivalente*), o RAG precise enviar consideravelmente **menos tokens brutos** na janela de contexto.
 
-### Benchmark Comprovado (61.02% de Economia)
+### Benchmark Comprovado (63.85% de Economia)
 
-Os testes empíricos de **Recuperação Semântica Real** são rodados diretamente contra o corpus `core-protocol_benchmark_corpus.md` (presente em `docs/`). O script analisa um dataset de **15 queries curadas** (`qa_dataset.json`), executando um ranqueamento de palavras-chave (TF) contra os nós do Atlas vs chunks do LangChain.
+Os testes empíricos de **Recuperação Semântica Real** são rodados diretamente contra o corpus `core-protocol_benchmark_corpus.md` (presente em `docs/`). O script analisa um dataset de **15 queries curadas** (`qa_dataset.json`), executando um ranqueamento semântico de similaridade profunda (*Sentence Embeddings - all-MiniLM-L6-v2*) contra os nós do Atlas vs chunks do LangChain.
 
 As provas documentais brutas e a média agregada da economia de todas as 15 queries são injetadas em `docs/benchmarks/token_efficiency_result.json` para auditoria pública total. Ao comparar o LangChain (RecursiveCharacterTextSplitter) contra o Atlas Cortex para extrair a mesma resposta ancorada:
 
 ```mermaid
 pie title Consumo Total de Tokens (15 Queries Reais | Top-K = 3)
-    "Desperdício (LangChain - Overlap)" : 8949
-    "Essência Útil (Atlas Cortex)" : 3488
+    "Desperdício (LangChain - Overlap)" : 9254
+    "Essência Útil (Atlas Cortex)" : 3345
 ```
 
-- **LangChain (1000 char, 20% overlap):** 8.949 tokens totais gastos para responder as 15 perguntas.
-- **Atlas Cortex (Nós Topológicos Atômicos):** 3.488 tokens totais gastos.
-- **Redução Média:** **61.02% de economia real e defensável**.
+- **LangChain (1000 char, 20% overlap):** 9.254 tokens totais gastos para responder as 15 perguntas.
+- **Atlas Cortex (Nós Topológicos Atômicos):** 3.345 tokens totais gastos.
+- **Redução Média:** **63.85% de economia real e defensável**.
 
 Essa métrica prova matematicamente que a entropia nas pontas dos *chunks* tradicionais encarece artificialmente as chamadas de API. O Atlas resolve o problema no gargalo do I/O, garantindo RAG limpo e barato em produção corporativa.
 

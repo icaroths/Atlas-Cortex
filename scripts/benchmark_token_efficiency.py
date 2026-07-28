@@ -2,7 +2,7 @@ import os
 import json
 import re
 import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
 try:
@@ -21,34 +21,29 @@ def count_tokens(text: str, model_name: str = "cl100k_base") -> int:
     encoding = tiktoken.get_encoding(model_name)
     return len(encoding.encode(text))
 
+# Carrega o modelo de forma global para otimizar chamadas
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
 def retrieve_top_k(corpus: list, query: str, top_k: int = 3) -> list:
     """
-    Implementação REAL de TF-IDF e Similaridade de Cosseno.
-    Atende ao commit: 'integracao TF-IDF nativa (scikit-learn)'
+    Implementação REAL de Embeddings Semânticos e Similaridade de Cosseno.
+    Atende ao commit: 'Evolução para SentenceTransformers (all-MiniLM-L6-v2)'
     """
     if not corpus:
         return []
     
-    # Adiciona a query como último documento para vetorizar tudo no mesmo espaço
-    docs_to_vectorize = corpus + [query]
+    # Gera os embeddings semânticos (vetores densos de 384 dimensões)
+    corpus_embeddings = model.encode(corpus)
+    query_embedding = model.encode([query])
     
-    # TF-IDF com tokenização que ignora pontuação e captura palavras (\w+)
-    vectorizer = TfidfVectorizer(stop_words=None, token_pattern=r'(?u)\b\w+\b')
-    tfidf_matrix = vectorizer.fit_transform(docs_to_vectorize)
-    
-    # A query é o último vetor na matriz
-    query_vec = tfidf_matrix[-1]
-    corpus_vecs = tfidf_matrix[:-1]
-    
-    # Calcula similaridade de cosseno
-    scores = cosine_similarity(query_vec, corpus_vecs).flatten()
+    # Calcula similaridade de cosseno (1D array)
+    scores = cosine_similarity(query_embedding, corpus_embeddings).flatten()
     
     # Ordena pelos maiores scores e retorna os top_k textos
-    # Usamos np.argsort para ordenar de forma decrescente
     top_indices = np.argsort(scores)[::-1][:top_k]
     
-    # Filtra apenas resultados com score > 0 (relevância real)
-    retrieved = [corpus[i] for i in top_indices if scores[i] > 0]
+    # Filtra apenas resultados com score > 0.1 (relevância semântica mínima)
+    retrieved = [corpus[i] for i in top_indices if scores[i] > 0.1]
     return retrieved
 
 def simulate_atlas_retrieval(nodes: list, query: str, top_k: int = 3) -> int:

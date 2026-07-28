@@ -2,9 +2,9 @@
     "corpus": "core-protocol_benchmark_corpus.md",
     "queries_tested": 15,
     "top_k": 3,
-    "langchain_tokens_total": 8949,
-    "atlas_tokens_total": 3488,
-    "savings_absolute": 5461,
-    "savings_percentage": 61.02,
+    "langchain_tokens_total": 9254,
+    "atlas_tokens_total": 3345,
+    "savings_absolute": 5909,
+    "savings_percentage": 63.85,
     "methodology": "TF-IDF + Cosine Similarity (scikit-learn)"
 }

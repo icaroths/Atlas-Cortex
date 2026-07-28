@@ -2,3 +2,4 @@ scikit-learn
 tiktoken
 langchain-text-splitters
 pytest
+sentence-transformers
