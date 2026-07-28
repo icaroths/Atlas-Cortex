@@ -66,7 +66,7 @@ def main():
     print("=== Benchmark de Retrieval Quality (Precision/Recall) ===")
     
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    moc_path = os.path.join(base_dir, "docs", "core-protocol_benchmark_corpus.moc.json")
+    moc_path = os.path.join(base_dir, "docs", "Paper_Atlas_Cortex_PT.moc.json")
     qa_path = os.path.join(base_dir, "docs", "benchmarks", "qa_dataset.json")
     
     if not os.path.exists(qa_path):

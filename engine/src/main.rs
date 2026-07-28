@@ -33,29 +33,35 @@ fn parse_markdown_topologically(content: &str) -> Vec<SemanticNode> {
     
     let source = content.as_bytes();
     
-    let mut cursor = root.walk();
-    for child in root.children(&mut cursor) {
-        let kind = child.kind();
-        let text = child.utf8_text(source).unwrap_or("");
-        
+    fn walk_ast(node: tree_sitter::Node, source: &[u8], current: &mut SemanticNode, nodes: &mut Vec<SemanticNode>, node_id: &mut usize) {
+        let kind = node.kind();
         if kind == "atx_heading" || kind == "setext_heading" {
-            if !current_node.content.trim().is_empty() {
+            if !current.content.trim().is_empty() {
                 nodes.push(SemanticNode {
-                    id: current_node.id,
-                    title: current_node.title.clone(),
-                    content: current_node.content.clone(),
+                    id: current.id,
+                    title: current.title.clone(),
+                    content: current.content.clone(),
                 });
             }
-            node_id += 1;
-            current_node.id = node_id;
-            current_node.title = text.lines().next().unwrap_or("").trim().to_string();
-            current_node.content = format!("{}\n", text);
+            *node_id += 1;
+            current.id = *node_id;
+            let text = node.utf8_text(source).unwrap_or("");
+            current.title = text.lines().next().unwrap_or("").trim().to_string();
+            current.content = format!("{}\n", text);
+        } else if kind == "paragraph" || kind == "fenced_code_block" || kind == "indented_code_block" || kind == "list" || kind == "thematic_break" {
+            let text = node.utf8_text(source).unwrap_or("");
+            current.content.push_str(text);
+            current.content.push('\n');
+            current.content.push('\n');
         } else {
-            // Append blocks like paragraph, fenced_code_block, html_block, list, etc.
-            current_node.content.push_str(text);
-            current_node.content.push('\n');
+            let mut cursor = node.walk();
+            for child in node.children(&mut cursor) {
+                walk_ast(child, source, current, nodes, node_id);
+            }
         }
     }
+
+    walk_ast(root, source, &mut current_node, &mut nodes, &mut node_id);
 
     if !current_node.content.trim().is_empty() {
         nodes.push(current_node);
