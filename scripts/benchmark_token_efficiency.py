@@ -75,8 +75,9 @@ def simulate_langchain_retrieval(corpus_path: str, chunk_size: int = 500, chunk_
 
 def main():
     print("=== Benchmark de Eficiência de Tokens (Zero-Overlap) ===")
-    corpus_path = r"i:\Aurelius_Workspace\.agents\rules\core-protocol.md"
-    moc_path = r"i:\Aurelius_Workspace\.agents\rules\core-protocol.moc.json"
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    corpus_path = os.path.join(base_dir, "docs", "core-protocol_benchmark_corpus.md")
+    moc_path = os.path.join(base_dir, "docs", "core-protocol_benchmark_corpus.moc.json")
     
     print(f"1. Analisando Corpus: {corpus_path}")
     
@@ -90,6 +91,16 @@ def main():
     
     print("\nResultados (Top-K = {}):".format(top_k))
     print(f"Tokens gastos no Langchain (20% overlap): {tokens_langchain} tokens")
+    
+    result = {
+        "corpus": "core-protocol_benchmark_corpus.md",
+        "top_k": top_k,
+        "langchain_tokens": tokens_langchain,
+        "atlas_tokens": tokens_atlas,
+        "savings_absolute": 0,
+        "savings_percentage": 0.0
+    }
+    
     if tokens_atlas > 0:
         print(f"Tokens gastos no Atlas Cortex (0% overlap): {tokens_atlas} tokens")
         
@@ -97,9 +108,19 @@ def main():
         savings = (diff / tokens_langchain) * 100 if tokens_langchain > 0 else 0
         
         print(f"\nEconomia de Tokens via Atlas: {diff} tokens ({savings:.2f}%)")
+        
+        result["savings_absolute"] = diff
+        result["savings_percentage"] = round(savings, 2)
+        
+        # Salva a evidência do benchmark
+        out_file = os.path.join(base_dir, "docs", "benchmarks", "token_efficiency_result.json")
+        os.makedirs(os.path.dirname(out_file), exist_ok=True)
+        with open(out_file, "w", encoding="utf-8") as f:
+            json.dump(result, f, indent=4)
+        print(f"\n[+] Resultado empírico salvo em: {out_file}")
     else:
-        print("\nPara ver o comparativo do Atlas, gere primeiro o MOC do corpus utilizando o CLI.")
-        print(f"Ex: .\\bin\\atlas-cortex-cli.exe ingest --path {os.path.dirname(corpus_path)} --type md")
+        print("\nPara ver o comparativo do Atlas, gere primeiro o MOC do corpus utilizando o simulador open-source.")
+        print(f"Ex: python scripts/mock_atlas_ingestor.py --path docs/core-protocol_benchmark_corpus.md")
 
 if __name__ == "__main__":
     main()

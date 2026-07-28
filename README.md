@@ -3,10 +3,8 @@
 **O Motor de Integridade Semântica para IA Generativa (GenAI)**
 
 ![Version](https://img.shields.io/badge/version-1.0.0--stable-6d28d9?style=flat-square)
-![Platform](https://img.shields.io/badge/platform-Windows%2064--bit-0ea5e9?style=flat-square&logo=windows)
-![License](https://img.shields.io/badge/license-Freemium%20%2F%20Enterprise-059669?style=flat-square)
-![Nodes](https://img.shields.io/badge/public%20cap-750%20nodes-f59e0b?style=flat-square)
-![Throughput](https://img.shields.io/badge/%CE%A6%20core%20engine-%E2%89%885%2C665%20nodes%2Fs-4c1d95?style=flat-square)
+![Platform](https://img.shields.io/badge/platform-Cross--platform-0ea5e9?style=flat-square)
+![License](https://img.shields.io/badge/license-Open--Source%20(MVP)-059669?style=flat-square)
 
 O **Atlas Cortex** é um motor de pré-processamento para sistemas corporativos GraphRAG. Ele foi construído para resolver o maior gargalo atual na ingestão de dados para LLMs: o **Colapso de Contexto** e a **Diluição de Sinal**. 
 
@@ -25,11 +23,13 @@ O arcabouço teórico e as provas de conceito empíricas encontram-se disponíve
 
 ---
 
-## ⚡ Motor de Ingestão e Testes Empíricos (Python MVP)
+## ⚡ Transparência Arquitetural (Motor V2 Rust)
 
-Atualmente, o repositório opera em formato de scripts para viabilizar a validação transparente e auditoria de eficiência. O código fonte original em Rust (V2) está em desenvolvimento para o lançamento Enterprise.
+> **Nota:** Este repositório open-source contém o MVP estrutural básico do Atlas Cortex.
+> A arquitetura prometida no Whitepaper descreve um **Roteador em Cascata de 3 Níveis**. O código atualmente visível na pasta `engine/` implementa estritamente o **Nível 1** (corte mecânico via topologia de Markdown por *regex* e placeholders de *Tree-sitter*). 
+> As rotinas densas de AST real (Nível 2), Failsafe de Densidade (Nível 3), suporte completo HTML e travas de licenciamento corporativas (Hardware Lock, Cap de 750 nós) estão isoladas no binário compilado da versão Enterprise (fechada). A missão deste repositório é viabilizar o teste empírico e documentar as bases teóricas de preservação semântica e eficiência de tokens.
 
-Para rodar os benchmarks no seu próprio ambiente, utilize os scripts em Python disponíveis na pasta `scripts/`:
+Para rodar os benchmarks matemáticos comprobatórios no seu próprio ambiente, utilize os scripts em Python disponíveis na pasta `scripts/`:
 
 **1. Gerar o MOC (Simulador de Ingestão Atômica):**
 ```bash
@@ -72,7 +72,7 @@ O **Roteamento Semântico Atômico** do Atlas gera nós que já são autocontido
 
 ### Benchmark Comprovado (88.7% de Economia)
 
-Os testes empíricos rodados diretamente contra diretórios complexos (`.agents/rules/`) validam a eficiência brutal do roteamento. Ao comparar o LangChain (RecursiveCharacterTextSplitter) contra o Atlas Cortex para os Top-3 nós relevantes:
+Os testes empíricos são rodados diretamente contra o corpus `core-protocol_benchmark_corpus.md` (presente em `docs/`), e as provas documentais brutas são injetadas em `docs/benchmarks/token_efficiency_result.json` para auditoria pública total. Ao comparar o LangChain (RecursiveCharacterTextSplitter) contra o Atlas Cortex para extrair a mesma resposta ancorada:
 
 ```mermaid
 pie title Consumo de Tokens (Top-K = 3)

@@ -1,0 +1,77 @@
+[
+    {
+        "question": "O que causa o fenômeno análogo aos Barren Plateaus em LLMs?",
+        "expected_answer": "O fatiamento mecânico e a sobreposição artificial de chunks, que criam entropia e diluem o sinal semântico.",
+        "anchor_section": "Resumo"
+    },
+    {
+        "question": "Qual é a porcentagem exata de economia de tokens comprovada pelo Roteamento Atômico contra o Langchain no benchmark de ponta?",
+        "expected_answer": "88.72%",
+        "anchor_section": "3. Metodologia: O Protocolo de Zero-Overlap"
+    },
+    {
+        "question": "Como o Nível 1 do Roteamento em Cascata divide os documentos?",
+        "expected_answer": "Pelos marcadores topológicos nativos, como as tags de cabeçalho H1, H2 e H3 do Markdown.",
+        "anchor_section": "2. Arquitetura Proposta: Roteamento em Cascata"
+    },
+    {
+        "question": "O que o Nível 3 (Failsafe Densidade) faz quando não há formatação clara?",
+        "expected_answer": "Utiliza a densidade sintática para induzir quebras lógicas em corpora caóticos (como logs de servidores).",
+        "anchor_section": "2. Arquitetura Proposta: Roteamento em Cascata"
+    },
+    {
+        "question": "Qual é a complexidade matemática da recuperação vetorial clássica quando ocorre a indexação O(N)?",
+        "expected_answer": "A complexidade de busca no índice topológico torna-se O(log V) ou O(1).",
+        "anchor_section": "Resumo"
+    },
+    {
+        "question": "Qual componente é utilizado pelo RAG Clássico que fatia texto de forma arbitrária?",
+        "expected_answer": "RecursiveCharacterTextSplitter",
+        "anchor_section": "1. Introdução: O Colapso de Contexto"
+    },
+    {
+        "question": "Por que o overlap tradicional encarece a inferência LLM?",
+        "expected_answer": "Porque envia um excesso de redundância (10% a 20% de overlap) multiplicada pela janela de contexto, custando tokens desnecessários na API.",
+        "anchor_section": "3. Metodologia: O Protocolo de Zero-Overlap"
+    },
+    {
+        "question": "Qual teste empírico validou que o roteamento estrutural evita o truncamento de contexto e encontra o dado oculto com precisão?",
+        "expected_answer": "O teste Needle-In-A-Haystack (NIAH).",
+        "anchor_section": "4. Resultados Empíricos (Benchmarks Preliminares)"
+    },
+    {
+        "question": "O que significa 'Zero-Overlap' no ecossistema do Atlas Cortex?",
+        "expected_answer": "Significa particionar o texto respeitando contornos semânticos integrais, eliminando a necessidade de sobrepor pedaços de texto para não perder o raciocínio.",
+        "anchor_section": "3. Metodologia: O Protocolo de Zero-Overlap"
+    },
+    {
+        "question": "Como o Aegis Protocol afeta a ingestão do Atlas Cortex em diretórios complexos?",
+        "expected_answer": "Ele implementa uma virtualização de I/O, processando zips e diretórios profundamente aninhados em memória, sem extração em disco.",
+        "anchor_section": "Discussão"
+    },
+    {
+        "question": "Quantos nós semânticos o teste 'Unleashed' conseguiu processar em ambiente multi-repositório?",
+        "expected_answer": "520.679 nós.",
+        "anchor_section": "4. Resultados Empíricos (Benchmarks Preliminares)"
+    },
+    {
+        "question": "Por que o Nível 2 é importante para blocos de código grandes?",
+        "expected_answer": "Porque se um documento não tiver cabeçalhos suficientes, o Nível 2 quebra por densidade de parágrafos lógicos e blocos de AST.",
+        "anchor_section": "2. Arquitetura Proposta: Roteamento em Cascata"
+    },
+    {
+        "question": "Qual é a principal consequência quando um LLM recebe um vetor diluído com frases cortadas ao meio?",
+        "expected_answer": "O LLM tende a alucinar informações, assumindo que a informação não existe ou forjando correlações incorretas.",
+        "anchor_section": "1. Introdução: O Colapso de Contexto"
+    },
+    {
+        "question": "Em que linguagem o MVP atual (open-source) gera a estrutura do MOC?",
+        "expected_answer": "O simulador e utilitários são documentados no repositório com scripts baseados em Python/Rust básico.",
+        "anchor_section": "Discussão"
+    },
+    {
+        "question": "O que é avaliado no script benchmark_token_efficiency.py?",
+        "expected_answer": "A quantidade de tokens brutos gastos (consumo) ao recuperar os Top-K chunks via splitter mecânico versus Top-K nós topológicos.",
+        "anchor_section": "3. Metodologia: O Protocolo de Zero-Overlap"
+    }
+]
