@@ -2,7 +2,7 @@ use serde::{Serialize, Deserialize};
 use std::fs;
 use std::path::PathBuf;
 use std::env;
-use tree_sitter::{Parser, Language};
+use tree_sitter::{Parser, Node};
 
 #[derive(Serialize, Deserialize, Debug)]
 struct SemanticNode {
@@ -17,13 +17,12 @@ struct MocGraph {
 }
 
 fn parse_markdown_topologically(content: &str) -> Vec<SemanticNode> {
-    // Tree-sitter AST Injection (Placeholder for grammar)
     let mut parser = Parser::new();
-    // let language = tree_sitter_markdown::language();
-    // parser.set_language(&language).expect("Error loading Markdown grammar");
-    // let tree = parser.parse(content, None).unwrap();
-    // println!("AST Injected. Root node: {:?}", tree.root_node().kind());
-
+    let language = tree_sitter_md::LANGUAGE.into();
+    parser.set_language(&language).expect("Error loading Markdown grammar");
+    let tree = parser.parse(content, None).unwrap();
+    let root = tree.root_node();
+    
     let mut nodes = Vec::new();
     let mut current_node = SemanticNode {
         id: 0,
@@ -31,20 +30,29 @@ fn parse_markdown_topologically(content: &str) -> Vec<SemanticNode> {
         content: String::new(),
     };
     let mut node_id = 0;
-
-    for line in content.lines() {
-        if line.starts_with('#') {
+    
+    let source = content.as_bytes();
+    
+    let mut cursor = root.walk();
+    for child in root.children(&mut cursor) {
+        let kind = child.kind();
+        let text = child.utf8_text(source).unwrap_or("");
+        
+        if kind == "atx_heading" || kind == "setext_heading" {
             if !current_node.content.trim().is_empty() {
-                nodes.push(current_node);
+                nodes.push(SemanticNode {
+                    id: current_node.id,
+                    title: current_node.title.clone(),
+                    content: current_node.content.clone(),
+                });
             }
             node_id += 1;
-            current_node = SemanticNode {
-                id: node_id,
-                title: line.trim().to_string(),
-                content: format!("{}\n", line),
-            };
+            current_node.id = node_id;
+            current_node.title = text.lines().next().unwrap_or("").trim().to_string();
+            current_node.content = format!("{}\n", text);
         } else {
-            current_node.content.push_str(line);
+            // Append blocks like paragraph, fenced_code_block, html_block, list, etc.
+            current_node.content.push_str(text);
             current_node.content.push('\n');
         }
     }
@@ -57,7 +65,7 @@ fn parse_markdown_topologically(content: &str) -> Vec<SemanticNode> {
 }
 
 fn main() {
-    println!("Atlas Cortex Engine V2 (Rust)");
+    println!("Atlas Cortex Engine V2 (Rust - Tree-Sitter AST)");
     let args: Vec<String> = env::args().collect();
     
     if args.len() < 2 {
@@ -80,5 +88,5 @@ fn main() {
     let out_path = filepath.with_extension("moc.json");
     fs::write(&out_path, json_output).expect("Failed to write output");
     
-    println!("Atomic Ingestion complete: generated {} semantic nodes at {:?}", moc.nodes.len(), out_path);
+    println!("Atomic Ingestion complete: generated {} AST-backed semantic nodes at {:?}", moc.nodes.len(), out_path);
 }

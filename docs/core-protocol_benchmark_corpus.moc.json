@@ -3,47 +3,7 @@
     {
       "id": 0,
       "title": "root",
-      "content": "---\ntrigger: always_on\n---\n\n"
-    },
-    {
-      "id": 1,
-      "title": "# Core Protocol - AG Kit",
-      "content": "# Core Protocol - AG Kit\n\n> The highest-priority workspace rules. How the AI loads agents/skills and what it must do before any implementation.\n\n---\n\n"
-    },
-    {
-      "id": 2,
-      "title": "## CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
-      "content": "## CRITICAL: AGENT & SKILL PROTOCOL (START HERE)\n\n> **MANDATORY:** You MUST read the appropriate agent file and its skills BEFORE performing any implementation. This is the highest priority rule.\n\n"
-    },
-    {
-      "id": 3,
-      "title": "### 1. Modular Skill Loading Protocol",
-      "content": "### 1. Modular Skill Loading Protocol\n\nAgent activated → Check frontmatter \"skills:\" → Read SKILL.md (INDEX) → Read specific sections.\n\n- **Selective Reading:** DO NOT read ALL files in a skill folder. Read `SKILL.md` first, then only read sections matching the user's request.\n- **Rule Priority:** P0 (Workspace Rules in `.agents/rules/`) > P1 (Agent `.md`) > P2 (SKILL.md). All rules are binding.\n\n"
-    },
-    {
-      "id": 4,
-      "title": "### 1.1 Skill Announcement (MANDATORY)",
-      "content": "### 1.1 Skill Announcement (MANDATORY)\n\n**Every time you load and apply a skill, announce it BEFORE using it** — so the user can verify which knowledge is active.\n\n```markdown\n📚 **Using skill: `@[skill-name]`...**\n```\n\n- List multiple skills together: `📚 Using skills: @frontend-design + @minimalist-ui...`\n- Announce on-demand skills too (e.g. a companion skill pulled from a hub, or `app-builder` for a new app), not just frontmatter ones.\n- ❌ Applying a skill without announcing it = **USER CANNOT VERIFY THE SKILL WAS USED**.\n\n"
-    },
-    {
-      "id": 5,
-      "title": "### 2. Enforcement Protocol",
-      "content": "### 2. Enforcement Protocol\n\n1. **When agent is activated:**\n    - ✅ Activate: Read Rules → Check Frontmatter → Load SKILL.md → Apply All.\n2. **Forbidden:** Never skip reading agent rules or skill instructions. \"Read → Understand → Apply\" is mandatory.\n\n---\n\n"
-    },
-    {
-      "id": 6,
-      "title": "## 📁 File Dependency Awareness",
-      "content": "## 📁 File Dependency Awareness\n\n**Before modifying ANY file:**\n\n1. Check `CODEBASE.md` → File Dependencies\n2. Identify dependent files\n3. Update ALL affected files together\n\n---\n\n"
-    },
-    {
-      "id": 7,
-      "title": "## 🗺️ System Map & Memory Read",
-      "content": "## 🗺️ System Map & Memory Read\n\n> 🔴 **MANDATORY:** At session start, you MUST read `.agents/memory/MEMORY.md` to load persistent project conventions, user preferences, and decisions.\n\n> 📚 **Catalog lookup (on-demand, NOT every session):** Need the full list of Agents / Skills / Scripts? The `quick-reference` rule has the essentials. For the complete catalog, read `.agents/ARCHITECTURE.md` only when you actually need it (e.g. orchestration, or discovering a skill you're unsure exists) — do NOT load it on every request.\n\n**Path Awareness (Note: the project directory name is `.agents` plural):**\n\n- Agents: `.agents/agent/` (Project)\n- Skills: `.agents/skills/` (Project)\n- Memory: `.agents/memory/` (Project)\n- Runtime Scripts: `.agents/skills/<skill>/scripts/`\n\n---\n\n"
-    },
-    {
-      "id": 8,
-      "title": "## 🧠 Read → Understand → Apply",
-      "content": "## 🧠 Read → Understand → Apply\n\n```\n❌ WRONG: Read agent file → Start coding\n✅ CORRECT: Read → Understand WHY → Apply PRINCIPLES → Code\n```\n\n**Before coding, answer:**\n\n1. What is the GOAL of this agent/skill?\n2. What PRINCIPLES must I apply?\n3. How does this DIFFER from generic output?\n\n---\n\n"
+      "content": "---\r\ntrigger: always_on\r\n---\r\n\n\r\n\n# Core Protocol - AG Kit\r\n\r\n> The highest-priority workspace rules. How the AI loads agents/skills and what it must do before any implementation.\r\n\r\n---\r\n\r\n## CRITICAL: AGENT & SKILL PROTOCOL (START HERE)\r\n\r\n> **MANDATORY:** You MUST read the appropriate agent file and its skills BEFORE performing any implementation. This is the highest priority rule.\r\n\r\n### 1. Modular Skill Loading Protocol\r\n\r\nAgent activated → Check frontmatter \"skills:\" → Read SKILL.md (INDEX) → Read specific sections.\r\n\r\n- **Selective Reading:** DO NOT read ALL files in a skill folder. Read `SKILL.md` first, then only read sections matching the user's request.\r\n- **Rule Priority:** P0 (Workspace Rules in `.agents/rules/`) > P1 (Agent `.md`) > P2 (SKILL.md). All rules are binding.\r\n\r\n### 1.1 Skill Announcement (MANDATORY)\r\n\r\n**Every time you load and apply a skill, announce it BEFORE using it** — so the user can verify which knowledge is active.\r\n\r\n```markdown\r\n📚 **Using skill: `@[skill-name]`...**\r\n```\r\n\r\n- List multiple skills together: `📚 Using skills: @frontend-design + @minimalist-ui...`\r\n- Announce on-demand skills too (e.g. a companion skill pulled from a hub, or `app-builder` for a new app), not just frontmatter ones.\r\n- ❌ Applying a skill without announcing it = **USER CANNOT VERIFY THE SKILL WAS USED**.\r\n\r\n### 2. Enforcement Protocol\r\n\r\n1. **When agent is activated:**\r\n    - ✅ Activate: Read Rules → Check Frontmatter → Load SKILL.md → Apply All.\r\n2. **Forbidden:** Never skip reading agent rules or skill instructions. \"Read → Understand → Apply\" is mandatory.\r\n\r\n---\r\n\r\n## 📁 File Dependency Awareness\r\n\r\n**Before modifying ANY file:**\r\n\r\n1. Check `CODEBASE.md` → File Dependencies\r\n2. Identify dependent files\r\n3. Update ALL affected files together\r\n\r\n---\r\n\r\n## 🗺️ System Map & Memory Read\r\n\r\n> 🔴 **MANDATORY:** At session start, you MUST read `.agents/memory/MEMORY.md` to load persistent project conventions, user preferences, and decisions.\r\n\r\n> 📚 **Catalog lookup (on-demand, NOT every session):** Need the full list of Agents / Skills / Scripts? The `quick-reference` rule has the essentials. For the complete catalog, read `.agents/ARCHITECTURE.md` only when you actually need it (e.g. orchestration, or discovering a skill you're unsure exists) — do NOT load it on every request.\r\n\r\n**Path Awareness (Note: the project directory name is `.agents` plural):**\r\n\r\n- Agents: `.agents/agent/` (Project)\r\n- Skills: `.agents/skills/` (Project)\r\n- Memory: `.agents/memory/` (Project)\r\n- Runtime Scripts: `.agents/skills/<skill>/scripts/`\r\n\r\n---\r\n\r\n## 🧠 Read → Understand → Apply\r\n\r\n```\r\n❌ WRONG: Read agent file → Start coding\r\n✅ CORRECT: Read → Understand WHY → Apply PRINCIPLES → Code\r\n```\r\n\r\n**Before coding, answer:**\r\n\r\n1. What is the GOAL of this agent/skill?\r\n2. What PRINCIPLES must I apply?\r\n3. How does this DIFFER from generic output?\r\n\r\n---\r\n\n"
     }
   ]
 }
