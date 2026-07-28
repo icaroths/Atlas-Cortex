@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, BarChart, Bar, Cell } from 'recharts';
 import { Activity, Zap, Shield, Database, ChevronRight, Cpu, Layers, GitMerge, FileText, TrendingUp, Mail } from 'lucide-react';
+import Graph3D from './Graph3D';
 import './index.css';
 
 // Chart Data — Signal Retention
@@ -227,6 +228,10 @@ const App = () => {
               </div>
             ))}
           </div>
+          
+          <div style={{ marginTop: '3rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
+            <Graph3D />
+          </div>
         </section>
 
         {/* PROBLEM */}
@@ -377,7 +382,7 @@ const App = () => {
                       <XAxis dataKey="label" stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
                       <YAxis stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
                       <Tooltip
-                        formatter={(v: number) => [`${v.toLocaleString()} ${t.unleashed.phi_unit}`, 'Φ']}
+                        formatter={(v: any) => [`${Number(v).toLocaleString()} ${t.unleashed.phi_unit}`, 'Φ']}
                         contentStyle={{ backgroundColor: 'rgba(10,10,12,0.9)', border: '1px solid var(--neon-purple)', borderRadius: '8px' }}
                         itemStyle={{ color: 'var(--neon-blue)', fontWeight: 'bold' }}
                       />

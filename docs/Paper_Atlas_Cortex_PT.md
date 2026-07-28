@@ -13,6 +13,21 @@ O uso de Modelos de Linguagem de Larga Escala (LLMs) em ambientes corporativos d
 
 A adoção de Inteligência Artificial Generativa em cenários corporativos exige o processamento de grandes volumes de texto, geralmente inviabilizando a inserção direta de dados na janela de contexto dos Modelos de Linguagem de Larga Escala (LLMs). A solução padrão da indústria é a Geração Aumentada por Recuperação (RAG), que fatia documentos em "chunks" baseados em limites rígidos de tokens, recuperando os mais relevantes via busca vetorial.
 
+O MOC não é apenas um índice vetorial; é um grafo de conhecimento onde cada nó preserva seu escopo léxico e relações de parentesco estrutural, mitigando o custo quadrático da atenção e o envenenamento de contexto durante o retrieval.
+
+```mermaid
+graph TD
+    A[Corpus Caótico / Arquivos] -->|Ingestão Aegis| B(Topologia Extraída)
+    B -->|Roteamento Atômico| C{Atlas Cortex}
+    C -->|Nó 1| D[Semântica Preservada]
+    C -->|Nó 2| E[Zero-Overlap]
+    C -->|Nó 3| F[Escopo Léxico Intacto]
+    
+    X[RAG Tradicional LangChain] -->|Chunking Cego| Y[Pedaços de 1000 char]
+    Y --> Z[+20% Overlap Redundante]
+    Z --> W[Contexto Truncado e Caro]
+```
+
 No entanto, o fatiamento mecânico rompe a coesão sintática e semântica de textos longos. Quando o LLM é alimentado com pedaços descontextualizados, a atenção quadrática inerente aos Transformers ($O(N^2)$) atua como um diluidor do sinal informacional, gerando o fenômeno conhecido como "colapso de contexto" (Liu et al., 2023). 
 
 Este trabalho investiga a hipótese de que o respeito à topologia natural dos documentos (sua estrutura intrínseca) pode otimizar a fase de ingestão e indexação no RAG corporativo. O objetivo é apresentar o Atlas Cortex, um sistema de indexação de diretórios que utiliza Roteamento Semântico Atômico e processamento *in-memory* (Protocolo Aegis) para mitigar a latência e a perda de coesão em bases de conhecimento extensas.
@@ -76,8 +91,14 @@ Apesar da validação arquitetural demonstrar robustez na fase de engenharia de 
 2. **Métricas de Qualidade Semântica Ausentes:** A rapidez de indexação foi provada, mas as métricas de Precisão, Recall e F1-Score do *retrieval* (recuperação final da resposta correta pelo LLM) ainda não foram devidamente medidas em bases de conhecimento abertas (como a MS MARCO ou BEIR).
 3. **Mito do O(1) End-to-End:** É crucial reforçar que a recuperação indexada em $O(\log V)$ mitiga apenas a sobrecarga do banco de vetores; o gargalo fundamental da inferência do LLM (atenção $O(N^2)$ sobre o prompt final montado) ainda dita a velocidade percebida pelo usuário.
 
-### 5.1 Trabalhos Futuros
-Pesquisas subsequentes focarão em medir a acurácia de recuperação do Atlas Cortex em LLMs open-source (ex: Llama-3, Qwen) sob estresse de dezenas de milhares de tokens, comparando diretamente a taxa de alucinação gerada pelo *Chunking Estrutural* versus o *Chunking Cego*.
+### 5.1 Trabalhos Futuros: A Hipótese da Eficiência de Tokens (Zero-Overlap)
+A principal vantagem hipotética do Atlas Cortex não se restringe à integridade estrutural, mas se estende à **economia direta de tokens e custo de API**. Sistemas tradicionais baseados em limite de tokens (ex: RecursiveCharacterTextSplitter) exigem uma sobreposição (*overlap*) de 10% a 20% entre os *chunks* para não perder o contexto nas bordas. 
+
+Se os nós gerados pelo Atlas Cortex são estruturalmente autocontidos (uma função inteira, uma seção inteira), elimina-se a necessidade de *overlap*. Consequentemente, a hipótese principal para estudos subsequentes é que o Atlas exigirá a injeção de **menos tokens totais** na janela de contexto do LLM para responder corretamente a uma mesma pergunta (*recall* equivalente), barateando o custo operacional do RAG corporativo.
+
+Pesquisas futuras focarão em executar a seguinte bateria de testes:
+1. **Benchmark de Eficiência de Tokens:** Rodar as mesmas perguntas contra o Atlas e contra um *splitter* padrão, medindo os tokens totais enviados para atingir *recall* equivalente.
+2. **Benchmark de Qualidade de Retrieval (Precision/Recall):** Avaliar a precisão das respostas sobre um *corpus* real (documentos jurídicos, bases de código) usando LLM-as-a-Judge.
 
 ---
 

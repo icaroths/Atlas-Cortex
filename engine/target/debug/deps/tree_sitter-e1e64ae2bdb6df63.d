@@ -1,0 +1,13 @@
+I:\Atlas-Cortex-Release\engine\target\debug\deps\tree_sitter-e1e64ae2bdb6df63.d: C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\lib.rs C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\ffi.rs C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\util.rs C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\./README.md C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\./bindings.rs C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\../src/parser.h I:\Atlas-Cortex-Release\engine\target\debug\build\tree-sitter-acde51c93a8e39b8\out/stdlib-symbols.txt
+
+I:\Atlas-Cortex-Release\engine\target\debug\deps\libtree_sitter-e1e64ae2bdb6df63.rmeta: C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\lib.rs C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\ffi.rs C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\util.rs C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\./README.md C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\./bindings.rs C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\../src/parser.h I:\Atlas-Cortex-Release\engine\target\debug\build\tree-sitter-acde51c93a8e39b8\out/stdlib-symbols.txt
+
+C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\lib.rs:
+C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\ffi.rs:
+C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\util.rs:
+C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\./README.md:
+C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\./bindings.rs:
+C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.26.11\binding_rust\../src/parser.h:
+I:\Atlas-Cortex-Release\engine\target\debug\build\tree-sitter-acde51c93a8e39b8\out/stdlib-symbols.txt:
+
+# env-dep:OUT_DIR=I:\\Atlas-Cortex-Release\\engine\\target\\debug\\build\\tree-sitter-acde51c93a8e39b8\\out
