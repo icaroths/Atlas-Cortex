@@ -1,7 +1,9 @@
 import os
 import json
 import subprocess
-import re
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
 
 def run_ollama_judge(question: str, context: str) -> bool:
     """
@@ -32,38 +34,35 @@ Avaliação (SIM/NAO):"""
         print(f"Erro ao chamar Ollama: {e}")
         return False
 
-def extract_keywords(text: str):
-    words = re.findall(r'\w+', text.lower())
-    stopwords = {"o", "a", "os", "as", "um", "uma", "de", "do", "da", "em", "no", "na", "que", "para", "com", "qual", "como", "por", "sobre", "é", "são", "e", "ou"}
-    return set([w for w in words if w not in stopwords and len(w) > 2])
-
-def score_text(text: str, query_keywords: set) -> int:
-    text_words = re.findall(r'\w+', text.lower())
-    score = sum(1 for w in text_words if w in query_keywords)
-    return score
-
-def load_atlas_context(moc_json_path: str, query: str, top_k: int = 3) -> str:
-    if not os.path.exists(moc_json_path):
-        return ""
-        
-    with open(moc_json_path, 'r', encoding='utf-8') as f:
-        moc_data = json.load(f)
-        
-    nodes = moc_data.get("nodes", [])
-    keywords = extract_keywords(query)
+def retrieve_top_k(corpus: list, query: str, top_k: int = 3) -> list:
+    if not corpus:
+        return []
     
-    scored_nodes = []
-    for node in nodes:
-        content = node.get("content", "")
-        score = score_text(content, keywords)
-        scored_nodes.append((score, content))
-        
-    scored_nodes.sort(key=lambda x: x[0], reverse=True)
-    context_chunks = [node[1] for node in scored_nodes[:top_k] if node[0] > 0]
-    return "\n\n---\n\n".join(context_chunks)
+    docs = corpus + [query]
+    vectorizer = TfidfVectorizer(stop_words=None)
+    
+    try:
+        tfidf_matrix = vectorizer.fit_transform(docs)
+    except ValueError:
+        return []
+
+    corpus_matrix = tfidf_matrix[:-1]
+    query_vector = tfidf_matrix[-1]
+
+    similarities = cosine_similarity(query_vector, corpus_matrix).flatten()
+    top_indices = np.argsort(similarities)[::-1]
+    
+    retrieved_texts = []
+    for idx in top_indices:
+        if similarities[idx] > 0.0:
+            retrieved_texts.append(corpus[idx])
+        if len(retrieved_texts) == top_k:
+            break
+            
+    return retrieved_texts
 
 def main():
-    print("=== Benchmark de Retrieval Quality (Precision/Recall) ===")
+    print("=== Benchmark de Retrieval Quality (Precision/Recall com TF-IDF) ===")
     
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     moc_path = os.path.join(base_dir, "docs", "Paper_Atlas_Cortex_PT.moc.json")
@@ -75,14 +74,27 @@ def main():
 
     with open(qa_path, 'r', encoding='utf-8') as f:
         test_suite = json.load(f)
+
+    if not os.path.exists(moc_path):
+        print("MOC não encontrado. Gere o MOC do Paper primeiro.")
+        return
+
+    with open(moc_path, 'r', encoding='utf-8') as f:
+        moc_data = json.load(f)
+        
+    nodes = moc_data.get("nodes", [])
+    atlas_corpus = [node.get("content", "") for node in nodes if node.get("content", "").strip()]
         
     print(f"Verificando {len(test_suite)} perguntas reais contra o MOC do Atlas...\n")
     
     success_count = 0
+    top_k = 2
     for idx, test in enumerate(test_suite):
         print(f"[{idx+1}/{len(test_suite)}] Pergunta: {test['question']}")
         
-        context = load_atlas_context(moc_path, test['question'], top_k=2)
+        retrieved = retrieve_top_k(atlas_corpus, test['question'], top_k=top_k)
+        context = "\n\n---\n\n".join(retrieved)
+        
         if not context:
             print("  -> Falha: MOC não encontrado ou sem correspondência.")
             continue
@@ -97,8 +109,18 @@ def main():
             
     print("\n--- Resultados Finais ---")
     precision = (success_count / len(test_suite)) * 100
-    print(f"Recall Accuracy (Atlas Cortex MOC): {precision:.1f}% ({success_count}/{len(test_suite)})")
-    print("Nota: Este script requer o Ollama local rodando qwen2.5-coder:7b para o LLM-as-a-Judge.")
+    print(f"Recall Accuracy (Atlas Cortex MOC via TF-IDF): {precision:.1f}% ({success_count}/{len(test_suite)})")
+    
+    result = {
+        "precision_k": precision,
+        "success": success_count,
+        "total": len(test_suite),
+        "methodology": "Scikit-Learn TF-IDF Cosine Similarity + LLM-as-a-judge (qwen2.5-coder:7b)"
+    }
+    
+    out_file = os.path.join(base_dir, "docs", "benchmarks", "retrieval_quality_result.json")
+    with open(out_file, "w", encoding="utf-8") as f:
+        json.dump(result, f, indent=4)
 
 if __name__ == "__main__":
     main()
