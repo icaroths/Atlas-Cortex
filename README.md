@@ -25,9 +25,9 @@ O arcabouço teórico e as provas de conceito empíricas encontram-se disponíve
 
 ## ⚡ Transparência Arquitetural (Motor V2 Rust)
 
-> **Nota:** Este repositório open-source contém o MVP estrutural básico do Atlas Cortex.
-> A arquitetura prometida no Whitepaper descreve um **Roteador em Cascata de 3 Níveis**. O código atualmente visível na pasta `engine/` implementa estritamente o **Nível 1** (corte mecânico via topologia de Markdown por *regex* e placeholders de *Tree-sitter*). 
-> As rotinas densas de AST real (Nível 2), Failsafe de Densidade (Nível 3), suporte completo HTML e travas de licenciamento corporativas (Hardware Lock, Cap de 750 nós) estão isoladas no binário compilado da versão Enterprise (fechada). A missão deste repositório é viabilizar o teste empírico e documentar as bases teóricas de preservação semântica e eficiência de tokens.
+> **Nota:** Este repositório open-source contém o MVP estrutural do Atlas Cortex (Nível 1 e 2).
+> A arquitetura inclui rotinas de parsing de AST real via **Tree-Sitter** para Markdown, implementadas na pasta `engine/`.
+> As rotinas de Failsafe de Densidade (Nível 3), suporte completo a HTML e travas de licenciamento corporativas estão isoladas no binário compilado da versão Enterprise (fechada). A missão deste repositório é viabilizar o teste empírico e documentar as bases teóricas de preservação semântica e eficiência de tokens.
 
 Para rodar os benchmarks matemáticos comprobatórios no seu próprio ambiente, utilize os scripts em Python disponíveis na pasta `scripts/`:
 
@@ -70,7 +70,7 @@ Sistemas tradicionais de vetorização baseados em *character splitting* exigem 
 
 O **Roteamento Semântico Atômico** do Atlas gera nós que já são autocontidos estruturalmente (uma função, uma seção ou um parágrafo lógico inteiro). Isso elimina a necessidade de *overlap*, garantindo que, para alcançar a mesma completude informacional (*recall equivalente*), o RAG precise enviar consideravelmente **menos tokens brutos** na janela de contexto.
 
-### Benchmark Comprovado (87.85% de Economia)
+### Benchmark Comprovado (61.02% de Economia)
 
 Os testes empíricos de **Recuperação Semântica Real** são rodados diretamente contra o corpus `core-protocol_benchmark_corpus.md` (presente em `docs/`). O script analisa um dataset de **15 queries curadas** (`qa_dataset.json`), executando um ranqueamento de palavras-chave (TF) contra os nós do Atlas vs chunks do LangChain.
 
@@ -78,13 +78,13 @@ As provas documentais brutas e a média agregada da economia de todas as 15 quer
 
 ```mermaid
 pie title Consumo Total de Tokens (15 Queries Reais | Top-K = 3)
-    "Desperdício (LangChain - Overlap)" : 9461
-    "Essência Útil (Atlas Cortex)" : 1309
+    "Desperdício (LangChain - Overlap)" : 8949
+    "Essência Útil (Atlas Cortex)" : 3488
 ```
 
-- **LangChain (1000 char, 20% overlap):** 10.770 tokens totais gastos para responder as 15 perguntas.
-- **Atlas Cortex (Nós Topológicos Atômicos):** 1.309 tokens totais gastos.
-- **Redução Média:** **87.85% de economia real e defensável**.
+- **LangChain (1000 char, 20% overlap):** 8.949 tokens totais gastos para responder as 15 perguntas.
+- **Atlas Cortex (Nós Topológicos Atômicos):** 3.488 tokens totais gastos.
+- **Redução Média:** **61.02% de economia real e defensável**.
 
 Essa métrica prova matematicamente que a entropia nas pontas dos *chunks* tradicionais encarece artificialmente as chamadas de API. O Atlas resolve o problema no gargalo do I/O, garantindo RAG limpo e barato em produção corporativa.
 

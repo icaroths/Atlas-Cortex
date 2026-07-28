@@ -1,77 +1,62 @@
 [
     {
-        "question": "O que causa o fenômeno análogo aos Barren Plateaus em LLMs?",
-        "expected_answer": "O fatiamento mecânico e a sobreposição artificial de chunks, que criam entropia e diluem o sinal semântico.",
-        "anchor_section": "Resumo"
+        "question": "What is the mandatory action before performing any implementation in the agent and skill protocol?",
+        "expected_answer": "You MUST read the appropriate agent file and its skills BEFORE performing any implementation."
     },
     {
-        "question": "Qual é a porcentagem exata de economia de tokens comprovada pelo Roteamento Atômico contra o Langchain no benchmark de ponta?",
-        "expected_answer": "88.72%",
-        "anchor_section": "3. Metodologia: O Protocolo de Zero-Overlap"
+        "question": "How should an agent selectively read skills?",
+        "expected_answer": "DO NOT read ALL files in a skill folder. Read SKILL.md first, then only read sections matching the user's request."
     },
     {
-        "question": "Como o Nível 1 do Roteamento em Cascata divide os documentos?",
-        "expected_answer": "Pelos marcadores topológicos nativos, como as tags de cabeçalho H1, H2 e H3 do Markdown.",
-        "anchor_section": "2. Arquitetura Proposta: Roteamento em Cascata"
+        "question": "What is the rule priority order for the AG Kit workspace?",
+        "expected_answer": "P0 (Workspace Rules in .agents/rules/) > P1 (Agent .md) > P2 (SKILL.md)."
     },
     {
-        "question": "O que o Nível 3 (Failsafe Densidade) faz quando não há formatação clara?",
-        "expected_answer": "Utiliza a densidade sintática para induzir quebras lógicas em corpora caóticos (como logs de servidores).",
-        "anchor_section": "2. Arquitetura Proposta: Roteamento em Cascata"
+        "question": "What must the agent do every time it loads and applies a skill?",
+        "expected_answer": "Announce it BEFORE using it so the user can verify which knowledge is active."
     },
     {
-        "question": "Qual é a complexidade matemática da recuperação vetorial clássica quando ocorre a indexação O(N)?",
-        "expected_answer": "A complexidade de busca no índice topológico torna-se O(log V) ou O(1).",
-        "anchor_section": "Resumo"
+        "question": "What is the markdown syntax required to announce the usage of a skill?",
+        "expected_answer": "📚 **Using skill: `@[skill-name]`...**"
     },
     {
-        "question": "Qual componente é utilizado pelo RAG Clássico que fatia texto de forma arbitrária?",
-        "expected_answer": "RecursiveCharacterTextSplitter",
-        "anchor_section": "1. Introdução: O Colapso de Contexto"
+        "question": "Why is it forbidden to apply a skill without announcing it?",
+        "expected_answer": "USER CANNOT VERIFY THE SKILL WAS USED."
     },
     {
-        "question": "Por que o overlap tradicional encarece a inferência LLM?",
-        "expected_answer": "Porque envia um excesso de redundância (10% a 20% de overlap) multiplicada pela janela de contexto, custando tokens desnecessários na API.",
-        "anchor_section": "3. Metodologia: O Protocolo de Zero-Overlap"
+        "question": "What are the required steps when an agent is activated according to the enforcement protocol?",
+        "expected_answer": "Activate: Read Rules → Check Frontmatter → Load SKILL.md → Apply All."
     },
     {
-        "question": "Qual teste empírico validou que o roteamento estrutural evita o truncamento de contexto e encontra o dado oculto com precisão?",
-        "expected_answer": "O teste Needle-In-A-Haystack (NIAH).",
-        "anchor_section": "4. Resultados Empíricos (Benchmarks Preliminares)"
+        "question": "What is the forbidden action regarding agent rules and skill instructions?",
+        "expected_answer": "Never skip reading agent rules or skill instructions. Read → Understand → Apply is mandatory."
     },
     {
-        "question": "O que significa 'Zero-Overlap' no ecossistema do Atlas Cortex?",
-        "expected_answer": "Significa particionar o texto respeitando contornos semânticos integrais, eliminando a necessidade de sobrepor pedaços de texto para não perder o raciocínio.",
-        "anchor_section": "3. Metodologia: O Protocolo de Zero-Overlap"
+        "question": "What should the agent check before modifying any file regarding file dependencies?",
+        "expected_answer": "Check CODEBASE.md → File Dependencies."
     },
     {
-        "question": "Como o Aegis Protocol afeta a ingestão do Atlas Cortex em diretórios complexos?",
-        "expected_answer": "Ele implementa uma virtualização de I/O, processando zips e diretórios profundamente aninhados em memória, sem extração em disco.",
-        "anchor_section": "Discussão"
+        "question": "What must be read at the session start to load persistent project conventions?",
+        "expected_answer": "You MUST read .agents/memory/MEMORY.md."
     },
     {
-        "question": "Quantos nós semânticos o teste 'Unleashed' conseguiu processar em ambiente multi-repositório?",
-        "expected_answer": "520.679 nós.",
-        "anchor_section": "4. Resultados Empíricos (Benchmarks Preliminares)"
+        "question": "When is it appropriate to read the ARCHITECTURE.md file?",
+        "expected_answer": "Only when you actually need it (e.g. orchestration, or discovering a skill you're unsure exists) — do NOT load it on every request."
     },
     {
-        "question": "Por que o Nível 2 é importante para blocos de código grandes?",
-        "expected_answer": "Porque se um documento não tiver cabeçalhos suficientes, o Nível 2 quebra por densidade de parágrafos lógicos e blocos de AST.",
-        "anchor_section": "2. Arquitetura Proposta: Roteamento em Cascata"
+        "question": "Where are the runtime scripts located according to the path awareness rules?",
+        "expected_answer": ".agents/skills/<skill>/scripts/"
     },
     {
-        "question": "Qual é a principal consequência quando um LLM recebe um vetor diluído com frases cortadas ao meio?",
-        "expected_answer": "O LLM tende a alucinar informações, assumindo que a informação não existe ou forjando correlações incorretas.",
-        "anchor_section": "1. Introdução: O Colapso de Contexto"
+        "question": "What is the correct protocol before writing code?",
+        "expected_answer": "Read → Understand WHY → Apply PRINCIPLES → Code."
     },
     {
-        "question": "Em que linguagem o MVP atual (open-source) gera a estrutura do MOC?",
-        "expected_answer": "O simulador e utilitários são documentados no repositório com scripts baseados em Python/Rust básico.",
-        "anchor_section": "Discussão"
+        "question": "What are the three questions the agent must answer before coding?",
+        "expected_answer": "1. What is the GOAL of this agent/skill? 2. What PRINCIPLES must I apply? 3. How does this DIFFER from generic output?"
     },
     {
-        "question": "O que é avaliado no script benchmark_token_efficiency.py?",
-        "expected_answer": "A quantidade de tokens brutos gastos (consumo) ao recuperar os Top-K chunks via splitter mecânico versus Top-K nós topológicos.",
-        "anchor_section": "3. Metodologia: O Protocolo de Zero-Overlap"
+        "question": "What is the project directory name that holds agents and skills?",
+        "expected_answer": "The project directory name is .agents plural."
     }
 ]
