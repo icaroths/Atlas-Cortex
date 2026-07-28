@@ -31,3 +31,10 @@ O Atlas Cortex deve agir como um pipeline autônomo (ETL de RAG).
 
 ## Conclusão da Avaliação
 O MVP serviu ao seu propósito e quebrou as dogmas do RAG clássico. O próximo salto não exige novas teorias matemáticas; exige pura **engenharia de sistemas hardcore**. Limpamos os artefatos quebrados e a casa está arrumada para que o núcleo em Rust comece a ser arquitetado e orquestrado a partir de agora.
+
+### Fase 4: Avaliação RAG Avançada e Frameworks de Mercado
+Para garantir adoção de nível corporativo e pesquisa de base sólida, o Atlas precisa ir além das métricas de economia de tokens.
+- **Rigor e Baselines Modernos:** Testar o *TopologicalAtomicChunker* contra novas metodologias da indústria, como *SemanticChunker* (LlamaIndex), *Contextual Retrieval* (Anthropic), *Late Chunking* (Jina AI) e RAPTOR.
+- **Integração com RAGAS / TruLens:** Mensurar e reportar publicamente os ganhos exatos de Recall@K, MRR (Mean Reciprocal Rank), Faithfulness e Answer Relevancy do motor.
+- **Reprodutibilidade Aberta:** Consolidar e expor *datasets* e suítes de testes públicos com Ablation Studies transparentes provando o real valor da injeção via Tree-Sitter (AST).
+- **Limitações Conhecidas (Known Limitations):** Catalogar formalmente as vulnerabilidades atuais, ex: parsing instável de tabelas não demarcadas e listas markdown profundamente aninhadas onde a geometria não é trivial.
