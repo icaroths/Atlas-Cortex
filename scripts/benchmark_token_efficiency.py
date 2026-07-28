@@ -1,56 +1,64 @@
 import os
 import json
+import re
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
 try:
     import tiktoken
 except ImportError:
     print("Por favor, instale o tiktoken: pip install tiktoken")
     exit(1)
+
 try:
     from langchain_text_splitters import RecursiveCharacterTextSplitter
 except ImportError:
     print("Por favor, instale o langchain-text-splitters: pip install langchain-text-splitters")
     exit(1)
 
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
-
 def count_tokens(text: str, model_name: str = "cl100k_base") -> int:
     encoding = tiktoken.get_encoding(model_name)
     return len(encoding.encode(text))
 
 def retrieve_top_k(corpus: list, query: str, top_k: int = 3) -> list:
+    """
+    Implementação REAL de TF-IDF e Similaridade de Cosseno.
+    Atende ao commit: 'integracao TF-IDF nativa (scikit-learn)'
+    """
     if not corpus:
         return []
     
-    # Adicionamos a query ao final do corpus para facilitar a vetorização conjunta
-    docs = corpus + [query]
-    vectorizer = TfidfVectorizer(stop_words=None)
+    # Adiciona a query como último documento para vetorizar tudo no mesmo espaço
+    docs_to_vectorize = corpus + [query]
     
-    try:
-        tfidf_matrix = vectorizer.fit_transform(docs)
-    except ValueError:
-        # Em caso de textos vazios ou stopwords eliminando tudo
-        return []
-
-    # Extraímos a matriz do corpus e o vetor da query
-    corpus_matrix = tfidf_matrix[:-1]
-    query_vector = tfidf_matrix[-1]
-
+    # TF-IDF com tokenização que ignora pontuação e captura palavras (\w+)
+    vectorizer = TfidfVectorizer(stop_words=None, token_pattern=r'(?u)\b\w+\b')
+    tfidf_matrix = vectorizer.fit_transform(docs_to_vectorize)
+    
+    # A query é o último vetor na matriz
+    query_vec = tfidf_matrix[-1]
+    corpus_vecs = tfidf_matrix[:-1]
+    
     # Calcula similaridade de cosseno
-    similarities = cosine_similarity(query_vector, corpus_matrix).flatten()
+    scores = cosine_similarity(query_vec, corpus_vecs).flatten()
     
-    # Pega os índices com maiores scores
-    top_indices = np.argsort(similarities)[::-1]
+    # Ordena pelos maiores scores e retorna os top_k textos
+    # Usamos np.argsort para ordenar de forma decrescente
+    top_indices = np.argsort(scores)[::-1][:top_k]
     
-    retrieved_texts = []
-    for idx in top_indices:
-        if similarities[idx] > 0.0:
-            retrieved_texts.append(corpus[idx])
-        if len(retrieved_texts) == top_k:
-            break
-            
-    return retrieved_texts
+    # Filtra apenas resultados com score > 0 (relevância real)
+    retrieved = [corpus[i] for i in top_indices if scores[i] > 0]
+    return retrieved
+
+def simulate_atlas_retrieval(nodes: list, query: str, top_k: int = 3) -> int:
+    corpus = [node.get("content", "") for node in nodes]
+    retrieved = retrieve_top_k(corpus, query, top_k)
+    return sum(count_tokens(c) for c in retrieved)
+
+def simulate_langchain_retrieval(chunks: list, query: str, top_k: int = 3) -> int:
+    retrieved = retrieve_top_k(chunks, query, top_k)
+    return sum(count_tokens(c) for c in retrieved)
 
 def main():
     print("=== Benchmark de Eficiência de Tokens (TF-IDF Real) ===")
@@ -58,7 +66,7 @@ def main():
     corpus_path = os.path.join(base_dir, "docs", "core-protocol_benchmark_corpus.md")
     moc_path = os.path.join(base_dir, "docs", "core-protocol_benchmark_corpus.moc.json")
     qa_path = os.path.join(base_dir, "docs", "benchmarks", "qa_dataset.json")
-    
+
     if not os.path.exists(qa_path):
         print(f"Dataset de QA não encontrado: {qa_path}")
         return
@@ -76,12 +84,11 @@ def main():
     with open(moc_path, 'r', encoding='utf-8') as f:
         moc_data = json.load(f)
     nodes = moc_data.get("nodes", [])
-    atlas_corpus = [node.get("content", "") for node in nodes if node.get("content", "").strip()]
 
     chunk_size = 1000
     chunk_overlap = 200
     splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap, length_function=len, is_separator_regex=False)
-    langchain_chunks = splitter.split_text(text)
+    chunks = splitter.split_text(text)
 
     top_k = 3
     total_langchain = 0
@@ -91,15 +98,9 @@ def main():
 
     for i, item in enumerate(qa_dataset):
         q = item["question"]
-        
-        # Recuperação Atlas (Nós Atômicos)
-        a_retrieved = retrieve_top_k(atlas_corpus, q, top_k)
-        a_tokens = sum(count_tokens(c) for c in a_retrieved)
-        
-        # Recuperação Langchain (Chunks)
-        l_retrieved = retrieve_top_k(langchain_chunks, q, top_k)
-        l_tokens = sum(count_tokens(c) for c in l_retrieved)
-        
+        l_tokens = simulate_langchain_retrieval(chunks, q, top_k)
+        a_tokens = simulate_atlas_retrieval(nodes, q, top_k)
+
         total_langchain += l_tokens
         total_atlas += a_tokens
 
@@ -120,10 +121,11 @@ def main():
         "atlas_tokens_total": total_atlas,
         "savings_absolute": diff,
         "savings_percentage": round(savings, 2),
-        "methodology": "Scikit-Learn TF-IDF Cosine Similarity"
+        "methodology": "TF-IDF + Cosine Similarity (scikit-learn)"
     }
 
     out_file = os.path.join(base_dir, "docs", "benchmarks", "token_efficiency_result.json")
+    os.makedirs(os.path.dirname(out_file), exist_ok=True)
     with open(out_file, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=4)
     print(f"\n[+] Resultado empírico salvo em: {out_file}")
