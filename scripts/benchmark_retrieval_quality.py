@@ -1,6 +1,7 @@
 import os
 import json
 import subprocess
+import re
 
 def run_ollama_judge(question: str, context: str) -> bool:
     """
@@ -19,7 +20,6 @@ Contexto:
 Avaliação (SIM/NAO):"""
 
     try:
-        # Comando para rodar ollama via CLI
         result = subprocess.run(
             ['ollama', 'run', 'qwen2.5-coder:7b', prompt],
             capture_output=True,
@@ -32,10 +32,17 @@ Avaliação (SIM/NAO):"""
         print(f"Erro ao chamar Ollama: {e}")
         return False
 
-def load_atlas_context(moc_json_path: str, query_terms: list, top_k: int = 3) -> str:
-    """
-    Simula um retrieval super simples sobre o MOC do Atlas buscando por termos chave.
-    """
+def extract_keywords(text: str):
+    words = re.findall(r'\w+', text.lower())
+    stopwords = {"o", "a", "os", "as", "um", "uma", "de", "do", "da", "em", "no", "na", "que", "para", "com", "qual", "como", "por", "sobre", "é", "são", "e", "ou"}
+    return set([w for w in words if w not in stopwords and len(w) > 2])
+
+def score_text(text: str, query_keywords: set) -> int:
+    text_words = re.findall(r'\w+', text.lower())
+    score = sum(1 for w in text_words if w in query_keywords)
+    return score
+
+def load_atlas_context(moc_json_path: str, query: str, top_k: int = 3) -> str:
     if not os.path.exists(moc_json_path):
         return ""
         
@@ -43,54 +50,44 @@ def load_atlas_context(moc_json_path: str, query_terms: list, top_k: int = 3) ->
         moc_data = json.load(f)
         
     nodes = moc_data.get("nodes", [])
+    keywords = extract_keywords(query)
     
-    # Retrieval de brinquedo: conta hits de termos e pega os top_k
     scored_nodes = []
     for node in nodes:
-        content = node.get("content", "").lower()
-        score = sum(1 for term in query_terms if term.lower() in content)
-        scored_nodes.append((score, node.get("content", "")))
+        content = node.get("content", "")
+        score = score_text(content, keywords)
+        scored_nodes.append((score, content))
         
-    # Ordena pelo score decrescente
     scored_nodes.sort(key=lambda x: x[0], reverse=True)
-    
-    # Monta o contexto final combinando os K melhores
     context_chunks = [node[1] for node in scored_nodes[:top_k] if node[0] > 0]
     return "\n\n---\n\n".join(context_chunks)
 
 def main():
     print("=== Benchmark de Retrieval Quality (Precision/Recall) ===")
     
-    moc_path = r"i:\Aurelius_Workspace\.agents\rules\core-protocol.moc.json"
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    moc_path = os.path.join(base_dir, "docs", "core-protocol_benchmark_corpus.moc.json")
+    qa_path = os.path.join(base_dir, "docs", "benchmarks", "qa_dataset.json")
     
-    # Bateria de perguntas curadas baseadas no Core Protocol
-    test_suite = [
-        {
-            "q": "O que o agente deve anunciar obrigatoriamente antes de usar uma skill?",
-            "terms": ["announce", "skill", "Using skill", "MANDATORY"]
-        },
-        {
-            "q": "Qual arquivo deve ser lido no início da sessão para carregar convenções do projeto e decisões?",
-            "terms": ["session start", "MEMORY.md", "persistent project conventions"]
-        },
-        {
-            "q": "Quais são as pastas que devem ser verificadas antes de modificar qualquer arquivo para dependências?",
-            "terms": ["CODEBASE.md", "File Dependencies", "dependent files"]
-        }
-    ]
-    
-    print(f"Verificando {len(test_suite)} perguntas contra o MOC do Atlas...\n")
+    if not os.path.exists(qa_path):
+        print(f"Dataset de QA não encontrado: {qa_path}")
+        return
+
+    with open(qa_path, 'r', encoding='utf-8') as f:
+        test_suite = json.load(f)
+        
+    print(f"Verificando {len(test_suite)} perguntas reais contra o MOC do Atlas...\n")
     
     success_count = 0
     for idx, test in enumerate(test_suite):
-        print(f"[{idx+1}/{len(test_suite)}] Pergunta: {test['q']}")
+        print(f"[{idx+1}/{len(test_suite)}] Pergunta: {test['question']}")
         
-        context = load_atlas_context(moc_path, test['terms'], top_k=2)
+        context = load_atlas_context(moc_path, test['question'], top_k=2)
         if not context:
-            print("  -> Falha: MOC não encontrado ou contexto vazio.")
+            print("  -> Falha: MOC não encontrado ou sem correspondência.")
             continue
             
-        is_successful = run_ollama_judge(test['q'], context)
+        is_successful = run_ollama_judge(test['question'], context)
         
         if is_successful:
             print("  -> Avaliação: PASSOU (O contexto responde a pergunta)")

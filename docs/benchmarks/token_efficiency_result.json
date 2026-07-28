@@ -1,8 +1,9 @@
 {
     "corpus": "core-protocol_benchmark_corpus.md",
+    "queries_tested": 15,
     "top_k": 3,
-    "langchain_tokens": 718,
-    "atlas_tokens": 81,
-    "savings_absolute": 637,
-    "savings_percentage": 88.72
+    "langchain_tokens_total": 10770,
+    "atlas_tokens_total": 1309,
+    "savings_absolute": 9461,
+    "savings_percentage": 87.85
 }
