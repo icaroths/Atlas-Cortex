@@ -1,8 +1,8 @@
 {
-    "corpus": "Paper_Atlas_Cortex_PT.md",
-    "total_queries": 15,
-    "successful_retrievals": 15,
-    "precision_at_k": 100.0,
-    "methodology": "LLM-as-a-judge (Ollama qwen2.5-coder:7b) via TF-IDF semantic scoring no AST MOC",
-    "top_k_used": 3
+    "corpus": "core-protocol_benchmark_corpus.md",
+    "queries_tested": 15,
+    "top_k": 3,
+    "correct_retrievals": 15,
+    "accuracy_percentage": 100.0,
+    "methodology": "Sentence Embeddings (all-MiniLM-L6-v2) + Ollama-as-a-judge"
 }

@@ -50,11 +50,11 @@ python scripts/benchmark_retrieval_quality.py
 
 ## 🖥️ Dashboard Web Interativo (Frontend)
 
-O repositório também inclui uma Landing Page construída em React/Vite com efeito *Glassmorphism* para ilustrar visualmente o problema do colapso de contexto e exibir os dados do *benchmark* (Suporte a PT-BR e EN).
+O repositório também inclui uma interface 3D interativa (Graph Visualizer) construída em React/Vite com efeito *Glassmorphism* para ilustrar visualmente o grafo semântico gerado pelo Atlas Cortex.
 
 Para rodar o painel interativo localmente:
 ```bash
-cd web_dashboard
+cd web
 npm install
 npm run dev
 ```

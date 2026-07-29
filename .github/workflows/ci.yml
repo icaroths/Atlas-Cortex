@@ -26,3 +26,8 @@ jobs:
     - name: Test with pytest
       run: |
         pytest tests/
+
+    - name: Check Artifact Drift (Token Efficiency)
+      run: |
+        python scripts/benchmark_token_efficiency.py
+        git diff --exit-code docs/benchmarks/ || { echo "Artifact Drift detected! Please commit the newly generated JSON files in docs/benchmarks/"; exit 1; }
