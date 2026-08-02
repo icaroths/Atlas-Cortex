@@ -6,5 +6,5 @@
     "atlas_tokens_total": 3345,
     "savings_absolute": 5909,
     "savings_percentage": 63.85,
-    "methodology": "TF-IDF + Cosine Similarity (scikit-learn)"
+    "methodology": "Sentence Embeddings (all-MiniLM-L6-v2)"
 }

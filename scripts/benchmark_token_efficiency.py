@@ -22,7 +22,7 @@ def count_tokens(text: str, model_name: str = "cl100k_base") -> int:
     return len(encoding.encode(text))
 
 # Carrega o modelo de forma global para otimizar chamadas
-model = SentenceTransformer('all-MiniLM-L6-v2')
+model = SentenceTransformer('all-MiniLM-L6-v2', revision="8b3219a92973c328a8e22fadcfa821b5dc75636a")
 
 def retrieve_top_k(corpus: list, query: str, top_k: int = 3) -> list:
     """
@@ -116,7 +116,7 @@ def main():
         "atlas_tokens_total": total_atlas,
         "savings_absolute": diff,
         "savings_percentage": round(savings, 2),
-        "methodology": "TF-IDF + Cosine Similarity (scikit-learn)"
+        "methodology": "Sentence Embeddings (all-MiniLM-L6-v2)"
     }
 
     out_file = os.path.join(base_dir, "docs", "benchmarks", "token_efficiency_result.json")

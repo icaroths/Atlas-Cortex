@@ -10,7 +10,9 @@ def run_ollama_judge(query: str, retrieved_context: str) -> bool:
     import subprocess
     prompt = f"""You are an expert judge. Given the context below, can you answer the following question?
 Question: {query}
-Context: {retrieved_context}
+<context>
+{retrieved_context}
+</context>
 Reply only with 'YES' if the context contains enough information to answer the question, or 'NO' if it does not."""
     
     try:

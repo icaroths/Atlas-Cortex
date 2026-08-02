@@ -2,6 +2,8 @@ import os
 import json
 import subprocess
 import tempfile
+import logging
+import asyncio
 from typing import List
 from langchain_core.documents import Document
 
@@ -51,12 +53,14 @@ class AtlasCortexSplitter:
         final_docs = []
 
         for doc in documents:
-            # Escreve o conteúdo temporariamente para o binário Rust ler
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".md", mode='w', encoding='utf-8') as temp_file:
-                temp_file.write(doc.page_content)
-                temp_path = temp_file.name
-                
+            temp_path = None
+            moc_path = None
             try:
+                # Escreve o conteúdo temporariamente para o binário Rust ler
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".md", mode='w', encoding='utf-8') as temp_file:
+                    temp_file.write(doc.page_content)
+                    temp_path = temp_file.name
+                
                 # Chama o motor Rust
                 result = subprocess.run(
                     [self.engine_path, temp_path],
@@ -85,15 +89,30 @@ class AtlasCortexSplitter:
                                 metadata=metadata
                             )
                         )
-                    
-                    # Limpeza
-                    os.remove(moc_path)
-            except subprocess.CalledProcessError as e:
-                print(f"Erro no motor Atlas Cortex: {e.stderr}")
+                else:
+                    raise RuntimeError("Arquivo .moc.json não gerado pelo motor.")
+            except Exception as e:
+                logging.warning(f"Erro no motor Atlas Cortex: {e}. Fazendo fallback para o documento inteiro sem particionamento.")
                 # Fallback em caso de erro grave (Devolve o original)
                 final_docs.append(doc)
             finally:
-                if os.path.exists(temp_path):
-                    os.remove(temp_path)
+                # Cleanup garantido
+                if temp_path and os.path.exists(temp_path):
+                    try:
+                        os.remove(temp_path)
+                    except OSError:
+                        pass
+                if moc_path and os.path.exists(moc_path):
+                    try:
+                        os.remove(moc_path)
+                    except OSError:
+                        pass
 
         return final_docs
+        
+    async def asplit_documents(self, documents: List[Document]) -> List[Document]:
+        """
+        Versão assíncrona não bloqueante de split_documents.
+        Utiliza ThreadPoolExecutor para evitar travar o event loop principal.
+        """
+        return await asyncio.to_thread(self.split_documents, documents)

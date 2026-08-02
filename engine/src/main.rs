@@ -2,11 +2,11 @@ use serde::{Serialize, Deserialize};
 use std::fs;
 use std::path::PathBuf;
 use std::env;
-use std::collections::HashSet;
-use std::collections::hash_map::DefaultHasher;
-use std::hash::{Hash, Hasher};
+use std::collections::{HashSet, HashMap};
+use sha2::{Sha256, Digest};
 use tree_sitter::Parser;
 use anyhow::{Context, Result};
+use regex::Regex;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct SemanticNode {
@@ -37,9 +37,11 @@ struct AtlasParser {
 
 impl AtlasParser {
     fn new(filepath: &str) -> Self {
-        let mut hasher = DefaultHasher::new();
-        filepath.hash(&mut hasher);
-        let hash_str = format!("{:x}", hasher.finish());
+        let content = fs::read_to_string(filepath).unwrap_or_default();
+        let mut hasher = Sha256::new();
+        hasher.update(filepath.as_bytes());
+        hasher.update(content.as_bytes());
+        let hash_str = format!("{:x}", hasher.finalize());
 
         Self {
             nodes: Vec::new(),
@@ -115,23 +117,30 @@ impl AtlasParser {
 fn extract_edges(nodes: &[SemanticNode]) -> Vec<GraphEdge> {
     let mut edges = Vec::new();
     
-    let titles: Vec<String> = nodes.iter()
-        .map(|n| n.title.to_lowercase().replace(' ', "-"))
-        .collect();
+    // O(1) Indexing for REFERENCES
+    let mut title_to_id = HashMap::new();
+    for node in nodes {
+        let anchor = node.title.to_lowercase().replace(' ', "-");
+        title_to_id.insert(anchor, node.id.clone());
+    }
+
+    let link_regex = Regex::new(r"\(#([^\)]+)\)").unwrap();
 
     for i in 0..nodes.len() {
         let node_i = &nodes[i];
         
-        // 1. REFERENCES: Look for anchor links
-        for j in 0..nodes.len() {
-            if i == j { continue; }
-            let anchor = format!("(#{})", titles[j]);
-            if node_i.content.contains(&anchor) {
-                edges.push(GraphEdge {
-                    source: node_i.id.clone(),
-                    target: nodes[j].id.clone(),
-                    rel_type: "REFERENCES".to_string(),
-                });
+        // 1. REFERENCES: O(N) extraction instead of O(N^2)
+        for cap in link_regex.captures_iter(&node_i.content) {
+            if let Some(target_anchor) = cap.get(1) {
+                if let Some(target_id) = title_to_id.get(target_anchor.as_str()) {
+                    if target_id != &node_i.id {
+                        edges.push(GraphEdge {
+                            source: node_i.id.clone(),
+                            target: target_id.clone(),
+                            rel_type: "REFERENCES".to_string(),
+                        });
+                    }
+                }
             }
         }
         
@@ -168,7 +177,17 @@ fn extract_edges(nodes: &[SemanticNode]) -> Vec<GraphEdge> {
         }
     }
     
-    edges
+    // Deduplicate edges just in case (e.g. multiple references to the same anchor)
+    let mut unique_edges = Vec::new();
+    let mut seen = HashSet::new();
+    for e in edges {
+        let sig = format!("{}->{}->{}", e.source, e.target, e.rel_type);
+        if seen.insert(sig) {
+            unique_edges.push(e);
+        }
+    }
+    
+    unique_edges
 }
 
 fn main() -> Result<()> {
