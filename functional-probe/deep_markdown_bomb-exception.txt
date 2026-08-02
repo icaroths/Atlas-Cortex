@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "I:\Atlas-Cortex-Release\scripts\functional_probe.py", line 701, in test_bomb
+    out = coerce_output(call_parse_text(parse_text_fn, payload))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "I:\Atlas-Cortex-Release\scripts\functional_probe.py", line 362, in call_parse_text
+    return fn(text)
+           ^^^^^^^^
+  File "I:\Atlas-Cortex-Release\python\atlas_cortex\__init__.py", line 41, in parse_text
+    raise RuntimeError(f"Engine failed: {result.stderr}")
+RuntimeError: Engine failed: Assertion failed: length <= TREE_SITTER_SERIALIZATION_BUFFER_SIZE, file C:\Users\icaro\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tree-sitter-0.23.2\src\./parser.c, line 408
+

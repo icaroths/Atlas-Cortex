@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "parser_version": "2.0",
+  "nodes": [
+    {
+      "id": "d7d3cab50f461f3d504643030f1b2d40878fc7d0e37f5f700bd7019b64c0f841_root",
+      "title": "root",
+      "content": "```python\r\ndef foo():\r\n    return 1\r\n```"
+    }
+  ],
+  "edges": []
+}

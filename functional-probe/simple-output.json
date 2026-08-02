@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "parser_version": "2.0",
+  "nodes": [
+    {
+      "id": "5fabf2fe1faaef568068e95c5b1f0a2f12dff2edc8bec5fe5220e6d9917bd9bc_1",
+      "title": "# Segurança",
+      "content": "# Segurança\n\n\nEste documento descreve regras."
+    },
+    {
+      "id": "5fabf2fe1faaef568068e95c5b1f0a2f12dff2edc8bec5fe5220e6d9917bd9bc_2",
+      "title": "## Autenticação",
+      "content": "## Autenticação\n\n\nUse token."
+    }
+  ],
+  "edges": []
+}

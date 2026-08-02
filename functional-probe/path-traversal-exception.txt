@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "I:\Atlas-Cortex-Release\scripts\functional_probe.py", line 786, in test_path_traversal
+    raw_out, attempt = call_parse_file(parse_file_fn, base, malicious)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "I:\Atlas-Cortex-Release\scripts\functional_probe.py", line 403, in call_parse_file
+    return fn(*args), f"args={args!r}"
+           ^^^^^^^^^
+  File "I:\Atlas-Cortex-Release\python\atlas_cortex\__init__.py", line 68, in parse_file
+    raise SecurityError("Path traversal or symlink escape blocked")
+atlas_cortex.SecurityError: Path traversal or symlink escape blocked
