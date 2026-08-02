@@ -9,93 +9,263 @@ use std::path::PathBuf;
 use tree_sitter::Parser;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+struct TableData {
+    header: Vec<String>,
+    rows: Vec<Vec<String>>,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 struct SemanticNode {
     id: String,
+    #[serde(rename = "type")]
+    node_type: String,
     title: String,
     content: String,
+    raw_content: String,
+    heading_path: Vec<String>,
+    content_hash: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    table: Option<TableData>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct GraphEdge {
+    id: String,
     source: String,
     target: String,
-    rel_type: String,
+    #[serde(rename = "type")]
+    edge_type: String,
+    method: String,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 struct MocGraph {
     schema_version: String,
     parser_version: String,
+    doc_id: String,
     nodes: Vec<SemanticNode>,
     edges: Vec<GraphEdge>,
 }
 
 struct AtlasParser {
     nodes: Vec<SemanticNode>,
-    current_node: SemanticNode,
+    edges: Vec<GraphEdge>,
+    current_node: Option<SemanticNode>,
     node_id: usize,
     file_hash: String,
+    heading_stack: Vec<(usize, String, String)>, // (level, id, title)
 }
 
 impl AtlasParser {
     fn new(filepath: &str, doc_id: Option<&str>) -> Self {
         let content = fs::read_to_string(filepath).unwrap_or_default();
         let mut hasher = Sha256::new();
-        if let Some(did) = doc_id {
-            hasher.update(did.as_bytes());
-        } else {
-            hasher.update(filepath.as_bytes());
-        }
+        let doc_id_str = doc_id.unwrap_or(filepath);
+        hasher.update(doc_id_str.as_bytes());
         hasher.update(content.as_bytes());
         let hash_str = format!("{:x}", hasher.finalize());
 
         Self {
             nodes: Vec::new(),
-            current_node: SemanticNode {
-                id: format!("{}_root", hash_str),
-                title: "root".to_string(),
-                content: String::new(),
-            },
+            edges: Vec::new(),
+            current_node: None,
             node_id: 0,
             file_hash: hash_str,
+            heading_stack: Vec::new(),
         }
+    }
+
+    fn ensure_current_node(&mut self) {
+        if self.current_node.is_none() {
+            self.node_id += 1;
+            let id = format!("{}_{}", self.file_hash, self.node_id);
+            let title = self.heading_stack.last().map(|(_, _, t)| t.clone()).unwrap_or("root".to_string());
+            let heading_path: Vec<String> = self.heading_stack.iter().map(|(_, _, t)| t.clone()).collect();
+            
+            self.current_node = Some(SemanticNode {
+                id: id.clone(),
+                node_type: "paragraph".to_string(), // default block type
+                title,
+                content: String::new(),
+                raw_content: String::new(),
+                heading_path,
+                content_hash: String::new(), // will update at finalize
+                table: None,
+            });
+            
+            // Generate child_of edge for this new block
+            if let Some((_, pid, _)) = self.heading_stack.last() {
+                let edge_id = format!("{:x}", Sha256::digest(format!("{}->{}->child_of", id, pid).as_bytes()));
+                self.edges.push(GraphEdge {
+                    id: edge_id,
+                    source: id,
+                    target: pid.clone(),
+                    edge_type: "child_of".to_string(),
+                    method: "heading_hierarchy".to_string(),
+                });
+            }
+        }
+    }
+
+    fn finalize_current_node(&mut self) {
+        if let Some(mut node) = self.current_node.take() {
+            if !node.content.trim().is_empty() {
+                node.content = node.content.trim().to_string();
+                node.raw_content = node.raw_content.trim().to_string();
+                node.content_hash = format!("{:x}", Sha256::digest(node.content.as_bytes()));
+                self.nodes.push(node);
+            }
+        }
+    }
+
+    fn get_heading_level(node: tree_sitter::Node) -> usize {
+        let mut cursor = node.walk();
+        for child in node.children(&mut cursor) {
+            let k = child.kind();
+            if k.starts_with("atx_h") && k.ends_with("_marker") {
+                if let Some(num_char) = k.chars().nth(5) {
+                    if let Some(n) = num_char.to_digit(10) {
+                        return n as usize;
+                    }
+                }
+            }
+        }
+        if node.kind() == "setext_heading" {
+            return 1;
+        }
+        0
     }
 
     fn walk_ast(&mut self, node: tree_sitter::Node, source: &[u8], depth: usize) -> Result<()> {
         if depth > 100 {
-            return Ok(()); // Prevents Stack Overflow on excessively nested markdown
+            return Ok(()); // Stack overflow prevention
         }
 
         let kind = node.kind();
 
         if kind == "atx_heading" || kind == "setext_heading" {
-            if !self.current_node.content.trim().is_empty() {
-                self.nodes.push(SemanticNode {
-                    id: self.current_node.id.clone(),
-                    title: self.current_node.title.clone(),
-                    content: self.current_node.content.trim().to_string(),
+            self.finalize_current_node();
+            
+            let text = node.utf8_text(source).unwrap_or("").trim();
+            let mut title = text.lines().next().unwrap_or("").to_string();
+            title = title.trim_start_matches('#').trim().to_string();
+            
+            let level = Self::get_heading_level(node);
+            
+            while let Some(&(last_level, _, _)) = self.heading_stack.last() {
+                if last_level >= level {
+                    self.heading_stack.pop();
+                } else {
+                    break;
+                }
+            }
+            
+            self.node_id += 1;
+            let node_id_str = format!("{}_{}", self.file_hash, self.node_id);
+            let heading_path: Vec<String> = self.heading_stack.iter().map(|(_, _, t)| t.clone()).collect();
+            
+            if let Some((_, pid, _)) = self.heading_stack.last() {
+                let edge_id = format!("{:x}", Sha256::digest(format!("{}->{}->child_of", node_id_str, pid).as_bytes()));
+                self.edges.push(GraphEdge {
+                    id: edge_id,
+                    source: node_id_str.clone(),
+                    target: pid.clone(),
+                    edge_type: "child_of".to_string(),
+                    method: "heading_hierarchy".to_string(),
                 });
             }
 
-            self.node_id += 1;
-            self.current_node.id = format!("{}_{}", self.file_hash, self.node_id);
+            self.heading_stack.push((level, node_id_str.clone(), title.clone()));
+            
+            self.nodes.push(SemanticNode {
+                id: node_id_str,
+                node_type: "heading".to_string(),
+                title,
+                content: text.to_string(),
+                raw_content: text.to_string(),
+                heading_path,
+                content_hash: format!("{:x}", Sha256::digest(text.as_bytes())),
+                table: None,
+            });
 
-            let text = node.utf8_text(source).unwrap_or("");
-            self.current_node.title = text.lines().next().unwrap_or("").trim().to_string();
-            self.current_node.content = format!("{}\n", text.trim());
+        } else if kind == "pipe_table" || kind == "table" {
+            self.finalize_current_node();
+            
+            let text = node.utf8_text(source).unwrap_or("").trim();
+            let mut header = Vec::new();
+            let mut rows = Vec::new();
+            
+            let mut cursor = node.walk();
+            for child in node.children(&mut cursor) {
+                if child.kind() == "pipe_table_header" {
+                    let mut r_cursor = child.walk();
+                    for cell in child.children(&mut r_cursor) {
+                        if cell.kind() == "pipe_table_cell" {
+                            header.push(cell.utf8_text(source).unwrap_or("").trim().to_string());
+                        }
+                    }
+                } else if child.kind() == "pipe_table_row" {
+                    let mut row = Vec::new();
+                    let mut r_cursor = child.walk();
+                    for cell in child.children(&mut r_cursor) {
+                        if cell.kind() == "pipe_table_cell" {
+                            row.push(cell.utf8_text(source).unwrap_or("").trim().to_string());
+                        }
+                    }
+                    if !row.is_empty() {
+                        rows.push(row);
+                    }
+                }
+            }
+            
+            self.node_id += 1;
+            let node_id_str = format!("{}_{}", self.file_hash, self.node_id);
+            let heading_path: Vec<String> = self.heading_stack.iter().map(|(_, _, t)| t.clone()).collect();
+            let title = self.heading_stack.last().map(|(_, _, t)| t.clone()).unwrap_or("root".to_string());
+            
+            if let Some((_, pid, _)) = self.heading_stack.last() {
+                let edge_id = format!("{:x}", Sha256::digest(format!("{}->{}->child_of", node_id_str, pid).as_bytes()));
+                self.edges.push(GraphEdge {
+                    id: edge_id,
+                    source: node_id_str.clone(),
+                    target: pid.clone(),
+                    edge_type: "child_of".to_string(),
+                    method: "heading_hierarchy".to_string(),
+                });
+            }
+            
+            self.nodes.push(SemanticNode {
+                id: node_id_str,
+                node_type: "table".to_string(),
+                title,
+                content: text.to_string(),
+                raw_content: text.to_string(),
+                heading_path,
+                content_hash: format!("{:x}", Sha256::digest(text.as_bytes())),
+                table: Some(TableData { header, rows }),
+            });
+
         } else if kind == "paragraph"
             || kind == "fenced_code_block"
             || kind == "indented_code_block"
             || kind == "list"
             || kind == "thematic_break"
-            || kind == "pipe_table"
-            || kind == "table"
         {
+            self.ensure_current_node();
             let text = node.utf8_text(source).unwrap_or("");
-            if !self.current_node.content.ends_with("\n\n") {
-                self.current_node.content.push_str("\n\n");
+            if let Some(ref mut cur) = self.current_node {
+                if !cur.content.ends_with("\n\n") {
+                    cur.content.push_str("\n\n");
+                    cur.raw_content.push_str("\n\n");
+                }
+                cur.content.push_str(text.trim());
+                cur.raw_content.push_str(text.trim());
+                if kind == "fenced_code_block" || kind == "indented_code_block" {
+                    cur.node_type = "code_block".to_string();
+                } else if kind == "list" && cur.node_type != "code_block" {
+                    cur.node_type = "list".to_string();
+                }
             }
-            self.current_node.content.push_str(text.trim());
         } else {
             let mut cursor = node.walk();
             let mut sibling_count = 0;
@@ -113,7 +283,7 @@ impl AtlasParser {
         Ok(())
     }
 
-    fn parse(mut self, content: &str) -> Result<Vec<SemanticNode>> {
+    fn parse(mut self, content: &str) -> Result<(Vec<SemanticNode>, Vec<GraphEdge>)> {
         let mut parser = Parser::new();
         let language = tree_sitter_md::LANGUAGE.into();
         parser
@@ -126,21 +296,15 @@ impl AtlasParser {
         let root = tree.root_node();
 
         self.walk_ast(root, content.as_bytes(), 0)?;
+        self.finalize_current_node();
 
-        // Push the last node
-        if !self.current_node.content.trim().is_empty() {
-            self.current_node.content = self.current_node.content.trim().to_string();
-            self.nodes.push(self.current_node);
-        }
-
-        Ok(self.nodes)
+        Ok((self.nodes, self.edges))
     }
 }
 
-fn extract_edges(nodes: &[SemanticNode]) -> Vec<GraphEdge> {
+fn extract_semantic_edges(nodes: &[SemanticNode]) -> Vec<GraphEdge> {
     let mut edges = Vec::new();
 
-    // O(1) Indexing for REFERENCES
     let mut title_to_id = HashMap::new();
     let mut word_to_nodes: HashMap<&str, Vec<usize>> = HashMap::new();
 
@@ -156,23 +320,24 @@ fn extract_edges(nodes: &[SemanticNode]) -> Vec<GraphEdge> {
     let link_regex = Regex::new(r"\(#([^\)]+)\)").unwrap();
 
     for (i, node_i) in nodes.iter().enumerate() {
-        // 1. REFERENCES: O(N) extraction instead of O(N^2)
         for cap in link_regex.captures_iter(&node_i.content) {
             if let Some(target_anchor) = cap.get(1) {
                 let target_anchor_str = target_anchor.as_str();
                 if let Some(target_id) = title_to_id.get(target_anchor_str) {
                     if target_id != &node_i.id {
+                        let edge_id = format!("{:x}", Sha256::digest(format!("{}->{}->references", node_i.id, target_id).as_bytes()));
                         edges.push(GraphEdge {
+                            id: edge_id,
                             source: node_i.id.clone(),
                             target: target_id.clone(),
-                            rel_type: "REFERENCES".to_string(),
+                            edge_type: "references".to_string(),
+                            method: "anchor_link".to_string(),
                         });
                     }
                 }
             }
         }
 
-        // 2. SEMANTICALLY_RELATED: O(N) extraction using inverted index
         let words_i: HashSet<&str> = node_i
             .title
             .split_whitespace()
@@ -199,23 +364,24 @@ fn extract_edges(nodes: &[SemanticNode]) -> Vec<GraphEdge> {
                 }
             }
 
-            // Sort by overlap count descending and cap to top 3 (pseudo k-NN)
             related.sort_by_key(|b| std::cmp::Reverse(b.0));
             for (_, target_id) in related.into_iter().take(3) {
+                let edge_id = format!("{:x}", Sha256::digest(format!("{}->{}->semantically_related", node_i.id, target_id).as_bytes()));
                 edges.push(GraphEdge {
+                    id: edge_id,
                     source: node_i.id.clone(),
                     target: target_id,
-                    rel_type: "SEMANTICALLY_RELATED".to_string(),
+                    edge_type: "semantically_related".to_string(),
+                    method: "knn_semantic".to_string(),
                 });
             }
         }
     }
 
-    // Deduplicate edges just in case (e.g. multiple references to the same anchor)
     let mut unique_edges = Vec::new();
     let mut seen = HashSet::new();
     for e in edges {
-        let sig = format!("{}->{}->{}", e.source, e.target, e.rel_type);
+        let sig = format!("{}->{}->{}", e.source, e.target, e.edge_type);
         if seen.insert(sig) {
             unique_edges.push(e);
         }
@@ -229,7 +395,7 @@ fn main() -> Result<()> {
     let args: Vec<String> = env::args().collect();
 
     if args.len() < 2 {
-        println!("Usage: engine <path_to_markdown>");
+        println!("Usage: engine <path_to_markdown> [doc_id]");
         return Ok(());
     }
 
@@ -246,14 +412,18 @@ fn main() -> Result<()> {
 
     let content = fs::read_to_string(&filepath).context("Failed to read file")?;
 
-    let doc_id = args.get(2).map(|s| s.as_str());
-    let parser = AtlasParser::new(filepath_str, doc_id);
-    let nodes = parser.parse(&content)?;
-    let edges = extract_edges(&nodes);
+    let doc_id = args.get(2).map(|s| s.as_str()).unwrap_or(filepath_str);
+    
+    let parser = AtlasParser::new(filepath_str, Some(doc_id));
+    let (nodes, mut edges) = parser.parse(&content)?;
+    
+    let mut sem_edges = extract_semantic_edges(&nodes);
+    edges.append(&mut sem_edges);
 
     let moc = MocGraph {
         schema_version: "1.0.0".to_string(),
         parser_version: "2.0".to_string(),
+        doc_id: doc_id.to_string(),
         nodes,
         edges,
     };
@@ -286,18 +456,28 @@ mod tests {
         let nodes = vec![
             SemanticNode {
                 id: "1".to_string(),
+                node_type: "paragraph".to_string(),
                 title: "Introduction to Rust".to_string(),
                 content: "See [Next](#next-steps-in-rust)".to_string(),
+                raw_content: String::new(),
+                heading_path: vec![],
+                content_hash: String::new(),
+                table: None,
             },
             SemanticNode {
                 id: "2".to_string(),
+                node_type: "paragraph".to_string(),
                 title: "Next Steps in Rust".to_string(),
                 content: "Done.".to_string(),
+                raw_content: String::new(),
+                heading_path: vec![],
+                content_hash: String::new(),
+                table: None,
             }
         ];
         
-        let edges = extract_edges(&nodes);
+        let edges = extract_semantic_edges(&nodes);
         assert!(!edges.is_empty());
-        assert_eq!(edges.len(), 1); // 1 REFERENCE (nenhum SEMANTICALLY_RELATED pois não há palavras suficientes)
+        assert_eq!(edges.len(), 1); // 1 REFERENCE
     }
 }

@@ -1,12 +1,52 @@
 {
+  "schema_version": "1.0.0",
+  "parser_version": "2.0",
+  "doc_id": "virtual_doc_id",
   "nodes": [
     {
       "id": "mock_id",
-      "title": "# Mixed HTML",
-      "content": "# Mixed HTML\n\n\nThis is a paragraph with some <b>bold html</b> and a <span style=\"color: red\">red span</span>."
+      "type": "heading",
+      "title": "Mixed HTML",
+      "content": "# Mixed HTML",
+      "raw_content": "# Mixed HTML",
+      "heading_path": [],
+      "content_hash": "495e9b420f6f43ea72b385e57f69408e8f4e70d300653ecd2597bcb965b81334"
+    },
+    {
+      "id": "mock_id",
+      "type": "paragraph",
+      "title": "Mixed HTML",
+      "content": "This is a paragraph with some <b>bold html</b> and a <span style=\"color: red\">red span</span>.",
+      "raw_content": "This is a paragraph with some <b>bold html</b> and a <span style=\"color: red\">red span</span>.",
+      "heading_path": [
+        "Mixed HTML"
+      ],
+      "content_hash": "77096126e3088ea19c735808e6e39213b2b0994f543c2e0468c97a4b8bc5b8bc"
     }
   ],
-  "edges": [],
+  "edges": [
+    {
+      "id": "39f7d1ef7d202b9c82dfa32231985513030ae3639480829283d1bff093964edd",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "0ad7f2ad3f97cb1b1ffe0734d2e129557aa645ec266d7793cab350a6ae71621b",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "23cabfc8ba364e7a0906c73fea2ec670a5df959a9bf3f163006bdab81c4dca64",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    }
+  ],
   "execution_id": "mock_exec",
   "generated_at": "mock_time",
   "duration_ms": 0

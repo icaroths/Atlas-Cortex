@@ -1,11 +1,16 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "2.0",
+  "doc_id": "virtual_doc_id",
   "nodes": [
     {
-      "id": "d7d3cab50f461f3d504643030f1b2d40878fc7d0e37f5f700bd7019b64c0f841_root",
+      "id": "d7d3cab50f461f3d504643030f1b2d40878fc7d0e37f5f700bd7019b64c0f841_1",
+      "type": "code_block",
       "title": "root",
-      "content": "```python\r\ndef foo():\r\n    return 1\r\n```"
+      "content": "```python\r\ndef foo():\r\n    return 1\r\n```",
+      "raw_content": "```python\r\ndef foo():\r\n    return 1\r\n```",
+      "heading_path": [],
+      "content_hash": "cf68508bfefa5060761b4e906241a5fc37116b9bf70fc27d3ccbf658d423e527"
     }
   ],
   "edges": []

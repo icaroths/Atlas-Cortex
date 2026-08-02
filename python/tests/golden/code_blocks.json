@@ -1,12 +1,52 @@
 {
+  "schema_version": "1.0.0",
+  "parser_version": "2.0",
+  "doc_id": "virtual_doc_id",
   "nodes": [
     {
       "id": "mock_id",
-      "title": "# Code Blocks",
-      "content": "# Code Blocks\n\n\nHere is some python code:\n\n```python\r\ndef foo():\r\n    return \"bar\"\r\n```\n\nAnd some bash:\n\n```bash\r\necho \"hello world\"\r\n```"
+      "type": "heading",
+      "title": "Code Blocks",
+      "content": "# Code Blocks",
+      "raw_content": "# Code Blocks",
+      "heading_path": [],
+      "content_hash": "528a8fb003c599bf2c2f9eb061a5b65e1751280d82a8f914874c84cefde19448"
+    },
+    {
+      "id": "mock_id",
+      "type": "code_block",
+      "title": "Code Blocks",
+      "content": "Here is some python code:\n\n```python\r\ndef foo():\r\n    return \"bar\"\r\n```\n\nAnd some bash:\n\n```bash\r\necho \"hello world\"\r\n```",
+      "raw_content": "Here is some python code:\n\n```python\r\ndef foo():\r\n    return \"bar\"\r\n```\n\nAnd some bash:\n\n```bash\r\necho \"hello world\"\r\n```",
+      "heading_path": [
+        "Code Blocks"
+      ],
+      "content_hash": "93a14d13c5998138923448d618343fbacb593284eb6e5642309bb667dd3d642d"
     }
   ],
-  "edges": [],
+  "edges": [
+    {
+      "id": "e033fb8d3d2e5140a79af0fac1a10064cf6a270f8213168b1facf6ca5d44774a",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "a3b5507e3e5bd0fdaebc4ecc182bb3d8120539a9db4131ee811c26c0fdb226c6",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "4b4823d864d2c00e776edef2bd86ed002980b9af08ac8ba575b38a91c82fa4ec",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    }
+  ],
   "execution_id": "mock_exec",
   "generated_at": "mock_time",
   "duration_ms": 0

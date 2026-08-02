@@ -1,12 +1,38 @@
 {
+  "schema_version": "1.0.0",
+  "parser_version": "2.0",
+  "doc_id": "virtual_doc_id",
   "nodes": [
     {
       "id": "mock_id",
-      "title": "# CRLF Test",
-      "content": "# CRLF Test\n\n\nThis line ends with CRLF.\r\nAnd this one too."
+      "type": "heading",
+      "title": "CRLF Test",
+      "content": "# CRLF Test",
+      "raw_content": "# CRLF Test",
+      "heading_path": [],
+      "content_hash": "095960c839a335607ae660d7b64a6cc03f2c15f7d8c1cd9a39634b1f0decd714"
+    },
+    {
+      "id": "mock_id",
+      "type": "paragraph",
+      "title": "CRLF Test",
+      "content": "This line ends with CRLF.\r\nAnd this one too.",
+      "raw_content": "This line ends with CRLF.\r\nAnd this one too.",
+      "heading_path": [
+        "CRLF Test"
+      ],
+      "content_hash": "aea1621be67a1e71716eefae8dc060e7bba16e23e9d76682d5020db3bad2057c"
     }
   ],
-  "edges": [],
+  "edges": [
+    {
+      "id": "5fc51ebd810fcd45fc251a56911d4a1dcdd5049801fb823ba89e80ccc4a59ac2",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    }
+  ],
   "execution_id": "mock_exec",
   "generated_at": "mock_time",
   "duration_ms": 0

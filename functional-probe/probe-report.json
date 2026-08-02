@@ -1,14 +1,14 @@
 {
   "project": "Atlas Cortex",
   "probe": "functional_probe",
-  "timestamp": "2026-08-02T19:17:45-0300",
+  "timestamp": "2026-08-02T19:28:41-0300",
   "platform": "Windows-10-10.0.26200-SP0",
   "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
-  "elapsed_ms": 3422,
+  "elapsed_ms": 4169,
   "summary": {
-    "pass": 13,
+    "pass": 16,
     "fail": 0,
-    "warn": 3,
+    "warn": 1,
     "skip": 2
   },
   "results": [
@@ -30,7 +30,7 @@
     {
       "name": "simple_parse_returns_nodes",
       "status": "PASS",
-      "details": "2 nodes"
+      "details": "4 nodes"
     },
     {
       "name": "simple_parse_nodes_have_ids",
@@ -64,8 +64,8 @@
     },
     {
       "name": "table_type_detected",
-      "status": "WARN",
-      "details": "tipo table não detectado"
+      "status": "PASS",
+      "details": "tipo table detectado"
     },
     {
       "name": "unicode_preserved",
@@ -74,8 +74,13 @@
     },
     {
       "name": "graph_edges_present",
-      "status": "WARN",
-      "details": "nenhuma aresta retornada"
+      "status": "PASS",
+      "details": "4 edges"
+    },
+    {
+      "name": "graph_degree_limited",
+      "status": "PASS",
+      "details": "grau máximo 2"
     },
     {
       "name": "deep_markdown_bomb",

@@ -1,17 +1,103 @@
 {
+  "schema_version": "1.0.0",
+  "parser_version": "2.0",
+  "doc_id": "virtual_doc_id",
   "nodes": [
     {
       "id": "mock_id",
-      "title": "# Links and Anchors",
-      "content": "# Links and Anchors\n\n\nHere is a [link](https://example.com).\r\nAnd a [link with title](https://example.com \"Title\")."
+      "type": "heading",
+      "title": "Links and Anchors",
+      "content": "# Links and Anchors",
+      "raw_content": "# Links and Anchors",
+      "heading_path": [],
+      "content_hash": "4cea484b97b063f59145588773a01640d0ec258cb12825197dbe7a31cfdc4dec"
     },
     {
       "id": "mock_id",
-      "title": "## Section Anchor {#my-anchor}",
-      "content": "## Section Anchor {#my-anchor}\n\n\nLink to [Section Anchor](#my-anchor)."
+      "type": "paragraph",
+      "title": "Links and Anchors",
+      "content": "Here is a [link](https://example.com).\r\nAnd a [link with title](https://example.com \"Title\").",
+      "raw_content": "Here is a [link](https://example.com).\r\nAnd a [link with title](https://example.com \"Title\").",
+      "heading_path": [
+        "Links and Anchors"
+      ],
+      "content_hash": "2e4f8507d0407ba11a40b5422c9ceb508a888e5711e951769c06c92900d3ad8b"
+    },
+    {
+      "id": "mock_id",
+      "type": "heading",
+      "title": "Section Anchor {#my-anchor}",
+      "content": "## Section Anchor {#my-anchor}",
+      "raw_content": "## Section Anchor {#my-anchor}",
+      "heading_path": [
+        "Links and Anchors"
+      ],
+      "content_hash": "a127e18bbe15cad246f53e9a1d1c30f987e1f7d4238061615983ee7d2db0016c"
+    },
+    {
+      "id": "mock_id",
+      "type": "paragraph",
+      "title": "Section Anchor {#my-anchor}",
+      "content": "Link to [Section Anchor](#my-anchor).",
+      "raw_content": "Link to [Section Anchor](#my-anchor).",
+      "heading_path": [
+        "Links and Anchors",
+        "Section Anchor {#my-anchor}"
+      ],
+      "content_hash": "744ba0642c1644c2ac0e67ab929be64d0955d36f81b320399b6facb815a34509"
     }
   ],
-  "edges": [],
+  "edges": [
+    {
+      "id": "fb4a917aebf8f315824a03ae93ec6a8909a4ddd6e866115d8435b38295ea387d",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "635da8ca7ba16b6de58f0add77c9955df7d3d8443755773a5581ec57149b154b",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "1fb09651b6f12e8a65a74922cd647b82d84da70f8da9ab2c68be5d4a5ddaf8a5",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "a7ba66788326638a3fdb9313517859870467b9064b1de7ed92a43f0b402b978c",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "280fc46f173bdacf32442d42b142980c41da896a024f0388b66de29e2c25e548",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "76995adfb36368bc9b48a8fc3ef9091cb76d31474fba01dc5110dc263d1fbcfc",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "29076eca24d4ba58402eea921318f720181e0db8770a194ab0aac42e49073e09",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    }
+  ],
   "execution_id": "mock_exec",
   "generated_at": "mock_time",
   "duration_ms": 0

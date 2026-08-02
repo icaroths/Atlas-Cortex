@@ -1,12 +1,52 @@
 {
+  "schema_version": "1.0.0",
+  "parser_version": "2.0",
+  "doc_id": "virtual_doc_id",
   "nodes": [
     {
       "id": "mock_id",
-      "title": "# Unicode",
-      "content": "# Unicode\n\n\nThis file has emojis 🚀 and accents: áéíóú ç ãõ.\r\nAlso some CJK characters: 漢字."
+      "type": "heading",
+      "title": "Unicode",
+      "content": "# Unicode",
+      "raw_content": "# Unicode",
+      "heading_path": [],
+      "content_hash": "f25be0713cc48d851b23c72a14bb2779e65068c0be6687a143b946309cdaa5ab"
+    },
+    {
+      "id": "mock_id",
+      "type": "paragraph",
+      "title": "Unicode",
+      "content": "This file has emojis 🚀 and accents: áéíóú ç ãõ.\r\nAlso some CJK characters: 漢字.",
+      "raw_content": "This file has emojis 🚀 and accents: áéíóú ç ãõ.\r\nAlso some CJK characters: 漢字.",
+      "heading_path": [
+        "Unicode"
+      ],
+      "content_hash": "4981c26d46549c50eb4cbd5afc840480e6db384302633b1ff3589476c7e0c785"
     }
   ],
-  "edges": [],
+  "edges": [
+    {
+      "id": "4183e2853a0114159f6f49d3a462ed77f4301df53cc68a796c8cf7ee196a4ac7",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "bf42bdca338e2d9d01164e8d5b26ff69580d0f7fc9fb21efa51a59bc0359f20c",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "ceb28f15726e78601a08b73e94381901663db9f74b57d21859379ae065a9b488",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    }
+  ],
   "execution_id": "mock_exec",
   "generated_at": "mock_time",
   "duration_ms": 0

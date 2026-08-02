@@ -1,12 +1,68 @@
 {
+  "schema_version": "1.0.0",
+  "parser_version": "2.0",
+  "doc_id": "virtual_doc_id",
   "nodes": [
     {
       "id": "mock_id",
-      "title": "# Tables",
-      "content": "# Tables"
+      "type": "heading",
+      "title": "Tables",
+      "content": "# Tables",
+      "raw_content": "# Tables",
+      "heading_path": [],
+      "content_hash": "467ad847ce3edfb2a64736e67d252997bcb2abd6cccbdae34aba95d05719d6a1"
+    },
+    {
+      "id": "mock_id",
+      "type": "table",
+      "title": "Tables",
+      "content": "| Header 1 | Header 2 |\r\n|----------|----------|\r\n| Row 1    | Data A   |\r\n| Row 2    | Data B   |",
+      "raw_content": "| Header 1 | Header 2 |\r\n|----------|----------|\r\n| Row 1    | Data A   |\r\n| Row 2    | Data B   |",
+      "heading_path": [
+        "Tables"
+      ],
+      "content_hash": "4ee34d3e8547b7961a4e141755f584d72b804cc17e919db78e209f102daa7cc6",
+      "table": {
+        "header": [
+          "Header 1",
+          "Header 2"
+        ],
+        "rows": [
+          [
+            "Row 1",
+            "Data A"
+          ],
+          [
+            "Row 2",
+            "Data B"
+          ]
+        ]
+      }
     }
   ],
-  "edges": [],
+  "edges": [
+    {
+      "id": "a6b14b2da254c1a6339a3acf08f0f5950ef48090e517cd12198d76c700b9f94a",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "caddc36b72eb7910d3054cd0e0e87dc25562ea919665728e403174a20fd482b0",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "8976c8273a425bd139b35359a4f49c4f61975a9740ae86e673493f3f0b3a938f",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    }
+  ],
   "execution_id": "mock_exec",
   "generated_at": "mock_time",
   "duration_ms": 0

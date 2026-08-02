@@ -1,11 +1,28 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "2.0",
+  "doc_id": "virtual_doc_id",
   "nodes": [
     {
-      "id": "5b4ebecb2dc47360694e3abeb22125b9887b96e3629b6d7df4062ac28d977893_root",
+      "id": "5b4ebecb2dc47360694e3abeb22125b9887b96e3629b6d7df4062ac28d977893_1",
+      "type": "table",
       "title": "root",
-      "content": "| Nome | Papel |\r\n|---|---|\r\n| Atlas | Parser |"
+      "content": "| Nome | Papel |\r\n|---|---|\r\n| Atlas | Parser |",
+      "raw_content": "| Nome | Papel |\r\n|---|---|\r\n| Atlas | Parser |",
+      "heading_path": [],
+      "content_hash": "886fe77b7333f9d05ab85e5c891ad58ea6799b5d5c56399c04e84384f69c131c",
+      "table": {
+        "header": [
+          "Nome",
+          "Papel"
+        ],
+        "rows": [
+          [
+            "Atlas",
+            "Parser"
+          ]
+        ]
+      }
     }
   ],
   "edges": []

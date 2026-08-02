@@ -1,12 +1,52 @@
 {
+  "schema_version": "1.0.0",
+  "parser_version": "2.0",
+  "doc_id": "virtual_doc_id",
   "nodes": [
     {
       "id": "mock_id",
-      "title": "# Content",
-      "content": "# Content\n\n\nStarts here after frontmatter."
+      "type": "heading",
+      "title": "Content",
+      "content": "# Content",
+      "raw_content": "# Content",
+      "heading_path": [],
+      "content_hash": "cf72617a6dc7e38f3a83f2b689f4c1af1ee50deb293cfefdd5a6ec9fd879737b"
+    },
+    {
+      "id": "mock_id",
+      "type": "paragraph",
+      "title": "Content",
+      "content": "Starts here after frontmatter.",
+      "raw_content": "Starts here after frontmatter.",
+      "heading_path": [
+        "Content"
+      ],
+      "content_hash": "d2f340ff52b539c46527c730ea9aa6f43f2d397d564fde865756876719d4da62"
     }
   ],
-  "edges": [],
+  "edges": [
+    {
+      "id": "ff571acf977702e1c03478c94b25cc69436e991574bb79b0b5922b296396cc1c",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "04912a47ca4499ea979fc5dc1131f9b3212da0bfb4cd96213e2fe65b095c5fac",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "cc957437ac6378645d7a1a4f3ca4ac45c1450f7b7caa17c408f2cf7d8c70029b",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    }
+  ],
   "execution_id": "mock_exec",
   "generated_at": "mock_time",
   "duration_ms": 0

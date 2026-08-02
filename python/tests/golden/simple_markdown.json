@@ -1,17 +1,103 @@
 {
+  "schema_version": "1.0.0",
+  "parser_version": "2.0",
+  "doc_id": "virtual_doc_id",
   "nodes": [
     {
       "id": "mock_id",
-      "title": "# Simple Markdown",
-      "content": "# Simple Markdown\n\n\nThis is a simple paragraph with **bold** and *italic* text."
+      "type": "heading",
+      "title": "Simple Markdown",
+      "content": "# Simple Markdown",
+      "raw_content": "# Simple Markdown",
+      "heading_path": [],
+      "content_hash": "d302766d8fcc33be7297350c8815496ec8aac847e8ee8762d13828fbf59e5cf0"
     },
     {
       "id": "mock_id",
-      "title": "## Subsection",
-      "content": "## Subsection\n\n\nAnother paragraph here."
+      "type": "paragraph",
+      "title": "Simple Markdown",
+      "content": "This is a simple paragraph with **bold** and *italic* text.",
+      "raw_content": "This is a simple paragraph with **bold** and *italic* text.",
+      "heading_path": [
+        "Simple Markdown"
+      ],
+      "content_hash": "4f148e6d99786051a16a9c75f2ce28ee855140b1244bb20de13ac1b646da5b91"
+    },
+    {
+      "id": "mock_id",
+      "type": "heading",
+      "title": "Subsection",
+      "content": "## Subsection",
+      "raw_content": "## Subsection",
+      "heading_path": [
+        "Simple Markdown"
+      ],
+      "content_hash": "cded4c0a9f538c01c42cfc4c2cf7d055c7470f08e95c545961d14a31794d0e0b"
+    },
+    {
+      "id": "mock_id",
+      "type": "paragraph",
+      "title": "Subsection",
+      "content": "Another paragraph here.",
+      "raw_content": "Another paragraph here.",
+      "heading_path": [
+        "Simple Markdown",
+        "Subsection"
+      ],
+      "content_hash": "dbb1b278eeae707cab2764e938ed26e7c07573c723b9398234a49f480c90687d"
     }
   ],
-  "edges": [],
+  "edges": [
+    {
+      "id": "2d3e9f5a73a75e175dae10c84d801f935e3d4e18b9c7bcea7c16d2e5d65149e9",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "f056adbfbe711fbc65b187a3bb9a5700565542b799fb4afbed262f457e38f5da",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "8134ba01c5eeed02c6a8ce9cc2df051502413ff2fd96721deec8cd884602d5db",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "d69508ce3199306d0f7648115a2548155031ab119c688baad9f314fb88e34456",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "ab3b890125cf62df948c8bc5c65953c8655c612c2b19469cd8df5a5c79108914",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "3c70e398b9d755f4f29bf15ff92bf7341612b220a2c641d0cb7a9c6f1e30c538",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "76243e52eb3af908efdd572d7f05481efbcdfae71a9dcf37be2fb415dde7d931",
+      "source": "mock_id",
+      "target": "mock_id",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    }
+  ],
   "execution_id": "mock_exec",
   "generated_at": "mock_time",
   "duration_ms": 0
