@@ -21,6 +21,10 @@ def _get_engine_path():
 
 def parse_text(text: str, doc_id: str = None):
     """Parses markdown text and returns the generated moc graph."""
+    if doc_id is None:
+        import hashlib
+        doc_id = hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
+        
     engine_path = _get_engine_path()
     temp_path = None
     moc_path = None
@@ -30,11 +34,7 @@ def parse_text(text: str, doc_id: str = None):
             temp_path = temp_file.name
         
         try:
-            cmd = [engine_path, temp_path]
-            if doc_id is not None:
-                cmd.append(doc_id)
-            else:
-                cmd.append("virtual_doc_id")
+            cmd = [engine_path, temp_path, doc_id]
             
             result = subprocess.run(
                 cmd,
