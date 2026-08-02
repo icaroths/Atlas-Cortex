@@ -431,6 +431,7 @@ fn main() -> Result<()> {
     
     let mut sem_edges = extract_semantic_edges(&nodes);
     edges.append(&mut sem_edges);
+    edges.sort_by(|a, b| a.id.cmp(&b.id));
 
     let moc = MocGraph {
         schema_version: "1.0.0".to_string(),
