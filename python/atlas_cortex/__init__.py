@@ -19,7 +19,7 @@ def _get_engine_path():
         return bin_path
     raise FileNotFoundError("Engine binary not found.")
 
-def parse_text(text: str):
+def parse_text(text: str, doc_id: str = None):
     """Parses markdown text and returns the generated moc graph."""
     engine_path = _get_engine_path()
     temp_path = None
@@ -30,8 +30,14 @@ def parse_text(text: str):
             temp_path = temp_file.name
         
         try:
+            cmd = [engine_path, temp_path]
+            if doc_id is not None:
+                cmd.append(doc_id)
+            else:
+                cmd.append("virtual_doc_id")
+            
             result = subprocess.run(
-                [engine_path, temp_path, "virtual_doc_id"],
+                cmd,
                 capture_output=True,
                 text=True,
                 encoding='utf-8',
@@ -59,7 +65,7 @@ def parse_text(text: str):
             except OSError:
                 pass
 
-def parse_file(base_dir, filepath):
+def parse_file(base_dir, filepath, doc_id=None):
     """Parses a file with strict path traversal and symlink protections."""
     base = Path(base_dir).resolve()
     target = Path(base_dir, filepath).resolve()
@@ -70,7 +76,7 @@ def parse_file(base_dir, filepath):
     if not target.exists():
         raise FileNotFoundError(f"File {target} not found")
         
-    return parse_text(target.read_text(encoding='utf-8'))
+    return parse_text(target.read_text(encoding='utf-8'), doc_id=doc_id)
 
 def reconcile_graphs(manifest_v1, manifest_v2):
     """

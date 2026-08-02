@@ -8,6 +8,18 @@ use std::fs;
 use std::path::PathBuf;
 use tree_sitter::Parser;
 
+fn github_slugify(title: &str) -> String {
+    let mut slug = String::new();
+    for c in title.to_lowercase().chars() {
+        if c.is_alphanumeric() || c == '_' {
+            slug.push(c);
+        } else if c == ' ' || c == '-' {
+            slug.push('-');
+        }
+    }
+    slug
+}
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct TableData {
     header: Vec<String>,
@@ -110,8 +122,8 @@ impl AtlasParser {
     fn finalize_current_node(&mut self) {
         if let Some(mut node) = self.current_node.take() {
             if !node.content.trim().is_empty() {
-                node.content = node.content.trim().to_string();
-                node.raw_content = node.raw_content.trim().to_string();
+                node.content = node.content.trim().replace("\r\n", "\n");
+                node.raw_content = node.raw_content.trim().replace("\r\n", "\n");
                 node.content_hash = format!("{:x}", Sha256::digest(node.content.as_bytes()));
                 self.nodes.push(node);
             }
@@ -191,7 +203,7 @@ impl AtlasParser {
         } else if kind == "pipe_table" || kind == "table" {
             self.finalize_current_node();
             
-            let text = node.utf8_text(source).unwrap_or("").trim();
+            let text = node.utf8_text(source).unwrap_or("").trim().replace("\r\n", "\n");
             let mut header = Vec::new();
             let mut rows = Vec::new();
             
@@ -201,7 +213,7 @@ impl AtlasParser {
                     let mut r_cursor = child.walk();
                     for cell in child.children(&mut r_cursor) {
                         if cell.kind() == "pipe_table_cell" {
-                            header.push(cell.utf8_text(source).unwrap_or("").trim().to_string());
+                            header.push(cell.utf8_text(source).unwrap_or("").trim().replace("\r\n", "\n"));
                         }
                     }
                 } else if child.kind() == "pipe_table_row" {
@@ -209,7 +221,7 @@ impl AtlasParser {
                     let mut r_cursor = child.walk();
                     for cell in child.children(&mut r_cursor) {
                         if cell.kind() == "pipe_table_cell" {
-                            row.push(cell.utf8_text(source).unwrap_or("").trim().to_string());
+                            row.push(cell.utf8_text(source).unwrap_or("").trim().replace("\r\n", "\n"));
                         }
                     }
                     if !row.is_empty() {
@@ -309,7 +321,7 @@ fn extract_semantic_edges(nodes: &[SemanticNode]) -> Vec<GraphEdge> {
     let mut word_to_nodes: HashMap<&str, Vec<usize>> = HashMap::new();
 
     for (idx, node) in nodes.iter().enumerate() {
-        let anchor = node.title.to_lowercase().replace(' ', "-");
+        let anchor = github_slugify(&node.title);
         title_to_id.insert(anchor, node.id.clone());
 
         for word in node.title.split_whitespace().filter(|w| w.len() > 4) {
