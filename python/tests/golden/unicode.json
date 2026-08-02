@@ -1,0 +1,13 @@
+{
+  "nodes": [
+    {
+      "id": "mock_id",
+      "title": "# Unicode",
+      "content": "# Unicode\n\n\nThis file has emojis 🚀 and accents: áéíóú ç ãõ.\r\nAlso some CJK characters: 漢字."
+    }
+  ],
+  "edges": [],
+  "execution_id": "mock_exec",
+  "generated_at": "mock_time",
+  "duration_ms": 0
+}

@@ -1,0 +1,13 @@
+{
+  "nodes": [
+    {
+      "id": "mock_id",
+      "title": "# Code Blocks",
+      "content": "# Code Blocks\n\n\nHere is some python code:\n\n```python\r\ndef foo():\r\n    return \"bar\"\r\n```\n\nAnd some bash:\n\n```bash\r\necho \"hello world\"\r\n```"
+    }
+  ],
+  "edges": [],
+  "execution_id": "mock_exec",
+  "generated_at": "mock_time",
+  "duration_ms": 0
+}

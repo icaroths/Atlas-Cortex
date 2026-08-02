@@ -1,11 +1,15 @@
-import os
+import asyncio
 import json
+import logging
+import os
 import subprocess
 import tempfile
-import logging
-import asyncio
-from typing import List
+from typing import List, Optional
+
+logger = logging.getLogger("atlas_cortex.integrations.langchain")
+
 from langchain_core.documents import Document
+
 
 class AtlasCortexSplitter:
     """
@@ -14,7 +18,7 @@ class AtlasCortexSplitter:
     em nós atômicos mantendo a hierarquia original (Semantic Routing).
     """
 
-    def __init__(self, engine_path: str = None):
+    def __init__(self, engine_path: Optional[str] = None):
         """
         Inicializa o splitter.
         
@@ -92,7 +96,7 @@ class AtlasCortexSplitter:
                 else:
                     raise RuntimeError("Arquivo .moc.json não gerado pelo motor.")
             except Exception as e:
-                logging.warning(f"Erro no motor Atlas Cortex: {e}. Fazendo fallback para o documento inteiro sem particionamento.")
+                logger.warning(f"Erro no motor Atlas Cortex: {e}. Fazendo fallback para o documento inteiro sem particionamento.")
                 # Fallback em caso de erro grave (Devolve o original)
                 final_docs.append(doc)
             finally:

@@ -1,0 +1,13 @@
+{
+  "nodes": [
+    {
+      "id": "mock_id",
+      "title": "# Content",
+      "content": "# Content\n\n\nStarts here after frontmatter."
+    }
+  ],
+  "edges": [],
+  "execution_id": "mock_exec",
+  "generated_at": "mock_time",
+  "duration_ms": 0
+}

@@ -1,10 +1,8 @@
-import os
 import json
-import re
-import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+import os
+
 from benchmark_token_efficiency import retrieve_top_k
+
 
 def run_ollama_judge(query: str, retrieved_context: str) -> bool:
     import subprocess

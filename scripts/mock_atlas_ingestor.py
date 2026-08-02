@@ -1,6 +1,7 @@
-import os
-import json
 import argparse
+import json
+import os
+
 
 def parse_markdown_topologically(text):
     """

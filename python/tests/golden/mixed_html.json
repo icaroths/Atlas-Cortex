@@ -1,0 +1,13 @@
+{
+  "nodes": [
+    {
+      "id": "mock_id",
+      "title": "# Mixed HTML",
+      "content": "# Mixed HTML\n\n\nThis is a paragraph with some <b>bold html</b> and a <span style=\"color: red\">red span</span>."
+    }
+  ],
+  "edges": [],
+  "execution_id": "mock_exec",
+  "generated_at": "mock_time",
+  "duration_ms": 0
+}

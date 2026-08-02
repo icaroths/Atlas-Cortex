@@ -1,0 +1,13 @@
+{
+  "nodes": [
+    {
+      "id": "mock_id",
+      "title": "# Tables",
+      "content": "# Tables"
+    }
+  ],
+  "edges": [],
+  "execution_id": "mock_exec",
+  "generated_at": "mock_time",
+  "duration_ms": 0
+}

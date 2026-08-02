@@ -1,0 +1,18 @@
+{
+  "nodes": [
+    {
+      "id": "mock_id",
+      "title": "# Simple Markdown",
+      "content": "# Simple Markdown\n\n\nThis is a simple paragraph with **bold** and *italic* text."
+    },
+    {
+      "id": "mock_id",
+      "title": "## Subsection",
+      "content": "## Subsection\n\n\nAnother paragraph here."
+    }
+  ],
+  "edges": [],
+  "execution_id": "mock_exec",
+  "generated_at": "mock_time",
+  "duration_ms": 0
+}

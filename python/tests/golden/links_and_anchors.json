@@ -1,0 +1,18 @@
+{
+  "nodes": [
+    {
+      "id": "mock_id",
+      "title": "# Links and Anchors",
+      "content": "# Links and Anchors\n\n\nHere is a [link](https://example.com).\r\nAnd a [link with title](https://example.com \"Title\")."
+    },
+    {
+      "id": "mock_id",
+      "title": "## Section Anchor {#my-anchor}",
+      "content": "## Section Anchor {#my-anchor}\n\n\nLink to [Section Anchor](#my-anchor)."
+    }
+  ],
+  "edges": [],
+  "execution_id": "mock_exec",
+  "generated_at": "mock_time",
+  "duration_ms": 0
+}

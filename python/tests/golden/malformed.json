@@ -1,0 +1,13 @@
+{
+  "nodes": [
+    {
+      "id": "mock_id",
+      "title": "# Malformed",
+      "content": "# Malformed\n\n\n* Unclosed italic\r\n** Unclosed bold\n\n[Missing parenthesis](https://example.com\n\n```\r\nUnclosed code block"
+    }
+  ],
+  "edges": [],
+  "execution_id": "mock_exec",
+  "generated_at": "mock_time",
+  "duration_ms": 0
+}

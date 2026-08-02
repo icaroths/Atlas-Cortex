@@ -1,6 +1,7 @@
-import os
-import json
 import argparse
+import json
+import os
+
 
 def generate_cypher_from_moc(moc_path: str, output_path: str):
     """

@@ -1,6 +1,6 @@
-import os
 import json
-import re
+import os
+
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
