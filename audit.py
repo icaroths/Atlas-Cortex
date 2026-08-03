@@ -64,6 +64,12 @@ for root, _, files in os.walk("scripts"):
 stdout, stderr, code = run(["git", "diff", "--exit-code", "docs/benchmarks"])
 (EVIDENCE_DIR / "bench-drift.txt").write_text(stdout + stderr + f"\nExit code: {code}", encoding="utf-8")
 
+# 5. MOC Artifact Drift
+run(["python", "scripts/generate_mocs.py"])
+stdout_moc, stderr_moc, code_moc = run(["git", "diff", "--exit-code", "docs/core-protocol_benchmark_corpus.moc.json", "docs/Paper_Atlas_Cortex_PT.moc.json"])
+(EVIDENCE_DIR / "moc-drift.txt").write_text(stdout_moc + stderr_moc + f"\nExit code: {code_moc}", encoding="utf-8")
+
+
 # Generate Scorecard Base
 scorecard = f"""
 P0-01 (target fora do git): {'PASS' if not (EVIDENCE_DIR/'git-ls-files-target.txt').read_text().strip() else 'FAIL'}
@@ -75,5 +81,6 @@ P0-07 (cargo audit): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'cargo-audit.txt
 P0-10 (sem shell=True): {'PASS' if not shell_true_issues else 'FAIL'}
 P0-11 (sem os.system): {'PASS' if not os_system_issues else 'FAIL'}
 P0-15 (benchmark sem drift): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'bench-drift.txt').read_text() else 'FAIL'}
+P0-16 (MOC artifact sem drift): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'moc-drift.txt').read_text() else 'FAIL'}
 """
 print(scorecard)
