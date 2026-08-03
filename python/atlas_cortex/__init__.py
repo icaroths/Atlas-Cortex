@@ -2,6 +2,7 @@ import json
 import os
 import subprocess
 import tempfile
+from typing import Optional
 from pathlib import Path
 
 __version__ = "1.0.0"
