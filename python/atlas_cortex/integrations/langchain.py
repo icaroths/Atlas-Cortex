@@ -41,7 +41,7 @@ class AtlasCortexSplitter:
             else:
                 raise FileNotFoundError("Binário do motor Rust não encontrado. Rode 'cargo build --release' em /engine.")
 
-    def split_text(self, text: str) -> List[str]:
+    def split_text(self, text: str, doc_id: Optional[str] = None) -> List[str]:
         """Quebra um texto cru usando o motor Atlas Cortex e retorna as strings"""
         docs = self.split_documents([Document(page_content=text)])
         return [doc.page_content for doc in docs]
@@ -66,8 +66,8 @@ class AtlasCortexSplitter:
                 edges = moc_data.get("edges", [])
                 
                 # Pre-computa arestas de entrada e saida para acesso rapido em O(1)
-                edges_out = {}
-                edges_in = {}
+                edges_out: dict[str, list] = {}
+                edges_in: dict[str, list] = {}
                 for edge in edges:
                     source = edge["source"]
                     target = edge["target"]
