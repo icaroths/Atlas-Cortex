@@ -402,7 +402,13 @@ fn extract_semantic_edges(nodes: &[SemanticNode]) -> Vec<GraphEdge> {
 }
 
 fn main() -> Result<()> {
-    println!("Atlas Cortex Engine V2 (Rust - Tree-Sitter AST & GraphRAG)");
+    // ========================================================================
+    // EVALUATION BUILD — Node quota: 750 nodes per document.
+    // For unrestricted processing, see: Atlas-Cortex_Dev (private).
+    // ========================================================================
+    const MAX_NODES_EVALUATION: usize = 750;
+
+    println!("Atlas Cortex Engine V2 (Evaluation Build — 750 node limit)");
     let args: Vec<String> = env::args().collect();
 
     if args.len() < 2 {
@@ -432,9 +438,25 @@ fn main() -> Result<()> {
     edges.append(&mut sem_edges);
     edges.sort_by(|a, b| a.id.cmp(&b.id));
 
+    // --- Evaluation quota enforcement ---
+    let was_truncated = nodes.len() > MAX_NODES_EVALUATION;
+    let original_count = nodes.len();
+    let nodes: Vec<SemanticNode> = nodes.into_iter().take(MAX_NODES_EVALUATION).collect();
+    let valid_ids: HashSet<&str> = nodes.iter().map(|n| n.id.as_str()).collect();
+    let edges: Vec<GraphEdge> = edges.into_iter()
+        .filter(|e| valid_ids.contains(e.source.as_str()) || valid_ids.contains(e.target.as_str()))
+        .collect();
+    if was_truncated {
+        eprintln!(
+            "⚠️  EVALUATION LIMIT: Truncated from {} to {} nodes. Upgrade to Atlas Cortex Dev for unrestricted processing.",
+            original_count, MAX_NODES_EVALUATION
+        );
+    }
+    // --- End quota enforcement ---
+
     let moc = MocGraph {
         schema_version: "1.0.0".to_string(),
-        parser_version: "2.0".to_string(),
+        parser_version: "2.0-eval".to_string(),
         doc_id: doc_id.to_string(),
         nodes,
         edges,
