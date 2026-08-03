@@ -57,60 +57,52 @@ class AtlasCortexSplitter:
         final_docs = []
 
         for doc in documents:
-            temp_path = None
-            moc_path = None
             try:
-                # Escreve o conteúdo temporariamente para o binário Rust ler
-                with tempfile.NamedTemporaryFile(delete=False, suffix=".md", mode='w', encoding='utf-8') as temp_file:
-                    temp_file.write(doc.page_content)
-                    temp_path = temp_file.name
+                # Extrai doc_id se existir, senao None
+                doc_id = doc.metadata.get("doc_id")
                 
-                # Chama o motor Rust
-                result = subprocess.run(
-                    [self.engine_path, temp_path],
-                    capture_output=True,
-                    text=True,
-                    encoding='utf-8',
-                    check=True
-                )
+                # Chama a funcao unificada que ja lida com subprocess, doc_id fallback, e timeout
+                from atlas_cortex import parse_text
+                moc_data = parse_text(doc.page_content, doc_id=doc_id)
                 
-                # Lê o json gerado (.moc.json)
-                moc_path = temp_path.replace(".md", ".moc.json")
-                if os.path.exists(moc_path):
-                    with open(moc_path, 'r', encoding='utf-8') as f:
-                        moc_data = json.load(f)
+                nodes = moc_data.get("nodes", [])
+                edges = moc_data.get("edges", [])
+                
+                # Pre-computa arestas de entrada e saida para acesso rapido em O(1)
+                edges_out = {}
+                edges_in = {}
+                for edge in edges:
+                    source = edge["source"]
+                    target = edge["target"]
+                    if source not in edges_out:
+                        edges_out[source] = []
+                    edges_out[source].append(edge)
                     
-                    nodes = moc_data.get("nodes", [])
+                    if target not in edges_in:
+                        edges_in[target] = []
+                    edges_in[target].append(edge)
+                
+                for node in nodes:
+                    metadata = doc.metadata.copy()
+                    node_id = node.get("id")
+                    metadata['atlas_node_id'] = node_id
+                    metadata['atlas_node_type'] = node.get("type")
+                    metadata['atlas_node_title'] = node.get("title")
                     
-                    for node in nodes:
-                        metadata = doc.metadata.copy()
-                        metadata['atlas_node_id'] = node.get("id")
-                        metadata['atlas_node_title'] = node.get("title")
-                        
-                        final_docs.append(
-                            Document(
-                                page_content=node.get("content", ""),
-                                metadata=metadata
-                            )
+                    # Salva referências diretas (RAG topology)
+                    metadata['atlas_edges_out'] = edges_out.get(node_id, [])
+                    metadata['atlas_edges_in'] = edges_in.get(node_id, [])
+                    
+                    final_docs.append(
+                        Document(
+                            page_content=node.get("content", ""),
+                            metadata=metadata
                         )
-                else:
-                    raise RuntimeError("Arquivo .moc.json não gerado pelo motor.")
+                    )
             except Exception as e:
                 logger.warning(f"Erro no motor Atlas Cortex: {e}. Fazendo fallback para o documento inteiro sem particionamento.")
                 # Fallback em caso de erro grave (Devolve o original)
                 final_docs.append(doc)
-            finally:
-                # Cleanup garantido
-                if temp_path and os.path.exists(temp_path):
-                    try:
-                        os.remove(temp_path)
-                    except OSError:
-                        pass
-                if moc_path and os.path.exists(moc_path):
-                    try:
-                        os.remove(moc_path)
-                    except OSError:
-                        pass
 
         return final_docs
         

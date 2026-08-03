@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "2.0",
-  "doc_id": "virtual_doc_id",
+  "doc_id": "crlf",
   "nodes": [
     {
-      "id": "mock_id",
+      "id": "c613dc516f3260b7b0cd688c74447e4024a1bf958ad25ae2d543d04923f84194_1",
       "type": "heading",
       "title": "CRLF Test",
       "content": "# CRLF Test",
@@ -13,22 +13,22 @@
       "content_hash": "095960c839a335607ae660d7b64a6cc03f2c15f7d8c1cd9a39634b1f0decd714"
     },
     {
-      "id": "mock_id",
+      "id": "c613dc516f3260b7b0cd688c74447e4024a1bf958ad25ae2d543d04923f84194_2",
       "type": "paragraph",
       "title": "CRLF Test",
-      "content": "This line ends with CRLF.\r\nAnd this one too.",
-      "raw_content": "This line ends with CRLF.\r\nAnd this one too.",
+      "content": "This line ends with CRLF.\nAnd this one too.",
+      "raw_content": "This line ends with CRLF.\nAnd this one too.",
       "heading_path": [
         "CRLF Test"
       ],
-      "content_hash": "aea1621be67a1e71716eefae8dc060e7bba16e23e9d76682d5020db3bad2057c"
+      "content_hash": "1614bad2338dd0d2b1f6526a59e84178dc0eda59e034b59d15206c9ae199c547"
     }
   ],
   "edges": [
     {
-      "id": "5fc51ebd810fcd45fc251a56911d4a1dcdd5049801fb823ba89e80ccc4a59ac2",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "7cf225c84f4f89aa70e518efd890afbd3d14b62cba0fe2fbed616f0c3afe739c",
+      "source": "c613dc516f3260b7b0cd688c74447e4024a1bf958ad25ae2d543d04923f84194_2",
+      "target": "c613dc516f3260b7b0cd688c74447e4024a1bf958ad25ae2d543d04923f84194_1",
       "type": "child_of",
       "method": "heading_hierarchy"
     }

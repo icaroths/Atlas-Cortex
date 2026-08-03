@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "2.0",
-  "doc_id": "virtual_doc_id",
+  "doc_id": "unicode",
   "nodes": [
     {
-      "id": "mock_id",
+      "id": "2fcf76a4c3c75b1fb5288d83d62dd114dc556d16fba206ab35d38bfe294a2857_1",
       "type": "heading",
       "title": "Unicode",
       "content": "# Unicode",
@@ -13,36 +13,36 @@
       "content_hash": "f25be0713cc48d851b23c72a14bb2779e65068c0be6687a143b946309cdaa5ab"
     },
     {
-      "id": "mock_id",
+      "id": "2fcf76a4c3c75b1fb5288d83d62dd114dc556d16fba206ab35d38bfe294a2857_2",
       "type": "paragraph",
       "title": "Unicode",
-      "content": "This file has emojis 🚀 and accents: áéíóú ç ãõ.\r\nAlso some CJK characters: 漢字.",
-      "raw_content": "This file has emojis 🚀 and accents: áéíóú ç ãõ.\r\nAlso some CJK characters: 漢字.",
+      "content": "This file has emojis 🚀 and accents: áéíóú ç ãõ.\nAlso some CJK characters: 漢字.",
+      "raw_content": "This file has emojis 🚀 and accents: áéíóú ç ãõ.\nAlso some CJK characters: 漢字.",
       "heading_path": [
         "Unicode"
       ],
-      "content_hash": "4981c26d46549c50eb4cbd5afc840480e6db384302633b1ff3589476c7e0c785"
+      "content_hash": "f52575da4a8ae9f9ecdec3b5be393e7c91c3f9be7c6b6dcc15750236d89300fe"
     }
   ],
   "edges": [
     {
-      "id": "4183e2853a0114159f6f49d3a462ed77f4301df53cc68a796c8cf7ee196a4ac7",
-      "source": "mock_id",
-      "target": "mock_id",
-      "type": "child_of",
-      "method": "heading_hierarchy"
-    },
-    {
-      "id": "bf42bdca338e2d9d01164e8d5b26ff69580d0f7fc9fb21efa51a59bc0359f20c",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "4e0f88fcd4c41d834cb70e2cd97bb74bb546bba84d0ad026b7566208ffc07f62",
+      "source": "2fcf76a4c3c75b1fb5288d83d62dd114dc556d16fba206ab35d38bfe294a2857_2",
+      "target": "2fcf76a4c3c75b1fb5288d83d62dd114dc556d16fba206ab35d38bfe294a2857_1",
       "type": "semantically_related",
       "method": "knn_semantic"
     },
     {
-      "id": "ceb28f15726e78601a08b73e94381901663db9f74b57d21859379ae065a9b488",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "77ab026c00ef84ab8ee6080624046debce38c86e1cf191725b9be72bd14d9bd5",
+      "source": "2fcf76a4c3c75b1fb5288d83d62dd114dc556d16fba206ab35d38bfe294a2857_2",
+      "target": "2fcf76a4c3c75b1fb5288d83d62dd114dc556d16fba206ab35d38bfe294a2857_1",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "ffe85106e9fc4d5a5e5e76938a5e8840bcb062ad7d7e4e7ba830511484a48738",
+      "source": "2fcf76a4c3c75b1fb5288d83d62dd114dc556d16fba206ab35d38bfe294a2857_1",
+      "target": "2fcf76a4c3c75b1fb5288d83d62dd114dc556d16fba206ab35d38bfe294a2857_2",
       "type": "semantically_related",
       "method": "knn_semantic"
     }

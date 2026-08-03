@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "2.0",
-  "doc_id": "virtual_doc_id",
+  "doc_id": "malformed",
   "nodes": [
     {
-      "id": "mock_id",
+      "id": "60ec9bb7299d85e0cdd35d4058fabd7cb6bdc9b788c6efde44427e9bb9234e13_1",
       "type": "heading",
       "title": "Malformed",
       "content": "# Malformed",
@@ -13,36 +13,36 @@
       "content_hash": "648120f153630c5562b5489e8e88dbc9348906a6691fa5ae9d6225cf804d0899"
     },
     {
-      "id": "mock_id",
+      "id": "60ec9bb7299d85e0cdd35d4058fabd7cb6bdc9b788c6efde44427e9bb9234e13_2",
       "type": "code_block",
       "title": "Malformed",
-      "content": "* Unclosed italic\r\n** Unclosed bold\n\n[Missing parenthesis](https://example.com\n\n```\r\nUnclosed code block",
-      "raw_content": "* Unclosed italic\r\n** Unclosed bold\n\n[Missing parenthesis](https://example.com\n\n```\r\nUnclosed code block",
+      "content": "* Unclosed italic\n** Unclosed bold\n\n[Missing parenthesis](https://example.com\n\n```\nUnclosed code block",
+      "raw_content": "* Unclosed italic\n** Unclosed bold\n\n[Missing parenthesis](https://example.com\n\n```\nUnclosed code block",
       "heading_path": [
         "Malformed"
       ],
-      "content_hash": "e70a8d9af7f7283ca89e6cafa042e1a582930b737ba7c9fd1848babc97e21ee3"
+      "content_hash": "a0be80c98925ad75e876e38b512c919cf9bb4d40473c526343f72697fe34704f"
     }
   ],
   "edges": [
     {
-      "id": "12d9cf88a4af8294c9589bfcf9ef85d6f7979151bde626b25d3fe4c9db287cff",
-      "source": "mock_id",
-      "target": "mock_id",
-      "type": "child_of",
-      "method": "heading_hierarchy"
-    },
-    {
-      "id": "aa3ec0f2d544d0cf1013991a768c5ff2e09c98cdb8289cdebf0e43311ca2aa9d",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "46c2018988b8d969ed7cb656f1c37519ed9f4ab219e8a1c9ea00a216e8ef4d67",
+      "source": "60ec9bb7299d85e0cdd35d4058fabd7cb6bdc9b788c6efde44427e9bb9234e13_2",
+      "target": "60ec9bb7299d85e0cdd35d4058fabd7cb6bdc9b788c6efde44427e9bb9234e13_1",
       "type": "semantically_related",
       "method": "knn_semantic"
     },
     {
-      "id": "6258edf00cbe4761ffb49b40d3128e3abe441453425cae63999752d86697f244",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "bba4ec2b7c036fb086dc8ef82ae6dc06d34012d3fc01b64cba25bc4cf298aaa5",
+      "source": "60ec9bb7299d85e0cdd35d4058fabd7cb6bdc9b788c6efde44427e9bb9234e13_2",
+      "target": "60ec9bb7299d85e0cdd35d4058fabd7cb6bdc9b788c6efde44427e9bb9234e13_1",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "fde19fb4245785c91dee609b2bd83b885c1057342e1e3554bafac72d5e8a0b24",
+      "source": "60ec9bb7299d85e0cdd35d4058fabd7cb6bdc9b788c6efde44427e9bb9234e13_1",
+      "target": "60ec9bb7299d85e0cdd35d4058fabd7cb6bdc9b788c6efde44427e9bb9234e13_2",
       "type": "semantically_related",
       "method": "knn_semantic"
     }

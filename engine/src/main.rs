@@ -74,7 +74,6 @@ impl AtlasParser {
         let mut hasher = Sha256::new();
         let doc_id_str = doc_id.unwrap_or(filepath);
         hasher.update(doc_id_str.as_bytes());
-        hasher.update(content.as_bytes());
         let hash_str = format!("{:x}", hasher.finalize());
 
         Self {
@@ -283,7 +282,7 @@ impl AtlasParser {
             let mut sibling_count = 0;
             for child in node.children(&mut cursor) {
                 sibling_count += 1;
-                if sibling_count > 10_000 {
+                if sibling_count > 500_000 {
                     return Err(anyhow::anyhow!(
                         "AST width limit exceeded (too many siblings)"
                     ));

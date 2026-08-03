@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "2.0",
-  "doc_id": "virtual_doc_id",
+  "doc_id": "tables",
   "nodes": [
     {
-      "id": "mock_id",
+      "id": "d98a034f5cb8a0e3f07d5d8b5dc3c43723ea8d8b95199e18a82c52e072eca4dd_1",
       "type": "heading",
       "title": "Tables",
       "content": "# Tables",
@@ -13,15 +13,15 @@
       "content_hash": "467ad847ce3edfb2a64736e67d252997bcb2abd6cccbdae34aba95d05719d6a1"
     },
     {
-      "id": "mock_id",
+      "id": "d98a034f5cb8a0e3f07d5d8b5dc3c43723ea8d8b95199e18a82c52e072eca4dd_2",
       "type": "table",
       "title": "Tables",
-      "content": "| Header 1 | Header 2 |\r\n|----------|----------|\r\n| Row 1    | Data A   |\r\n| Row 2    | Data B   |",
-      "raw_content": "| Header 1 | Header 2 |\r\n|----------|----------|\r\n| Row 1    | Data A   |\r\n| Row 2    | Data B   |",
+      "content": "| Header 1 | Header 2 |\n|----------|----------|\n| Row 1    | Data A   |\n| Row 2    | Data B   |",
+      "raw_content": "| Header 1 | Header 2 |\n|----------|----------|\n| Row 1    | Data A   |\n| Row 2    | Data B   |",
       "heading_path": [
         "Tables"
       ],
-      "content_hash": "4ee34d3e8547b7961a4e141755f584d72b804cc17e919db78e209f102daa7cc6",
+      "content_hash": "9a3bc750ce2e0546155757a59effd9fbe081c04d9080e46c7ee569715eb54531",
       "table": {
         "header": [
           "Header 1",
@@ -42,23 +42,23 @@
   ],
   "edges": [
     {
-      "id": "a6b14b2da254c1a6339a3acf08f0f5950ef48090e517cd12198d76c700b9f94a",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "b4b37ac06ba564ce3270b786eabc0b3da87dd9019242bc3afa321c371c01a1ad",
+      "source": "d98a034f5cb8a0e3f07d5d8b5dc3c43723ea8d8b95199e18a82c52e072eca4dd_2",
+      "target": "d98a034f5cb8a0e3f07d5d8b5dc3c43723ea8d8b95199e18a82c52e072eca4dd_1",
       "type": "child_of",
       "method": "heading_hierarchy"
     },
     {
-      "id": "caddc36b72eb7910d3054cd0e0e87dc25562ea919665728e403174a20fd482b0",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "c4195f919425e6f0c4b145b541ddea6d40b0136ef82b789f762d1603164316d2",
+      "source": "d98a034f5cb8a0e3f07d5d8b5dc3c43723ea8d8b95199e18a82c52e072eca4dd_1",
+      "target": "d98a034f5cb8a0e3f07d5d8b5dc3c43723ea8d8b95199e18a82c52e072eca4dd_2",
       "type": "semantically_related",
       "method": "knn_semantic"
     },
     {
-      "id": "8976c8273a425bd139b35359a4f49c4f61975a9740ae86e673493f3f0b3a938f",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "d4ff06b8b3bd0f079693da4751bc052fdfc020507aa7c0f0dc5c572a8880843b",
+      "source": "d98a034f5cb8a0e3f07d5d8b5dc3c43723ea8d8b95199e18a82c52e072eca4dd_2",
+      "target": "d98a034f5cb8a0e3f07d5d8b5dc3c43723ea8d8b95199e18a82c52e072eca4dd_1",
       "type": "semantically_related",
       "method": "knn_semantic"
     }

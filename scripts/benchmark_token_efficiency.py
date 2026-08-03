@@ -2,27 +2,27 @@ import json
 import os
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
+try:
+    from sentence_transformers import SentenceTransformer
+    from sklearn.metrics.pairwise import cosine_similarity
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+except ImportError:
+    SentenceTransformer = None
+    model = None
 
 try:
     import tiktoken
 except ImportError:
-    print("Por favor, instale o tiktoken: pip install tiktoken")
-    exit(1)
+    tiktoken = None
 
 try:
     from langchain_text_splitters import RecursiveCharacterTextSplitter
 except ImportError:
-    print("Por favor, instale o langchain-text-splitters: pip install langchain-text-splitters")
-    exit(1)
+    RecursiveCharacterTextSplitter = None
 
 def count_tokens(text: str, model_name: str = "cl100k_base") -> int:
     encoding = tiktoken.get_encoding(model_name)
     return len(encoding.encode(text))
-
-# Carrega o modelo de forma global para otimizar chamadas
-model = SentenceTransformer('all-MiniLM-L6-v2', revision="8b3219a92973c328a8e22fadcfa821b5dc75636a")
 
 def retrieve_top_k(corpus: list, query: str, top_k: int = 3) -> list:
     """

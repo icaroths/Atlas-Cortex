@@ -28,15 +28,8 @@ def test_golden(name):
         pytest.skip(f"Golden file {name}.md missing")
 
     input_text = input_path.read_text(encoding="utf-8")
-    result = parse_text(input_text)
+    result = parse_text(input_text, doc_id=name)
     
-    # Normalizar timestamps/hashes para testes determinísticos
-    for n in result.get("nodes", []):
-        n["id"] = "mock_id"
-    for e in result.get("edges", []):
-        e["source"] = "mock_id"
-        e["target"] = "mock_id"
-        
     result["execution_id"] = "mock_exec"
     result["generated_at"] = "mock_time"
     result["duration_ms"] = 0

@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "2.0",
-  "doc_id": "virtual_doc_id",
+  "doc_id": "simple_markdown",
   "nodes": [
     {
-      "id": "mock_id",
+      "id": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_1",
       "type": "heading",
       "title": "Simple Markdown",
       "content": "# Simple Markdown",
@@ -13,7 +13,7 @@
       "content_hash": "d302766d8fcc33be7297350c8815496ec8aac847e8ee8762d13828fbf59e5cf0"
     },
     {
-      "id": "mock_id",
+      "id": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_2",
       "type": "paragraph",
       "title": "Simple Markdown",
       "content": "This is a simple paragraph with **bold** and *italic* text.",
@@ -24,7 +24,7 @@
       "content_hash": "4f148e6d99786051a16a9c75f2ce28ee855140b1244bb20de13ac1b646da5b91"
     },
     {
-      "id": "mock_id",
+      "id": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_3",
       "type": "heading",
       "title": "Subsection",
       "content": "## Subsection",
@@ -35,7 +35,7 @@
       "content_hash": "cded4c0a9f538c01c42cfc4c2cf7d055c7470f08e95c545961d14a31794d0e0b"
     },
     {
-      "id": "mock_id",
+      "id": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_4",
       "type": "paragraph",
       "title": "Subsection",
       "content": "Another paragraph here.",
@@ -49,51 +49,51 @@
   ],
   "edges": [
     {
-      "id": "2d3e9f5a73a75e175dae10c84d801f935e3d4e18b9c7bcea7c16d2e5d65149e9",
-      "source": "mock_id",
-      "target": "mock_id",
-      "type": "child_of",
-      "method": "heading_hierarchy"
-    },
-    {
-      "id": "f056adbfbe711fbc65b187a3bb9a5700565542b799fb4afbed262f457e38f5da",
-      "source": "mock_id",
-      "target": "mock_id",
-      "type": "child_of",
-      "method": "heading_hierarchy"
-    },
-    {
-      "id": "8134ba01c5eeed02c6a8ce9cc2df051502413ff2fd96721deec8cd884602d5db",
-      "source": "mock_id",
-      "target": "mock_id",
-      "type": "child_of",
-      "method": "heading_hierarchy"
-    },
-    {
-      "id": "d69508ce3199306d0f7648115a2548155031ab119c688baad9f314fb88e34456",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "33579a0c2e8c1b11e6f7f10332b9c68b3f597f0a3b98608b428275f6e509d858",
+      "source": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_2",
+      "target": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_1",
       "type": "semantically_related",
       "method": "knn_semantic"
     },
     {
-      "id": "ab3b890125cf62df948c8bc5c65953c8655c612c2b19469cd8df5a5c79108914",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "449c77b74e488da91058c6794e4788b80af0398043563cedf8be97ad4250b1f6",
+      "source": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_2",
+      "target": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_1",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "4aba317719ada4ec8893e5c62c3212699041134c128b4649a8cbb34897a34c18",
+      "source": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_4",
+      "target": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_3",
       "type": "semantically_related",
       "method": "knn_semantic"
     },
     {
-      "id": "3c70e398b9d755f4f29bf15ff92bf7341612b220a2c641d0cb7a9c6f1e30c538",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "9b8410fedbbe57fa83726697af938e0974e0833e5f69c7144024a469e271f409",
+      "source": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_1",
+      "target": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_2",
       "type": "semantically_related",
       "method": "knn_semantic"
     },
     {
-      "id": "76243e52eb3af908efdd572d7f05481efbcdfae71a9dcf37be2fb415dde7d931",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "ae573d5b0d50bb9a550316c89e537ec138eb6eed47af57cda1b6eefc342298ea",
+      "source": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_3",
+      "target": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_1",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "b3acd8ace03f514e1d3561a540bc30011200df3ec36936544e35a6c9e848ba9f",
+      "source": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_4",
+      "target": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_3",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "c22e8b3ec813e24d16f5dade9703dec7beb68bda711dc6d811ffaae067b40dc1",
+      "source": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_3",
+      "target": "eb8134ee245e6352a9f5043a3e18f5e8f4d47b943510ae59e5b64d8fe7875d02_4",
       "type": "semantically_related",
       "method": "knn_semantic"
     }

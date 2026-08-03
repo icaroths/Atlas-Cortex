@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "2.0",
-  "doc_id": "virtual_doc_id",
+  "doc_id": "code_blocks",
   "nodes": [
     {
-      "id": "mock_id",
+      "id": "5e16c2aa1e67425450b1b5f9028f00f2135ba2c788871fff65bab7df0a59914d_1",
       "type": "heading",
       "title": "Code Blocks",
       "content": "# Code Blocks",
@@ -13,36 +13,36 @@
       "content_hash": "528a8fb003c599bf2c2f9eb061a5b65e1751280d82a8f914874c84cefde19448"
     },
     {
-      "id": "mock_id",
+      "id": "5e16c2aa1e67425450b1b5f9028f00f2135ba2c788871fff65bab7df0a59914d_2",
       "type": "code_block",
       "title": "Code Blocks",
-      "content": "Here is some python code:\n\n```python\r\ndef foo():\r\n    return \"bar\"\r\n```\n\nAnd some bash:\n\n```bash\r\necho \"hello world\"\r\n```",
-      "raw_content": "Here is some python code:\n\n```python\r\ndef foo():\r\n    return \"bar\"\r\n```\n\nAnd some bash:\n\n```bash\r\necho \"hello world\"\r\n```",
+      "content": "Here is some python code:\n\n```python\ndef foo():\n    return \"bar\"\n```\n\nAnd some bash:\n\n```bash\necho \"hello world\"\n```",
+      "raw_content": "Here is some python code:\n\n```python\ndef foo():\n    return \"bar\"\n```\n\nAnd some bash:\n\n```bash\necho \"hello world\"\n```",
       "heading_path": [
         "Code Blocks"
       ],
-      "content_hash": "93a14d13c5998138923448d618343fbacb593284eb6e5642309bb667dd3d642d"
+      "content_hash": "5371a5035963fc014a8711975ed238218c5715b6907aa824df4a6352dd5933a9"
     }
   ],
   "edges": [
     {
-      "id": "e033fb8d3d2e5140a79af0fac1a10064cf6a270f8213168b1facf6ca5d44774a",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "0944ce1ff52df3e6c269fae25f94969ed3e247832b5c62f7681843e3bee9b1a0",
+      "source": "5e16c2aa1e67425450b1b5f9028f00f2135ba2c788871fff65bab7df0a59914d_2",
+      "target": "5e16c2aa1e67425450b1b5f9028f00f2135ba2c788871fff65bab7df0a59914d_1",
       "type": "child_of",
       "method": "heading_hierarchy"
     },
     {
-      "id": "a3b5507e3e5bd0fdaebc4ecc182bb3d8120539a9db4131ee811c26c0fdb226c6",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "0deb899272b60e4fe47843b2890dabcab5fef1e6d28adecc5a8530aa6ca9331f",
+      "source": "5e16c2aa1e67425450b1b5f9028f00f2135ba2c788871fff65bab7df0a59914d_1",
+      "target": "5e16c2aa1e67425450b1b5f9028f00f2135ba2c788871fff65bab7df0a59914d_2",
       "type": "semantically_related",
       "method": "knn_semantic"
     },
     {
-      "id": "4b4823d864d2c00e776edef2bd86ed002980b9af08ac8ba575b38a91c82fa4ec",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "115bc7127cfe263914ae37d44b5071643fab9b70d543ccf359d7ca94d0ce4773",
+      "source": "5e16c2aa1e67425450b1b5f9028f00f2135ba2c788871fff65bab7df0a59914d_2",
+      "target": "5e16c2aa1e67425450b1b5f9028f00f2135ba2c788871fff65bab7df0a59914d_1",
       "type": "semantically_related",
       "method": "knn_semantic"
     }

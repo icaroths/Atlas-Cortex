@@ -26,3 +26,8 @@ dev = [
 [tool.setuptools.packages.find]
 where = ["python"]
 include = ["atlas_cortex*"]
+
+[tool.pytest.ini_options]
+markers = [
+    "stress: marca testes de estresse pesados (rodar apenas com -m stress)"
+]

@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "2.0",
-  "doc_id": "virtual_doc_id",
+  "doc_id": "mixed_html",
   "nodes": [
     {
-      "id": "mock_id",
+      "id": "48a6641326b9661105bba3d6003b57b92b69193443cb57276783866c2f2d149e_1",
       "type": "heading",
       "title": "Mixed HTML",
       "content": "# Mixed HTML",
@@ -13,7 +13,7 @@
       "content_hash": "495e9b420f6f43ea72b385e57f69408e8f4e70d300653ecd2597bcb965b81334"
     },
     {
-      "id": "mock_id",
+      "id": "48a6641326b9661105bba3d6003b57b92b69193443cb57276783866c2f2d149e_2",
       "type": "paragraph",
       "title": "Mixed HTML",
       "content": "This is a paragraph with some <b>bold html</b> and a <span style=\"color: red\">red span</span>.",
@@ -26,25 +26,25 @@
   ],
   "edges": [
     {
-      "id": "39f7d1ef7d202b9c82dfa32231985513030ae3639480829283d1bff093964edd",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "0d3a364f10982700a9259a529b4e683c0d57377ba2ff15fa81a2dbf31f1ecc82",
+      "source": "48a6641326b9661105bba3d6003b57b92b69193443cb57276783866c2f2d149e_1",
+      "target": "48a6641326b9661105bba3d6003b57b92b69193443cb57276783866c2f2d149e_2",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "a7dfa50caa82828a3fb4c650b1bdc78963e52aaa3749cf280878a2b220d7b588",
+      "source": "48a6641326b9661105bba3d6003b57b92b69193443cb57276783866c2f2d149e_2",
+      "target": "48a6641326b9661105bba3d6003b57b92b69193443cb57276783866c2f2d149e_1",
+      "type": "semantically_related",
+      "method": "knn_semantic"
+    },
+    {
+      "id": "baa0951442d4a5e1ab93edf6de54486f2d668ad13bc6f10175bcdde59b305115",
+      "source": "48a6641326b9661105bba3d6003b57b92b69193443cb57276783866c2f2d149e_2",
+      "target": "48a6641326b9661105bba3d6003b57b92b69193443cb57276783866c2f2d149e_1",
       "type": "child_of",
       "method": "heading_hierarchy"
-    },
-    {
-      "id": "0ad7f2ad3f97cb1b1ffe0734d2e129557aa645ec266d7793cab350a6ae71621b",
-      "source": "mock_id",
-      "target": "mock_id",
-      "type": "semantically_related",
-      "method": "knn_semantic"
-    },
-    {
-      "id": "23cabfc8ba364e7a0906c73fea2ec670a5df959a9bf3f163006bdab81c4dca64",
-      "source": "mock_id",
-      "target": "mock_id",
-      "type": "semantically_related",
-      "method": "knn_semantic"
     }
   ],
   "execution_id": "mock_exec",

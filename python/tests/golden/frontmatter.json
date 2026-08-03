@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "2.0",
-  "doc_id": "virtual_doc_id",
+  "doc_id": "frontmatter",
   "nodes": [
     {
-      "id": "mock_id",
+      "id": "11bb4a85269952e2c3ff88a836c71588c1bf29268af5bf92fc96af542ccab27c_1",
       "type": "heading",
       "title": "Content",
       "content": "# Content",
@@ -13,7 +13,7 @@
       "content_hash": "cf72617a6dc7e38f3a83f2b689f4c1af1ee50deb293cfefdd5a6ec9fd879737b"
     },
     {
-      "id": "mock_id",
+      "id": "11bb4a85269952e2c3ff88a836c71588c1bf29268af5bf92fc96af542ccab27c_2",
       "type": "paragraph",
       "title": "Content",
       "content": "Starts here after frontmatter.",
@@ -26,23 +26,23 @@
   ],
   "edges": [
     {
-      "id": "ff571acf977702e1c03478c94b25cc69436e991574bb79b0b5922b296396cc1c",
-      "source": "mock_id",
-      "target": "mock_id",
-      "type": "child_of",
-      "method": "heading_hierarchy"
-    },
-    {
-      "id": "04912a47ca4499ea979fc5dc1131f9b3212da0bfb4cd96213e2fe65b095c5fac",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "45c27e86e836d4112e7de9ef9c1e07e87954d5e7f48060c9bd1fc6d0f90e0938",
+      "source": "11bb4a85269952e2c3ff88a836c71588c1bf29268af5bf92fc96af542ccab27c_2",
+      "target": "11bb4a85269952e2c3ff88a836c71588c1bf29268af5bf92fc96af542ccab27c_1",
       "type": "semantically_related",
       "method": "knn_semantic"
     },
     {
-      "id": "cc957437ac6378645d7a1a4f3ca4ac45c1450f7b7caa17c408f2cf7d8c70029b",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "659820d6fe51d1dc90025bf437df67c660da40f11c413c24674fecc0112b6806",
+      "source": "11bb4a85269952e2c3ff88a836c71588c1bf29268af5bf92fc96af542ccab27c_2",
+      "target": "11bb4a85269952e2c3ff88a836c71588c1bf29268af5bf92fc96af542ccab27c_1",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "e0c7b4099533f49ef2172f9b4e490965a1c9152cc407646f253ea0d22134ccb4",
+      "source": "11bb4a85269952e2c3ff88a836c71588c1bf29268af5bf92fc96af542ccab27c_1",
+      "target": "11bb4a85269952e2c3ff88a836c71588c1bf29268af5bf92fc96af542ccab27c_2",
       "type": "semantically_related",
       "method": "knn_semantic"
     }

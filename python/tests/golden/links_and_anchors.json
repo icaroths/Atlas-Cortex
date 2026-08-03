@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "2.0",
-  "doc_id": "virtual_doc_id",
+  "doc_id": "links_and_anchors",
   "nodes": [
     {
-      "id": "mock_id",
+      "id": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_1",
       "type": "heading",
       "title": "Links and Anchors",
       "content": "# Links and Anchors",
@@ -13,18 +13,18 @@
       "content_hash": "4cea484b97b063f59145588773a01640d0ec258cb12825197dbe7a31cfdc4dec"
     },
     {
-      "id": "mock_id",
+      "id": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_2",
       "type": "paragraph",
       "title": "Links and Anchors",
-      "content": "Here is a [link](https://example.com).\r\nAnd a [link with title](https://example.com \"Title\").",
-      "raw_content": "Here is a [link](https://example.com).\r\nAnd a [link with title](https://example.com \"Title\").",
+      "content": "Here is a [link](https://example.com).\nAnd a [link with title](https://example.com \"Title\").",
+      "raw_content": "Here is a [link](https://example.com).\nAnd a [link with title](https://example.com \"Title\").",
       "heading_path": [
         "Links and Anchors"
       ],
-      "content_hash": "2e4f8507d0407ba11a40b5422c9ceb508a888e5711e951769c06c92900d3ad8b"
+      "content_hash": "22c14ce1274d988592266c4137a33cb1761563299e26d433184b4fe4c24eee59"
     },
     {
-      "id": "mock_id",
+      "id": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_3",
       "type": "heading",
       "title": "Section Anchor {#my-anchor}",
       "content": "## Section Anchor {#my-anchor}",
@@ -35,7 +35,7 @@
       "content_hash": "a127e18bbe15cad246f53e9a1d1c30f987e1f7d4238061615983ee7d2db0016c"
     },
     {
-      "id": "mock_id",
+      "id": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_4",
       "type": "paragraph",
       "title": "Section Anchor {#my-anchor}",
       "content": "Link to [Section Anchor](#my-anchor).",
@@ -49,51 +49,51 @@
   ],
   "edges": [
     {
-      "id": "fb4a917aebf8f315824a03ae93ec6a8909a4ddd6e866115d8435b38295ea387d",
-      "source": "mock_id",
-      "target": "mock_id",
-      "type": "child_of",
-      "method": "heading_hierarchy"
-    },
-    {
-      "id": "635da8ca7ba16b6de58f0add77c9955df7d3d8443755773a5581ec57149b154b",
-      "source": "mock_id",
-      "target": "mock_id",
-      "type": "child_of",
-      "method": "heading_hierarchy"
-    },
-    {
-      "id": "1fb09651b6f12e8a65a74922cd647b82d84da70f8da9ab2c68be5d4a5ddaf8a5",
-      "source": "mock_id",
-      "target": "mock_id",
-      "type": "child_of",
-      "method": "heading_hierarchy"
-    },
-    {
-      "id": "a7ba66788326638a3fdb9313517859870467b9064b1de7ed92a43f0b402b978c",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "04a212a96cc35bf33914279dbd1f1cbc896ea0b7075db06d8ad01ad8591a884d",
+      "source": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_2",
+      "target": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_1",
       "type": "semantically_related",
       "method": "knn_semantic"
     },
     {
-      "id": "280fc46f173bdacf32442d42b142980c41da896a024f0388b66de29e2c25e548",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "10a7f178410efa59eac3c3461cea4f9f19ef4148c7bd7018fe418bcde51ebeec",
+      "source": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_2",
+      "target": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_1",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "2e5899a072d51d96b3d8c2e8d5628ae393f5f458f5e01e85b6c5489efb2f3c7b",
+      "source": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_4",
+      "target": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_3",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "2ec0003aa7e629a70d2ec0feb068bcca12975a2bfbae7225a803848b7332386a",
+      "source": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_3",
+      "target": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_1",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    },
+    {
+      "id": "810ec68ad0444982b647b16ed79a93329dd0e89de715c2123a4bf383feac8110",
+      "source": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_3",
+      "target": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_4",
       "type": "semantically_related",
       "method": "knn_semantic"
     },
     {
-      "id": "76995adfb36368bc9b48a8fc3ef9091cb76d31474fba01dc5110dc263d1fbcfc",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "f12afc8050c08336d05f9270b42f938bda5fdd472fd2c08047aa11897c7c38ab",
+      "source": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_4",
+      "target": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_3",
       "type": "semantically_related",
       "method": "knn_semantic"
     },
     {
-      "id": "29076eca24d4ba58402eea921318f720181e0db8770a194ab0aac42e49073e09",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "f2411c9e796940c743cfb3ccbe181a907ec280f020b48c3b674e592518bebdb9",
+      "source": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_1",
+      "target": "2cacb35ab1dd951e49f0cddb296948482144c964eab17547e6127b4578440cbe_2",
       "type": "semantically_related",
       "method": "knn_semantic"
     }

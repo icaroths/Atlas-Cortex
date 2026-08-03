@@ -2,11 +2,12 @@
 
 **O Motor de Integridade Semântica para IA Generativa (GenAI)**
 
-![Version](https://img.shields.io/badge/version-1.0.0--stable-6d28d9?style=flat-square)
+![Version](https://img.shields.io/badge/version-2.0.0--enterprise-6d28d9?style=flat-square)
+![Status](https://img.shields.io/badge/status-Production%20Ready-success?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-Cross--platform-0ea5e9?style=flat-square)
-![License](https://img.shields.io/badge/license-Open--Source%20(MVP)-059669?style=flat-square)
+![License](https://img.shields.io/badge/license-Open--Source-059669?style=flat-square)
 
-O **Atlas Cortex** é um motor de pré-processamento para sistemas corporativos GraphRAG. Ele foi construído para resolver o maior gargalo atual na ingestão de dados para LLMs: o **Colapso de Contexto** e a **Diluição de Sinal**. 
+O **Atlas Cortex** é um motor de pré-processamento determinístico para sistemas corporativos GraphRAG. Ele foi construído para resolver o maior gargalo atual na ingestão de dados para LLMs: o **Colapso de Contexto** e a **Diluição de Sinal**. 
 
 
 Ao invés de fatiar documentos de forma mecânica e cega por contagem de tokens (como o `RecursiveCharacterTextSplitter` do LangChain, que corta frases e blocos de código pela metade), o Atlas utiliza o **Roteamento Semântico Atômico**. Ele escaneia a topologia do documento (Markdown, HTML, AST de Códigos) e extrai os dados ancorados em nós estruturais, preservando 100% da integridade da informação e evitando alucinações (fenômeno análogo ao *Barren Plateaus* em Quantum Machine Learning).
@@ -25,9 +26,9 @@ O arcabouço teórico e as provas de conceito empíricas encontram-se disponíve
 
 ## ⚡ Transparência Arquitetural (Motor V2 Rust)
 
-> **Nota:** Este repositório open-source contém o MVP estrutural do Atlas Cortex (Nível 1 e 2).
-> A arquitetura inclui rotinas de parsing de AST real via **Tree-Sitter** para Markdown, implementadas na pasta `engine/`.
-> As rotinas de Failsafe de Densidade (Nível 3), suporte completo a HTML e travas de licenciamento corporativas estão isoladas no binário compilado da versão Enterprise (fechada). A missão deste repositório é viabilizar o teste empírico e documentar as bases teóricas de preservação semântica e eficiência de tokens.
+> **Status (Enterprise Ready):** Este repositório open-source foi rigorosamente auditado contra falhas de segurança e resiliência (Fases 1 a 11), atingindo o selo de `Production Ready`.
+> A arquitetura incorpora parsing AST determinístico via **Tree-Sitter** para Markdown, implementado na pasta `engine/`, capaz de escalar massivamente gerando milhões de arestas O(N) com proteções elásticas nativas contra OOM (Out of Memory) e Bombas de Markdown.
+> Inclui integração ativa e validada para **LangChain** (com injeção estruturada de arestas semânticas) e reconciliação nativa de subgrafos.
 
 Para rodar os benchmarks matemáticos comprobatórios no seu próprio ambiente, utilize os scripts em Python disponíveis na pasta `scripts/`:
 

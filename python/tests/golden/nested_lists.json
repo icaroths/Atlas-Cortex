@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "2.0",
-  "doc_id": "virtual_doc_id",
+  "doc_id": "nested_lists",
   "nodes": [
     {
-      "id": "mock_id",
+      "id": "badc5d84b0711cda5b1340a3a7fec5a56c4122e3d624ec2d056697557dc0c816_1",
       "type": "heading",
       "title": "Lists",
       "content": "# Lists",
@@ -13,36 +13,36 @@
       "content_hash": "e6b229ebd8306acb24f0c5da06c293088376a88a8d943744931f5ea0346abc59"
     },
     {
-      "id": "mock_id",
+      "id": "badc5d84b0711cda5b1340a3a7fec5a56c4122e3d624ec2d056697557dc0c816_2",
       "type": "list",
       "title": "Lists",
-      "content": "- Item 1\r\n  - Subitem 1.1\r\n    - Subitem 1.1.1\r\n  - Subitem 1.2\r\n- Item 2\r\n  1. Ordered 1\r\n  2. Ordered 2\r\n     - Mixed nested",
-      "raw_content": "- Item 1\r\n  - Subitem 1.1\r\n    - Subitem 1.1.1\r\n  - Subitem 1.2\r\n- Item 2\r\n  1. Ordered 1\r\n  2. Ordered 2\r\n     - Mixed nested",
+      "content": "- Item 1\n  - Subitem 1.1\n    - Subitem 1.1.1\n  - Subitem 1.2\n- Item 2\n  1. Ordered 1\n  2. Ordered 2\n     - Mixed nested",
+      "raw_content": "- Item 1\n  - Subitem 1.1\n    - Subitem 1.1.1\n  - Subitem 1.2\n- Item 2\n  1. Ordered 1\n  2. Ordered 2\n     - Mixed nested",
       "heading_path": [
         "Lists"
       ],
-      "content_hash": "52d513a011b65321692423eae30857f9c817af5f7048a9839e0a87aea4cb3211"
+      "content_hash": "4d0ac1073e2a5c3ccedf33dfc52b93a6b829c50531e7d2a457c39e9c2ad03424"
     }
   ],
   "edges": [
     {
-      "id": "9bbf15b7df1b7bce62f44831c686546026e5279e77cd226a8b323a9ca21e5df7",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "8c3804705719b8a112445f1d40a105c0a0239e7ebbbc9004ad7589f36dfedba6",
+      "source": "badc5d84b0711cda5b1340a3a7fec5a56c4122e3d624ec2d056697557dc0c816_2",
+      "target": "badc5d84b0711cda5b1340a3a7fec5a56c4122e3d624ec2d056697557dc0c816_1",
       "type": "child_of",
       "method": "heading_hierarchy"
     },
     {
-      "id": "f1a5be98c25cd5fcfce24dfa66f2c26058d6aca6ef0c75d8e04aa2d6e47faec0",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "d2ac7d3b238b453d9a091a26c0207d790ae687046d0c49b2b842990b130190a9",
+      "source": "badc5d84b0711cda5b1340a3a7fec5a56c4122e3d624ec2d056697557dc0c816_1",
+      "target": "badc5d84b0711cda5b1340a3a7fec5a56c4122e3d624ec2d056697557dc0c816_2",
       "type": "semantically_related",
       "method": "knn_semantic"
     },
     {
-      "id": "1f23b8b5d6bb185be2831e56b3ff831789a992b0e0819bb7cf7a8fca5ed6279e",
-      "source": "mock_id",
-      "target": "mock_id",
+      "id": "e145d6de0207afeb9b8443c661f7635fca19a1dce918066dde159899511b49c2",
+      "source": "badc5d84b0711cda5b1340a3a7fec5a56c4122e3d624ec2d056697557dc0c816_2",
+      "target": "badc5d84b0711cda5b1340a3a7fec5a56c4122e3d624ec2d056697557dc0c816_1",
       "type": "semantically_related",
       "method": "knn_semantic"
     }
