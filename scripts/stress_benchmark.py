@@ -9,9 +9,9 @@ import sys
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, base_dir)
 
-from python.atlas_cortex import parse_text
+from python.atlas_cortex import parse_text  # noqa: E402
 
-import uuid
+import uuid  # noqa: E402
 
 def generate_synthetic_markdown(target_size_mb: int) -> str:
     """Gera um texto Markdown repetitivo até atingir o tamanho estimado em MB."""

@@ -1,4 +1,3 @@
-import pytest
 from atlas_cortex import parse_text, reconcile_graphs
 
 def test_reconcile_graphs_added_node():

@@ -1,14 +1,11 @@
 import asyncio
-import json
 import logging
 import os
-import subprocess
-import tempfile
 from typing import List, Optional
 
 logger = logging.getLogger("atlas_cortex.integrations.langchain")
 
-from langchain_core.documents import Document
+from langchain_core.documents import Document  # noqa: E402
 
 
 class AtlasCortexSplitter:
