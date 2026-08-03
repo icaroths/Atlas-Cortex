@@ -4,7 +4,7 @@ Este documento reúne a **formulação matemática**, os **experimentos empíric
 
 ---
 
-## 📐 1. Provas Matemáticas Formalizadas
+## 📐 1. Matemática Formalizadas
 
 ### 1.1. Teorema da Redução de Redundância por Zero-Overlap ($\Delta T$)
 
@@ -24,7 +24,7 @@ Para um conjunto de documentos corporativos de 100MB com $\alpha = 0.20$, a redu
 
 ---
 
-### 1.2. Prova de Idempotência e Determinismo de Grafo (SHA-256)
+### 1.2. Cálculo de Idempotência e Determinismo de Grafo (SHA-256)
 
 Para qualquer documento $D$, definimos a função de geração de ID do nó semântico $N_k$ como:
 
