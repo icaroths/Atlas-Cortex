@@ -1,93 +1,138 @@
-# Atlas Cortex 🌐
+# Atlas Cortex 🧠 — Evaluation Build
 
-**O Motor de Integridade Semântica para IA Generativa (GenAI)**
+**Motor de Parsing Semântico Determinístico para GraphRAG Corporativo**
 
-![Version](https://img.shields.io/badge/version-2.0.0--enterprise-6d28d9?style=flat-square)
-![Status](https://img.shields.io/badge/status-Production%20Ready-success?style=flat-square)
-![Platform](https://img.shields.io/badge/platform-Cross--platform-0ea5e9?style=flat-square)
-![License](https://img.shields.io/badge/license-Open--Source-059669?style=flat-square)
+![Version](https://img.shields.io/badge/version-2.0.0--evaluation-6d28d9?style=flat-square)
+![Build](https://img.shields.io/badge/build-Evaluation-f59e0b?style=flat-square)
+![Engine](https://img.shields.io/badge/engine-Rust%20%2B%20Tree--Sitter-orange?style=flat-square)
+![Limit](https://img.shields.io/badge/node%20limit-750-ef4444?style=flat-square)
+![License](https://img.shields.io/badge/license-MIT-059669?style=flat-square)
 
-O **Atlas Cortex** é um motor de pré-processamento determinístico para sistemas corporativos GraphRAG. Ele foi construído para resolver o maior gargalo atual na ingestão de dados para LLMs: o **Colapso de Contexto** e a **Diluição de Sinal**. 
-
-
-Ao invés de fatiar documentos de forma mecânica e cega por contagem de tokens (como o `RecursiveCharacterTextSplitter` do LangChain, que corta frases e blocos de código pela metade), o Atlas utiliza o **Roteamento Semântico Atômico**. Ele escaneia a topologia do documento (Markdown, HTML, AST de Códigos) e extrai os dados ancorados em nós estruturais, preservando 100% da integridade da informação e evitando alucinações (fenômeno análogo ao *Barren Plateaus* em Quantum Machine Learning).
+> ⚠️ **Esta é a branch de avaliação.** O motor está funcional mas limitado a **750 nós por documento**. Para processamento sem restrições, consulte o branch [`main`](https://github.com/icaroths/Atlas-Cortex/tree/main) ou o repositório [Atlas-Cortex_Dev](https://github.com/icaroths/Atlas-Cortex_Dev) (privado).
 
 ---
 
-## 📚 Documentação e Provas Técnicas
+## O que é o Atlas Cortex?
 
-O arcabouço teórico e as provas de conceito empíricas encontram-se disponíveis na pasta `docs/`:
+O **Atlas Cortex** é um motor de parsing semântico escrito em **Rust** que transforma documentos Markdown em **grafos de conhecimento determinísticos**, prontos para consumo por sistemas **GraphRAG** (*Graph-enhanced Retrieval-Augmented Generation*).
 
-- 🇧🇷 [Artigo Científico Principal (Português)](docs/Paper_Atlas_Cortex_PT.md) - *Recomendado*
-- 🇺🇸 [Main Whitepaper (English)](docs/Paper_Atlas_Cortex_EN.md)
-- 📊 [Benchmark Empírico (Needle-In-A-Haystack e Dogfooding)](docs/QML_Ingestion_Proof.md)
+Ao invés de fatiar documentos por contagem de tokens (como o `RecursiveCharacterTextSplitter` do LangChain), o Atlas utiliza a **Abstract Syntax Tree (AST)** via Tree-Sitter para extrair nós semânticos **autocontidos e hierarquicamente conectados**.
+
+**Resultado medido:** 63,85% de redução no consumo de tokens para o mesmo nível de recall.
 
 ---
 
-## ⚡ Transparência Arquitetural (Motor V2 Rust)
+## Limitações da Versão de Avaliação
 
-> **Status (Enterprise Ready):** Este repositório open-source foi rigorosamente auditado contra falhas de segurança e resiliência (Fases 1 a 11), atingindo o selo de `Production Ready`.
-> A arquitetura incorpora parsing AST determinístico via **Tree-Sitter** para Markdown, implementado na pasta `engine/`, capaz de escalar massivamente gerando milhões de arestas O(N) com proteções elásticas nativas contra OOM (Out of Memory) e Bombas de Markdown.
-> Inclui integração ativa e validada para **LangChain** (com injeção estruturada de arestas semânticas) e reconciliação nativa de subgrafos.
+| Característica | Evaluation | Enterprise |
+|---|---|---|
+| Nós por documento | **750** (truncado) | **Ilimitado** |
+| Parser version | `2.0-eval` | `2.0` |
+| Motor Rust (AST) | ✅ Completo | ✅ Completo |
+| 3 tipos de aresta | ✅ | ✅ |
+| Determinismo SHA-256 | ✅ | ✅ |
+| Proteção OOM/DoS | ✅ | ✅ |
+| LangChain Integration | ✅ | ✅ |
+| Reconciliação de Grafos | ✅ | ✅ |
+| Testes automatizados | ✅ 30 testes | ✅ 30 testes |
+| Benchmarks de estresse | ❌ Limitado pela cota | ✅ Até 25MB |
 
-Para rodar os benchmarks matemáticos comprobatórios no seu próprio ambiente, utilize os scripts em Python disponíveis na pasta `scripts/`:
+> Para documentos com menos de 750 nós semânticos, a versão de avaliação produz **saída idêntica** à versão Enterprise.
 
-**1. Gerar o MOC (Simulador de Ingestão Atômica):**
+---
+
+## Início Rápido
+
+### Pré-requisitos
+
+- **Rust** 1.80+
+- **Python** 3.9+
+
+### Compilar o Engine
+
 ```bash
-python scripts/mock_atlas_ingestor.py --path docs/Paper_Atlas_Cortex_PT.md
+cd engine
+cargo build --release
 ```
 
-**2. Rodar o Benchmark de Eficiência de Tokens:**
+### Instalar o SDK Python
+
 ```bash
-python scripts/benchmark_token_efficiency.py
+pip install -e .
 ```
 
-**3. Testar a Qualidade de Recuperação (Requer Ollama Local):**
+### Uso Básico
+
+```python
+from atlas_cortex import parse_text, parse_file
+
+result = parse_text("# Título\n\nParágrafo de conteúdo.", doc_id="meu_doc")
+print(f"Nós: {len(result['nodes'])}")
+print(f"Arestas: {len(result['edges'])}")
+```
+
+### Executar Testes
+
 ```bash
-python scripts/benchmark_retrieval_quality.py
+# Motor Rust
+cd engine && cargo test --release
+
+# Suite Python
+pytest python/tests -v
 ```
 
 ---
 
-## 🖥️ Dashboard Web Interativo (Frontend)
+## Estrutura de Saída (Schema v1.0.0)
 
-O repositório também inclui uma interface 3D interativa (Graph Visualizer) construída em React/Vite com efeito *Glassmorphism* para ilustrar visualmente o grafo semântico gerado pelo Atlas Cortex.
-
-Para rodar o painel interativo localmente:
-```bash
-cd web
-npm install
-npm run dev
+```json
+{
+  "schema_version": "1.0.0",
+  "parser_version": "2.0-eval",
+  "doc_id": "meu_documento",
+  "nodes": [
+    {
+      "id": "a3f2c1..._1",
+      "type": "heading",
+      "title": "Introdução",
+      "content": "# Introdução",
+      "raw_content": "# Introdução",
+      "heading_path": [],
+      "content_hash": "sha256..."
+    }
+  ],
+  "edges": [
+    {
+      "id": "sha256...",
+      "source": "a3f2c1..._2",
+      "target": "a3f2c1..._1",
+      "type": "child_of",
+      "method": "heading_hierarchy"
+    }
+  ]
+}
 ```
-Acesse `http://localhost:5173` no seu navegador.
 
 ---
 
-## 📐 Eficiência de Tokens e Impacto Econômico (Zero-Overlap)
+## Documentação Técnica
 
-O grande diferencial comercial e técnico do **Atlas Cortex** não é apenas a preservação semântica, mas a **economia direta de tokens** (e, consequentemente, de custo de API e latência de inferência).
-
-Sistemas tradicionais de vetorização baseados em *character splitting* exigem uma sobreposição (*overlap*) de 10% a 20% para evitar a perda de contexto nas quebras artificiais. Isso significa que, a cada *chunk* recuperado, o LLM recebe texto redundante.
-
-O **Roteamento Semântico Atômico** do Atlas gera nós que já são autocontidos estruturalmente (uma função, uma seção ou um parágrafo lógico inteiro). Isso elimina a necessidade de *overlap*, garantindo que, para alcançar a mesma completude informacional (*recall equivalente*), o RAG precise enviar consideravelmente **menos tokens brutos** na janela de contexto.
-
-### Benchmark Comprovado (63.85% de Economia)
-
-Os testes empíricos de **Recuperação Semântica Real** são rodados diretamente contra o corpus `core-protocol_benchmark_corpus.md` (presente em `docs/`). O script analisa um dataset de **15 queries curadas** (`qa_dataset.json`), executando um ranqueamento semântico de similaridade profunda (*Sentence Embeddings - all-MiniLM-L6-v2*) contra os nós do Atlas vs chunks do LangChain.
-
-As provas documentais brutas e a média agregada da economia de todas as 15 queries são injetadas em `docs/benchmarks/token_efficiency_result.json` para auditoria pública total. Ao comparar o LangChain (RecursiveCharacterTextSplitter) contra o Atlas Cortex para extrair a mesma resposta ancorada:
-
-```mermaid
-pie title Consumo Total de Tokens (15 Queries Reais | Top-K = 3)
-    "Desperdício (LangChain - Overlap)" : 9254
-    "Essência Útil (Atlas Cortex)" : 3345
-```
-
-- **LangChain (1000 char, 20% overlap):** 9.254 tokens totais gastos para responder as 15 perguntas.
-- **Atlas Cortex (Nós Topológicos Atômicos):** 3.345 tokens totais gastos.
-- **Redução Média:** **63.85% de economia real e defensável**.
-
-Essa métrica prova matematicamente que a entropia nas pontas dos *chunks* tradicionais encarece artificialmente as chamadas de API. O Atlas resolve o problema no gargalo do I/O, garantindo RAG limpo e barato em produção corporativa.
+| Documento | Descrição |
+|---|---|
+| [Paper (PT)](docs/Paper_Atlas_Cortex_PT.md) | Artigo científico completo em Português |
+| [Paper (EN)](docs/Paper_Atlas_Cortex_EN.md) | Main whitepaper in English |
+| [GraphRAG Logic](docs/GRAPHRAG_LOGIC.md) | Como as arestas são construídas e o grafo navegado |
+| [Quality Gate](docs/ATLAS_CORTEX_QUALITY_GATE.md) | Padrão de auditoria, segurança e entrega |
 
 ---
-*Construído com pragmatismo para a Engenharia de Dados Corporativa. (c) 2026*
+
+## Upgrade para Enterprise
+
+Para remover a limitação de 750 nós e acessar o motor completo com benchmarks de estresse, reconciliação avançada e pipeline enterprise:
+
+- **Branch `main`:** [github.com/icaroths/Atlas-Cortex](https://github.com/icaroths/Atlas-Cortex/tree/main) — código completo, público
+- **Atlas-Cortex_Dev:** [github.com/icaroths/Atlas-Cortex_Dev](https://github.com/icaroths/Atlas-Cortex_Dev) — desenvolvimento sem restrições (privado)
+
+---
+
+*Construído com Rust, pragmatismo e rigor de engenharia. (c) 2026*
