@@ -8,6 +8,8 @@ use std::fs;
 use std::path::PathBuf;
 use tree_sitter::Parser;
 
+pub const MAX_NODES_EVALUATION: usize = 750;
+
 fn github_slugify(title: &str) -> String {
     let mut slug = String::new();
     for c in title.to_lowercase().chars() {
@@ -55,6 +57,11 @@ struct MocGraph {
     schema_version: String,
     parser_version: String,
     doc_id: String,
+    truncated: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    original_node_count: Option<usize>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    truncated_node_count: Option<usize>,
     nodes: Vec<SemanticNode>,
     edges: Vec<GraphEdge>,
 }
@@ -70,7 +77,6 @@ struct AtlasParser {
 
 impl AtlasParser {
     fn new(filepath: &str, doc_id: Option<&str>) -> Self {
-        let content = fs::read_to_string(filepath).unwrap_or_default();
         let mut hasher = Sha256::new();
         let doc_id_str = doc_id.unwrap_or(filepath);
         hasher.update(doc_id_str.as_bytes());
@@ -454,10 +460,19 @@ fn main() -> Result<()> {
     }
     // --- End quota enforcement ---
 
+    let (truncated, original_node_count, truncated_node_count) = if was_truncated {
+        (true, Some(original_count), Some(nodes.len()))
+    } else {
+        (false, None, None)
+    };
+
     let moc = MocGraph {
         schema_version: "1.0.0".to_string(),
         parser_version: "2.0-eval".to_string(),
         doc_id: doc_id.to_string(),
+        truncated,
+        original_node_count,
+        truncated_node_count,
         nodes,
         edges,
     };
@@ -481,8 +496,14 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_ast_walk_limits() {
-        assert_eq!(2 + 2, 4); // Basic sanity check to satisfy cargo test harness
+    fn test_github_slugify_basic() {
+        assert_eq!(github_slugify("Hello World"), "hello-world");
+        assert_eq!(github_slugify("Section 1.2"), "section-12");
+    }
+
+    #[test]
+    fn test_github_slugify_special_chars() {
+        assert_eq!(github_slugify("API & Data -- Test_1"), "api--data----test_1");
     }
 
     #[test]
@@ -511,7 +532,93 @@ mod tests {
         ];
         
         let edges = extract_semantic_edges(&nodes);
-        assert!(!edges.is_empty());
-        assert_eq!(edges.len(), 1); // 1 REFERENCE
+        assert_eq!(edges.len(), 1);
+        assert_eq!(edges[0].edge_type, "references");
+    }
+
+    #[test]
+    fn test_edge_extraction_no_self_references() {
+        let nodes = vec![
+            SemanticNode {
+                id: "1".to_string(),
+                node_type: "paragraph".to_string(),
+                title: "Self Reference".to_string(),
+                content: "Link to [Self](#self-reference)".to_string(),
+                raw_content: String::new(),
+                heading_path: vec![],
+                content_hash: String::new(),
+                table: None,
+            }
+        ];
+        let edges = extract_semantic_edges(&nodes);
+        assert!(edges.is_empty());
+    }
+
+    #[test]
+    fn test_moc_graph_serialization_without_truncation() {
+        let moc = MocGraph {
+            schema_version: "1.0.0".to_string(),
+            parser_version: "2.0-eval".to_string(),
+            doc_id: "test.md".to_string(),
+            truncated: false,
+            original_node_count: None,
+            truncated_node_count: None,
+            nodes: vec![],
+            edges: vec![],
+        };
+        let json = serde_json::to_string(&moc).unwrap();
+        assert!(json.contains("\"truncated\":false"));
+        assert!(!json.contains("original_node_count"));
+    }
+
+    #[test]
+    fn test_moc_graph_serialization_with_truncation() {
+        let moc = MocGraph {
+            schema_version: "1.0.0".to_string(),
+            parser_version: "2.0-eval".to_string(),
+            doc_id: "test.md".to_string(),
+            truncated: true,
+            original_node_count: Some(1000),
+            truncated_node_count: Some(750),
+            nodes: vec![],
+            edges: vec![],
+        };
+        let json = serde_json::to_string(&moc).unwrap();
+        assert!(json.contains("\"truncated\":true"));
+        assert!(json.contains("\"original_node_count\":1000"));
+        assert!(json.contains("\"truncated_node_count\":750"));
+    }
+
+    #[test]
+    fn test_atlas_parser_initialization() {
+        let parser = AtlasParser::new("dummy.md", Some("doc_123"));
+        assert_eq!(parser.nodes.len(), 0);
+        assert_eq!(parser.edges.len(), 0);
+        assert_eq!(parser.node_id, 0);
+        assert!(!parser.file_hash.is_empty());
+    }
+
+    #[test]
+    fn test_ensure_current_node_creates_node() {
+        let mut parser = AtlasParser::new("dummy.md", Some("doc_123"));
+        assert!(parser.current_node.is_none());
+        parser.ensure_current_node();
+        assert!(parser.current_node.is_some());
+        assert_eq!(parser.node_id, 1);
+    }
+
+    #[test]
+    fn test_ast_depth_constants() {
+        assert_eq!(MAX_NODES_EVALUATION, 750);
+    }
+
+    #[test]
+    fn test_heading_stack_hierarchy_edge() {
+        let mut parser = AtlasParser::new("dummy.md", Some("doc_123"));
+        parser.heading_stack.push((1, "h1_id".to_string(), "Title 1".to_string()));
+        parser.ensure_current_node();
+        assert_eq!(parser.edges.len(), 1);
+        assert_eq!(parser.edges[0].edge_type, "child_of");
+        assert_eq!(parser.edges[0].target, "h1_id");
     }
 }
