@@ -38,10 +38,10 @@ def test_markdown_bomb_degrades_gracefully():
     # Graceful degradation (e.g. AST width limit or parse failure)
     assert "Engine failed" in str(exc.value) or "limit exceeded" in str(exc.value)
 
-import subprocess
-from unittest import mock
+import subprocess  # noqa: E402
+from unittest import mock  # noqa: E402
 
-from atlas_cortex import reconcile_graphs
+from atlas_cortex import reconcile_graphs  # noqa: E402
 
 
 def test_parse_timeout_kills_subprocess():
@@ -87,6 +87,6 @@ def test_invalid_utf8_file(tmp_path):
     invalid_file = base / "invalid.txt"
     invalid_file.write_bytes(b"\xff\xfe\x00\x00")
     
-    with pytest.raises(Exception) as exc:
+    with pytest.raises(Exception):
         parse_file(base, "invalid.txt")
     # Rust should reject the file or python will fail reading it, but it shouldn't crash the interpreter

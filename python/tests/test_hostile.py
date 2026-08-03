@@ -49,7 +49,7 @@ def test_hostile_broken_anchors():
     # As arestas de references são geradas apenas se o target existir no documento.
     references = [e for e in edges if e["type"] == "references"]
     
-    targets = [e["target"] for e in references]
+    [e["target"] for e in references]
     
     # "nada" não deve estar em targets porque o heading correspondente não existe
     for n in result["nodes"]:

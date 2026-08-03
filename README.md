@@ -1,13 +1,14 @@
-# Atlas Cortex 🧠
+# Atlas Cortex 🧠 — Evaluation Build
 
 **Motor de Parsing Semântico Determinístico para GraphRAG Corporativo**
 
-![Version](https://img.shields.io/badge/version-2.0.0--enterprise-6d28d9?style=flat-square)
-![Status](https://img.shields.io/badge/status-Production%20Ready-success?style=flat-square)
+![Version](https://img.shields.io/badge/version-2.0.0--evaluation-6d28d9?style=flat-square)
+![Build](https://img.shields.io/badge/build-Evaluation-f59e0b?style=flat-square)
 ![Engine](https://img.shields.io/badge/engine-Rust%20%2B%20Tree--Sitter-orange?style=flat-square)
-![Platform](https://img.shields.io/badge/platform-Cross--platform-0ea5e9?style=flat-square)
+![Limit](https://img.shields.io/badge/node%20limit-750-ef4444?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-059669?style=flat-square)
-![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue?style=flat-square)
+
+> ⚠️ **Esta é a branch de avaliação.** O motor está funcional mas limitado a **750 nós por documento**. Para processamento sem restrições, consulte o branch [`main`](https://github.com/icaroths/Atlas-Cortex/tree/main) ou o repositório [Atlas-Cortex_Dev](https://github.com/icaroths/Atlas-Cortex_Dev) (privado).
 
 ---
 
@@ -123,9 +124,26 @@ O escalonamento é **linear O(N)**. Arquivos acima de 50MB são rejeitados com e
 
 ---
 
-## Benchmark de Eficiência de Tokens
+## Limitação da Versão de Avaliação vs Enterprise
 
-Comparação entre LangChain `RecursiveCharacterTextSplitter` e Atlas Cortex sobre 15 queries reais (Top-K = 3):
+> ⚠️ **Quota de Avaliação:** Na compilação pública/avaliação, o motor Rust aplica uma trava de **750 nós por documento** (`MAX_NODES_EVALUATION = 750`). Documentos que excedem esse limite são truncados graciosamente com um aviso no terminal. Para utilizar o motor sem qualquer cota ou truncamento, utilize o repositório privado [Atlas-Cortex_Dev](https://github.com/icaroths/Atlas-Cortex_Dev).
+
+---
+
+## Benchmark de Eficiência de Tokens (Zero-Overlap)
+
+O diferencial do **Atlas Cortex** é a eliminação da necessidade de *overlap* (sobreposição de texto) entre chunks. 
+
+Sistemas tradicionais fatiam documentos por contagem fixa de caracteres e exigem 10% a 20% de *overlap* para evitar quebras de frases ao meio. Isso gera tokens duplicados enviados à janela de contexto do LLM a cada retrieval.
+
+Com o **Roteamento Semântico Atômico** do Atlas Cortex via AST:
+1. Cada nó gerado (parágrafo, tabela, bloco de código) é **autocontido e semanticamente completo**.
+2. **Zero Overlap:** Não há duplicação de texto entre nós vizinhos.
+3. As relações hierárquicas e semânticas são preservadas através de arestas no grafo (`child_of`, `references`, `semantically_related`).
+
+### Resultados Empíricos Medidos (15 Queries Reais, Top-K = 3)
+
+Os testes foram executados contra o corpus `core-protocol_benchmark_corpus.md` (localizado em `docs/`) utilizando *Sentence Embeddings* (`all-MiniLM-L6-v2`):
 
 ```mermaid
 pie title Consumo Total de Tokens (15 Queries Reais | Top-K = 3)
@@ -133,11 +151,12 @@ pie title Consumo Total de Tokens (15 Queries Reais | Top-K = 3)
     "Essência Útil (Atlas Cortex)" : 3345
 ```
 
-- **LangChain (1000 char, 20% overlap):** 9.254 tokens totais
-- **Atlas Cortex (Nós Topológicos Atômicos):** 3.345 tokens totais
-- **Redução:** **63,85%**
+- **LangChain (`RecursiveCharacterTextSplitter`, 1000 chars, 20% overlap):** `9.254 tokens` totais consumidos nas 15 perguntas.
+- **Atlas Cortex (Nós Semânticos Atômicos AST):** `3.345 tokens` totais consumidos.
+- **Economia Operacional:** **63,85% de redução direta de tokens** (5.909 tokens economizados).
 
-Nós atômicos semanticamente autocontidos eliminam a necessidade de overlap, barateando o custo operacional de APIs de LLM em produção.
+Essa economia reduz diretamente a latência de inferência e os custos de API de LLMs em produção.
+
 
 ---
 

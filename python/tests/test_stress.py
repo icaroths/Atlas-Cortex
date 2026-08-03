@@ -7,7 +7,7 @@ import sys
 # Puxa o gerador do benchmark
 base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, base_dir)
-from scripts.stress_benchmark import generate_synthetic_markdown
+from scripts.stress_benchmark import generate_synthetic_markdown  # noqa: E402
 
 @pytest.mark.stress
 def test_atlas_stress_10mb():
