@@ -2,6 +2,7 @@ import json
 import os
 import subprocess
 import tempfile
+from typing import Optional
 from pathlib import Path
 
 __version__ = "1.0.0"
@@ -19,7 +20,7 @@ def _get_engine_path():
         return bin_path
     raise FileNotFoundError("Engine binary not found.")
 
-def parse_text(text: str, doc_id: str = None):
+def parse_text(text: str, doc_id: Optional[str] = None) -> dict:
     """Parses markdown text and returns the generated moc graph."""
     if doc_id is None:
         import hashlib
