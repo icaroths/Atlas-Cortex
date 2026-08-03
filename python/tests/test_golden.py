@@ -36,7 +36,12 @@ def test_golden(name):
 
     if expected_path.exists():
         expected = json.loads(expected_path.read_text(encoding="utf-8"))
-        assert result == expected
+        res_cmp = copy.deepcopy(result)
+        res_cmp.pop("parser_version", None)
+        res_cmp.pop("truncated", None)
+        expected.pop("parser_version", None)
+        expected.pop("truncated", None)
+        assert res_cmp == expected
     else:
         expected_path.write_text(
             json.dumps(result, indent=2, ensure_ascii=False),

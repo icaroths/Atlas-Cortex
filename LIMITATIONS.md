@@ -1,26 +1,27 @@
-# Atlas Cortex - Technical Limitations & Operational Boundaries
+# Atlas Cortex (Public Repository) — Technical Limitations
 
-This document details the operational limits and architectural boundaries enforced in Atlas Cortex (Evaluation and Enterprise editions).
-
----
-
-## 1. Node Limits
-
-- **Evaluation Edition**: Enforces a strict maximum limit of **750 nodes** per parsed document. If a document yields more than 750 nodes, the AST parser truncates the output node list to 750 items, filtering invalid dangling edges and injecting `"truncated": true`, `"original_node_count"`, and `"truncated_node_count"` into the MOC JSON response.
-- **Enterprise Edition**: Unrestricted node parsing capabilities.
+This document specifies the operational boundaries and evaluation limits enforced in the **Public Repository** (`Atlas-Cortex`).
 
 ---
 
-## 2. Resource & Safety Constraints
+## 1. Node Quota (Public Evaluation Limit)
 
-- **File Size (OOM Guard)**: Enforces a maximum input file size limit of **50 MB**. Files exceeding 50 MB are rejected prior to AST construction to prevent process Out-Of-Memory (OOM) failures.
-- **Subprocess Timeout**: Subprocess execution (Python -> Rust binary) enforces a hard timeout of **30 seconds** per document parse.
-- **AST Depth Limit**: Maximum tree depth of **100** levels during AST traversal to prevent recursion stack overflow.
-- **AST Sibling Limit**: Maximum **500,000** sibling nodes per tree level.
+- **Quota**: **750 nodes max per document**.
+- **Behavior**: All branches (`main` and `evaluation`) in this public repository enforce a hard limit of 750 nodes per parsed document.
+- **Truncation Metadata**: When a document exceeds 750 nodes, the AST parser truncates node output to 750 items, cleans dangling edges, and includes the following metadata in the MOC JSON response:
+  ```json
+  {
+    "truncated": true,
+    "original_node_count": 1420,
+    "truncated_node_count": 750
+  }
+  ```
+- **Enterprise Upgrade**: Unrestricted 100% capacity processing is exclusively available in the private **Atlas-Cortex_Dev** repository.
 
 ---
 
-## 3. Format & Encoding
+## 2. Resource Guards
 
-- **Encoding**: Input files must be UTF-8 encoded. Binary or invalid byte sequences trigger defensive rejection.
-- **Markdown Support**: Supports CommonMark and GitHub Flavored Markdown (GFM). Exotic or unparseable raw HTML blocks inside Markdown are treated as opaque text nodes.
+- **File Size (OOM Guard)**: Maximum input file size limit of **50 MB**.
+- **Subprocess Timeout**: Hard timeout of **30 seconds** per document parse.
+- **AST Depth Limit**: Maximum tree depth of **100** levels during AST traversal.
