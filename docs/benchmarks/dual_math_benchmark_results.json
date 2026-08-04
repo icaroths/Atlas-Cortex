@@ -1,0 +1,33 @@
+{
+    "corpus_info": {
+        "title": "Corpus Sintetico de Carga Massiva (898 Nos Totais)",
+        "characters": 81051,
+        "raw_tokens_estimate": 20262,
+        "traditional_rag_tokens_15pct_overlap": 26340
+    },
+    "dev_environment_enterprise_100pct": {
+        "execution_time_ms": 971.1,
+        "nodes_generated": 898,
+        "edges_generated": 3143,
+        "is_truncated": false,
+        "atlas_tokens": 19648,
+        "actual_token_savings_percent": 25.41,
+        "throughput_nodes_sec": 924.72
+    },
+    "evaluation_environment_quota_750": {
+        "execution_time_ms": 1069.36,
+        "nodes_generated": 750,
+        "edges_generated": 2294,
+        "is_truncated": true,
+        "original_node_count": 898,
+        "truncated_node_count": 750,
+        "atlas_tokens_750_nodes": 16392,
+        "real_token_savings_750_nodes": 37.77,
+        "throughput_nodes_sec": 701.35,
+        "extrapolation_model_to_100pct": {
+            "extrapolated_nodes": 898,
+            "extrapolated_tokens_est": 19626,
+            "extrapolated_savings_percent_est": 25.49
+        }
+    }
+}

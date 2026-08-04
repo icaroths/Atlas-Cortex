@@ -2,6 +2,13 @@
 name = "engine"
 version = "2.0.0"
 edition = "2024"
+[lib]
+name = "_engine"
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = []
+python = ["dep:pyo3"]
 
 [dependencies]
 serde = { version = "1.0.229", features = ["derive"] }
@@ -11,6 +18,7 @@ tree-sitter-md = "0.3.2"
 anyhow = "1.0"
 sha2 = "0.10"
 regex = "1.10"
+pyo3 = { version = "0.21.2", features = ["extension-module", "anyhow"], optional = true }
 
 [profile.release]
 opt-level = 3

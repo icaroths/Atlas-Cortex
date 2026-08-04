@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #fff;
+  background-color: #0d1117;
+  overflow: hidden;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: #161b22;
+  border-right: 1px solid #30363d;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.sidebar h1 {
+  font-size: 24px;
+  margin-bottom: 5px;
+  color: #c9d1d9;
+}
+
+.sidebar p {
+  color: #8b949e;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.upload-section {
+  margin-bottom: 20px;
+}
+
+.upload-btn {
+  display: inline-block;
+  background-color: #238636;
+  color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  text-align: center;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.upload-btn:hover {
+  background-color: #2ea043;
+}
+
+.stats {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #30363d;
+}
+
+.stats p {
+  color: #c9d1d9;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.stats strong {
+  color: #58a6ff;
+}
+
+.error {
+  color: #f85149 !important;
+  margin-top: 10px;
+}
+
+.graph-container {
+  flex: 1;
+  position: relative;
+  background-color: #0d1117;
+}
+
+.empty-state {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #8b949e;
+  font-size: 18px;
+}
+
+.filters-section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #c9d1d9;
+  font-size: 14px;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #58a6ff;
+}
+
+.types-filter h3 {
+  font-size: 14px;
+  color: #c9d1d9;
+  margin-bottom: 10px;
+}
+
+.types-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8b949e;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.checkbox-label input {
+  cursor: pointer;
+}

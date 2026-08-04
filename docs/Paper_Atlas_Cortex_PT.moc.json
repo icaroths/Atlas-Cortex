@@ -1,6 +1,6 @@
 {
     "schema_version": "1.0.0",
-    "parser_version": "2.0-eval",
+    "parser_version": "2.0-native",
     "doc_id": "7e93b5b8675f2d62",
     "truncated": false,
     "nodes": [
@@ -389,10 +389,10 @@
             "id": "9571398c0a3c6e23611e825cb01521184488548f51ddb09d17ec2f6746757583_33",
             "type": "heading",
             "title": "Auditorias de estresse recentes comprovaram que o motor Rust processa grandes cargas de dados linearmente. Em benchmarks de estresse em disco e RAM, documentos Markdown densos de 25 MB geraram com precisão centenas de milhares de nós semânticos (e mais de 880.000 arestas topológicas) em ~26 segundos, demonstrando forte adequação para ambientes produtivos massivos e imunidade protetiva em nível de Abstract Syntax Tree (AST) contra arquivos anômalos (OOM DoS Protection). O ecossistema está validado sob certificação Enterprise Ready.",
-            "content": "Auditorias de estresse recentes comprovaram que o motor Rust processa grandes cargas de dados linearmente. Em benchmarks de estresse em disco e RAM, documentos Markdown densos de 25 MB geraram com precisão centenas de milhares de nós semânticos (e mais de 880.000 arestas topológicas) em ~26 segundos, demonstrando forte adequação para ambientes produtivos massivos e imunidade protetiva em nível de Abstract Syntax Tree (AST) contra arquivos anômalos (OOM DoS Protection). O ecossistema está validado sob certificação Enterprise Ready.\r\n---",
-            "raw_content": "Auditorias de estresse recentes comprovaram que o motor Rust processa grandes cargas de dados linearmente. Em benchmarks de estresse em disco e RAM, documentos Markdown densos de 25 MB geraram com precisão centenas de milhares de nós semânticos (e mais de 880.000 arestas topológicas) em ~26 segundos, demonstrando forte adequação para ambientes produtivos massivos e imunidade protetiva em nível de Abstract Syntax Tree (AST) contra arquivos anômalos (OOM DoS Protection). O ecossistema está validado sob certificação Enterprise Ready.\r\n---",
+            "content": "Auditorias de estresse recentes comprovaram que o motor Rust processa grandes cargas de dados linearmente. Em benchmarks de estresse em disco e RAM, documentos Markdown densos de 25 MB geraram com precisão centenas de milhares de nós semânticos (e mais de 880.000 arestas topológicas) em ~26 segundos, demonstrando forte adequação para ambientes produtivos massivos e imunidade protetiva em nível de Abstract Syntax Tree (AST) contra arquivos anômalos (OOM DoS Protection). O ecossistema está validado sob certificação Enterprise Ready.\n---",
+            "raw_content": "Auditorias de estresse recentes comprovaram que o motor Rust processa grandes cargas de dados linearmente. Em benchmarks de estresse em disco e RAM, documentos Markdown densos de 25 MB geraram com precisão centenas de milhares de nós semânticos (e mais de 880.000 arestas topológicas) em ~26 segundos, demonstrando forte adequação para ambientes produtivos massivos e imunidade protetiva em nível de Abstract Syntax Tree (AST) contra arquivos anômalos (OOM DoS Protection). O ecossistema está validado sob certificação Enterprise Ready.\n---",
             "heading_path": [],
-            "content_hash": "0f57cf2158a7e1ffd2bcbd83235bb058a1465a1b53c73bdd13a2d262dcbd99a8"
+            "content_hash": "4d6afae3523ee6772ff740385d885dc53a13034a58740ecfb7ffc7a1509eeeba"
         },
         {
             "id": "9571398c0a3c6e23611e825cb01521184488548f51ddb09d17ec2f6746757583_34",
