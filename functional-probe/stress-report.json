@@ -2,35 +2,42 @@
   "1MB": {
     "status": "success",
     "actual_size_mb": 1.0001344680786133,
-    "parse_time_seconds": 0.9057564735412598,
+    "parse_time_seconds": 0.7857620716094971,
     "nodes_count": 11740,
     "edges_count": 35217
   },
   "5MB": {
     "status": "success",
     "actual_size_mb": 5.000035285949707,
-    "parse_time_seconds": 5.126269340515137,
+    "parse_time_seconds": 3.472038984298706,
     "nodes_count": 58690,
     "edges_count": 176067
   },
   "10MB": {
     "status": "success",
     "actual_size_mb": 10.000039100646973,
-    "parse_time_seconds": 9.83810019493103,
+    "parse_time_seconds": 8.080454349517822,
     "nodes_count": 117379,
     "edges_count": 352134
   },
   "25MB": {
     "status": "success",
     "actual_size_mb": 25.00005054473877,
-    "parse_time_seconds": 26.285444259643555,
+    "parse_time_seconds": 21.404573440551758,
     "nodes_count": 293446,
     "edges_count": 880335
   },
   "50MB": {
-    "status": "failed",
+    "status": "success",
     "actual_size_mb": 50.0000696182251,
-    "time_before_fail": 0.28187131881713867,
-    "error": "Engine failed: Error: File too large (> 50MB). Chunk file first to avoid OOM.\n"
+    "parse_time_seconds": 47.35632395744324,
+    "nodes_count": 586891,
+    "edges_count": 1760670
+  },
+  "100MB": {
+    "status": "failed",
+    "actual_size_mb": 100.00010776519775,
+    "time_before_fail": 13.988900423049927,
+    "error": "Engine failed: "
   }
 }

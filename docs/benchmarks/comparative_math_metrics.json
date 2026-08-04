@@ -1,0 +1,15 @@
+{
+    "corpus_name": "Paper_Atlas_Cortex_PT.md",
+    "input_characters": 12801,
+    "input_raw_tokens_est": 3200,
+    "traditional_rag_tokens_est": 3679,
+    "execution_time_ms": 52.18,
+    "actual_nodes_generated": 35,
+    "actual_edges_generated": 73,
+    "actual_atlas_tokens": 3173,
+    "token_savings_percent": 13.75,
+    "throughput_nodes_per_sec": 670.77,
+    "is_truncated": false,
+    "original_node_count": null,
+    "truncated_node_count": null
+}

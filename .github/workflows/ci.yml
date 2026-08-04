@@ -78,3 +78,20 @@ jobs:
       env:
         PYTHONPATH: python
       run: pytest python/tests
+
+    - name: Run Repository Audit Script (Audit & Anti-Drift)
+      env:
+        PYTHONPATH: python
+      run: python audit.py
+
+    - name: Run Functional Probe Audit
+      env:
+        PYTHONPATH: python
+      run: python audit_test_final.py
+
+    - name: Generate MOCs (Anti-drift Check)
+      env:
+        PYTHONPATH: python
+      run: |
+        python scripts/generate_mocs.py
+        git diff --exit-code docs/ || (echo "Error: MOC files in docs/ are outdated! Please run scripts/generate_mocs.py and commit the updated .moc.json files." && exit 1)

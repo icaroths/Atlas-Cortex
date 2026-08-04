@@ -1,6 +1,6 @@
 {
     "schema_version": "1.0.0",
-    "parser_version": "2.0-eval",
+    "parser_version": "2.0-native",
     "doc_id": "ed07139956d973d7",
     "truncated": false,
     "nodes": [
@@ -376,6 +376,13 @@
             "method": "heading_hierarchy"
         },
         {
+            "id": "bf0c6b3433d5b7de3962817dd9d4f5cf9bd108d4e32009995ed18d906b6c3bee",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
+            "type": "semantically_related",
+            "method": "knn_semantic"
+        },
+        {
             "id": "c0ca640fceaaf971a60ef625608e665b3569b4bbd94b12deb2f71e04c465a714",
             "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
             "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_4",
@@ -407,13 +414,6 @@
             "id": "ccd5640bb8c18a49fe46e2e6da6c209325e2db8e9d47f8612a4649b0826eedf2",
             "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_16",
             "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_15",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "cde9e36495f2b6e2d32342f5eaef0341ef51fce1aed34e1714904c122dd692ae",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
             "type": "semantically_related",
             "method": "knn_semantic"
         },
