@@ -25,3 +25,10 @@ This document specifies the operational boundaries and evaluation limits enforce
 - **File Size (OOM Guard)**: Maximum input file size limit of **50 MB** per document to prevent process memory exhaustion.
 - **Subprocess Timeout**: Hard timeout of **30 seconds** per document parse.
 - **AST Depth Limit**: Maximum tree depth of **100** levels during AST traversal.
+
+---
+
+## 3. Automated CI & Offline LLM Benchmarking Scope
+
+- **Automated Anti-Drift**: The CI pipeline (`ci.yml`) automatically enforces anti-drift checks for token efficiency benchmarks (`benchmark_token_efficiency.py`) and AST graph schemas (`generate_mocs.py`).
+- **Offline LLM Evaluation Gate**: Benchmarks requiring a local LLM judge (`scripts/benchmark_retrieval_quality.py` via Ollama `qwen2.5-coder:7b`) are designed for local evaluation environments and are executed manually in environments with LLM inference engines.
