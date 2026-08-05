@@ -5,7 +5,6 @@ from pathlib import Path
 from pprint import pprint
 
 try:
-    from datasets import Dataset
     from langchain_text_splitters import RecursiveCharacterTextSplitter
     from langchain_experimental.text_splitter import SemanticChunker
     from langchain_huggingface import HuggingFaceEmbeddings
