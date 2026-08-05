@@ -56,5 +56,5 @@ markers = [
 ]
 
 [tool.ruff.lint]
-ignore = ["BLE001"]
+ignore = ["BLE001", "I001"]
 

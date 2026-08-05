@@ -1,5 +1,6 @@
 from atlas_cortex import parse_text, reconcile_graphs
 
+
 def test_reconcile_graphs_added_node():
     doc1 = "# Arquitetura\n\nTexto original."
     doc2 = "# Arquitetura\n\nTexto original.\n\n## Nova Seção\n\nNovo texto."

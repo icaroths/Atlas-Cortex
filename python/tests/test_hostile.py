@@ -1,6 +1,7 @@
 import pytest
 from atlas_cortex import parse_text
 
+
 def test_hostile_empty_document():
     """String vazia e apenas quebras de linha não devem quebrar o parser."""
     result = parse_text("", doc_id="empty1")

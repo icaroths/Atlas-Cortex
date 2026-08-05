@@ -1,11 +1,12 @@
-import os
 import json
+import os
 import sys
 
 # Ensure python/ directory is in PYTHONPATH so we can import atlas_cortex
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "python"))
 
 from atlas_cortex import parse_file
+
 
 def generate_moc(base_dir: str, md_name: str, output_path: str):
     markdown_path = os.path.join(base_dir, md_name)

@@ -165,6 +165,7 @@ def convert_epub(content: bytes) -> ConversionResult:
     """EPUB → Markdown. Extracts HTML chapters and converts via markdownify."""
     try:
         import zipfile
+
         import markdownify
     except ImportError:
         raise ImportError(

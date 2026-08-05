@@ -2,8 +2,8 @@ import json
 import os
 import subprocess
 import tempfile
-from typing import Optional
 from pathlib import Path
+from typing import Optional
 
 __version__ = "2.1.0"
 
@@ -27,8 +27,9 @@ _FORCE_SUBPROCESS = False
 
 def parse_text(text: str, doc_id: Optional[str] = None) -> dict:  # noqa: F821
     """Parses markdown text and returns the generated moc graph."""
-    from atlas_cortex.telemetry import ParseTimer
     import hashlib
+
+    from atlas_cortex.telemetry import ParseTimer
 
     if doc_id is None:
         doc_id = hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]

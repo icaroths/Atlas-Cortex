@@ -1,5 +1,6 @@
 from atlas_cortex import parse_text
 
+
 def test_schema_version_present():
     out = parse_text("# A")
     assert "schema_version" in out, "schema_version ausente"

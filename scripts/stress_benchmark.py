@@ -1,17 +1,19 @@
-import json
-import time
-import os
 import gc
-from pathlib import Path
+import json
+import os
 
 # Ajuste do path para o módulo nativo
 import sys
+import time
+from pathlib import Path
+
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, base_dir)
 
+import uuid  # noqa: E402
+
 from python.atlas_cortex import parse_text  # noqa: E402
 
-import uuid  # noqa: E402
 
 def generate_synthetic_markdown(target_size_mb: int) -> str:
     """Gera um texto Markdown repetitivo até atingir o tamanho estimado em MB."""

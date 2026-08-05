@@ -2,6 +2,7 @@ import json
 import os
 
 import numpy as np
+
 try:
     from sentence_transformers import SentenceTransformer
     from sklearn.metrics.pairwise import cosine_similarity

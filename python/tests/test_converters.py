@@ -10,14 +10,14 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
 
 from atlas_cortex.converters import (
     ConversionResult,
-    convert_bytes,
-    convert_file,
-    convert_txt,
-    convert_html,
-    is_native_format,
-    supported_formats,
     _compute_ir_hash,
     _estimate_token_count,
+    convert_bytes,
+    convert_file,
+    convert_html,
+    convert_txt,
+    is_native_format,
+    supported_formats,
 )
 
 

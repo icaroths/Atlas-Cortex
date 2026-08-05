@@ -9,7 +9,7 @@ import pytest
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "python"))
 
 from atlas_cortex.exporters.neo4j import to_cypher, to_cypher_params
-from atlas_cortex.exporters.qdrant import to_qdrant_points, _sha256_to_uuid5
+from atlas_cortex.exporters.qdrant import _sha256_to_uuid5, to_qdrant_points
 
 
 # Fixture: a realistic MOC graph

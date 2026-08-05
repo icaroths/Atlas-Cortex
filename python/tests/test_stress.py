@@ -1,13 +1,15 @@
-import pytest
-import time
-from atlas_cortex import parse_text
 import os
 import sys
+import time
+
+import pytest
+from atlas_cortex import parse_text
 
 # Puxa o gerador do benchmark
 base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, base_dir)
 from scripts.stress_benchmark import generate_synthetic_markdown  # noqa: E402
+
 
 @pytest.mark.stress
 def test_atlas_stress_10mb():

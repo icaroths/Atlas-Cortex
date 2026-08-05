@@ -1,7 +1,7 @@
 import subprocess
 from unittest import mock
-import pytest
 
+import pytest
 from atlas_cortex import SecurityError, parse_file, parse_text, reconcile_graphs
 
 

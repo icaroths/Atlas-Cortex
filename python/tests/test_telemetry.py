@@ -11,8 +11,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
 from atlas_cortex.telemetry import (
     ParseMetrics,
     ParseTimer,
-    enable,
     disable,
+    enable,
     is_enabled,
 )
 
