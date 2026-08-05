@@ -10,12 +10,11 @@ through external converters (compiler pattern: multiple frontends, single backen
 """
 
 import hashlib
-import importlib
 import logging
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Callable, Optional
+from typing import Callable
 
 logger = logging.getLogger("atlas_cortex.converters")
 

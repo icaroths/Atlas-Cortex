@@ -43,7 +43,6 @@ def test_markdown_bomb_degrades_gracefully():
         assert "Engine failed" in str(exc) or "limit exceeded" in str(exc) or "Parse error" in str(exc)
 
 import subprocess  # noqa: E402
-import sys  # noqa: E402
 from unittest import mock  # noqa: E402
 
 from atlas_cortex import reconcile_graphs  # noqa: E402

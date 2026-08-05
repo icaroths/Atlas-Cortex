@@ -6,7 +6,6 @@ Extracts project dependencies and outputs a consolidated JSON report.
 
 import json
 import os
-import sys
 
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

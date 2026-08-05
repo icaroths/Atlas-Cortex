@@ -1,6 +1,5 @@
 """Tests for the Atlas Cortex Converter Module (Fase 10)."""
 
-import hashlib
 import os
 import sys
 import tempfile

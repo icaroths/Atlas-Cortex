@@ -221,7 +221,7 @@ Responsável por buscar contexto relevante.
             print(f"  - {error}")
         return False
 
-    print("✅ TESTE PASSOU")
+    print("TESTE PASSOU (OK)")
     print(f"  Nós: {len(nodes)}")
     print(f"  Arestas: {len(edges)}")
     print(f"  Tipos de nó: {sorted(set(node_types))}")

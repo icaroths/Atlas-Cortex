@@ -5,10 +5,7 @@ Converts Atlas Cortex MOC graphs to Neo4j Cypher statements for idempotent
 ingestion, or pushes directly to a Neo4j instance via the official driver.
 """
 
-import hashlib
-import json
 import logging
-from typing import Optional
 
 logger = logging.getLogger("atlas_cortex.exporters.neo4j")
 

@@ -19,8 +19,13 @@ def generate_moc(base_dir: str, md_name: str, output_path: str):
         # Puxa o grafo determinístico (usará o binário Rust subjacente)
         graph = parse_file(base_dir, md_name)
         
+        if "nodes" in graph:
+            graph["nodes"].sort(key=lambda x: x.get("id", ""))
+        if "edges" in graph:
+            graph["edges"].sort(key=lambda x: (x.get("source", ""), x.get("target", "")))
+        
         with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(graph, f, indent=4, ensure_ascii=False)
+            json.dump(graph, f, indent=4, ensure_ascii=False, sort_keys=True)
             
         print(f"Sucesso: {output_path} atualizado.")
         return True

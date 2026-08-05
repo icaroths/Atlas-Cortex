@@ -13,7 +13,6 @@ try:
 except ImportError:
     HAS_DEPS = False
 
-from atlas_cortex import parse_any
 
 def run_benchmark(docs_dir: str, output_path: str):
     if not HAS_DEPS:

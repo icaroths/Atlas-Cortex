@@ -1,6 +1,5 @@
 """Tests for the Atlas Cortex Exporters (Fase 13)."""
 
-import json
 import os
 import sys
 import uuid

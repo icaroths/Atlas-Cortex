@@ -1,8 +1,8 @@
 
 running 6 tests
-test tests::test_atlas_parser_initialization ... ok
 test tests::test_github_slugify_basic ... ok
 test tests::test_github_slugify_special_chars ... ok
+test tests::test_atlas_parser_initialization ... ok
 test tests::test_parse_markdown_basic ... ok
 test tests::test_edge_extraction_idempotency ... ok
 test tests::test_parse_markdown_deterministic ... ok

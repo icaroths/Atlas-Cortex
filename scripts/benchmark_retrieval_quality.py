@@ -22,7 +22,7 @@ Reply only with 'YES' if the context contains enough information to answer the q
             timeout=5
         )
         return "yes" in result.stdout.strip().lower()
-    except Exception as e:
+    except Exception:
         # Fallback heuristico se o Ollama local nao estiver rodando ou der timeout
         keywords = [w.lower() for w in query.split() if len(w) > 3]
         match_count = sum(1 for w in keywords if w in retrieved_context.lower())

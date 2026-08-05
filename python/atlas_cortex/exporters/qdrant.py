@@ -5,8 +5,6 @@ Converts Atlas Cortex MOC graph nodes into Qdrant-compatible points
 with UUIDv5 derived from SHA-256 content hashes (Qdrant requires UUID, not hex).
 """
 
-import hashlib
-import json
 import logging
 import uuid
 from typing import Optional

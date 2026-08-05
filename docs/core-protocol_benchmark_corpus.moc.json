@@ -1,442 +1,442 @@
 {
-    "schema_version": "1.0.0",
-    "parser_version": "2.0-native",
     "doc_id": "ed07139956d973d7",
-    "truncated": false,
+    "edges": [
+        {
+            "id": "62ebbc1a4c60ec50ee716ceb4cccb276de01e86f56ccd9a53c5a4162acab2225",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_10",
+            "type": "semantically_related"
+        },
+        {
+            "id": "c2fe2e42f365c2962129e8fe77e9249e5301bc1ad7a898d6f216fb9de9266aaa",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
+            "type": "semantically_related"
+        },
+        {
+            "id": "ea51b05d916a15276fce7af73544327b5edd2d0a5d898c4fa1c82060436a6634",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
+            "type": "semantically_related"
+        },
+        {
+            "id": "45b88e8dfc01d473f6fa37722770593edcbdb3c317c0f8d368980922605a8743",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_10",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
+            "type": "semantically_related"
+        },
+        {
+            "id": "bd654791642e941f79f307fc26cbd36a03cf552fa8a174ab471d419ac42da895",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_10",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
+            "type": "child_of"
+        },
+        {
+            "id": "9d2f991998b28c8af8a824f9accd86ce2d5bf357dfb0601481dd6217925b4b50",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_11",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
+            "type": "child_of"
+        },
+        {
+            "id": "12acb9efa404f246dd607985130d28e372daec0ecf5e4b18e541d14a9217df4d",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_11",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_12",
+            "type": "semantically_related"
+        },
+        {
+            "id": "79a3a588dc27b00b2973a9978b542d3ba965f3545dc5fcf357dba29a4fb85ef6",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_12",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_11",
+            "type": "child_of"
+        },
+        {
+            "id": "b32e2b3916017a6f684c7cbab02f43012eda8a571f70878a0c9730c458a5a36c",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_12",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_11",
+            "type": "semantically_related"
+        },
+        {
+            "id": "1148a4a06318fbbe8cdaf45f8a4d084ffe66a5ddabe2752a896cd9a0afb4f2f4",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_13",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
+            "type": "child_of"
+        },
+        {
+            "id": "5a7c334899ce6c8b803ac6a1a26947d999f30c5691f0c1747acc2df75695b7f9",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_13",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_14",
+            "type": "semantically_related"
+        },
+        {
+            "id": "081337a55ec79566530420e731336cd73e18f0c492525d9368089b7306100544",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_14",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_13",
+            "type": "child_of"
+        },
+        {
+            "id": "a3731aef6fd8cd4ebd18b2f11dc7c5735272e48770e894ffd175520247a7fe53",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_14",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_13",
+            "type": "semantically_related"
+        },
+        {
+            "id": "49ea8eda6da7d61056bcf2e0be73caeab8a5f98539373b40595e64987e5d283d",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_15",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
+            "type": "child_of"
+        },
+        {
+            "id": "5d053393694de09b4b98012199bde32a0ba3719e0e53ee6d047f63dc9eb3b25d",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_15",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_16",
+            "type": "semantically_related"
+        },
+        {
+            "id": "005a5958510fc9afebbecdf46da8aa3f8a78b7f27e8b8776e6273938a35276d6",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_16",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_15",
+            "type": "child_of"
+        },
+        {
+            "id": "ccd5640bb8c18a49fe46e2e6da6c209325e2db8e9d47f8612a4649b0826eedf2",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_16",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_15",
+            "type": "semantically_related"
+        },
+        {
+            "id": "b3f228ddeb83e04494742bf4a125ca1c65dc9171f2ea63cccec462b0f9efda4c",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
+            "type": "child_of"
+        },
+        {
+            "id": "96f63b5651495c5c581e70a5e3ed39381a2d16f8575a7d31ebc8d64c4d3e76a1",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_10",
+            "type": "semantically_related"
+        },
+        {
+            "id": "94d965ae4d63a4ff308a7578acce2e725b0b97aa4d87aa99ee99412648c092ac",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
+            "type": "semantically_related"
+        },
+        {
+            "id": "bf0c6b3433d5b7de3962817dd9d4f5cf9bd108d4e32009995ed18d906b6c3bee",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
+            "type": "semantically_related"
+        },
+        {
+            "id": "f26e106821126977f29b1f8ddba8a69183846a9a9227bf5c75c41b46e48b6424",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
+            "type": "child_of"
+        },
+        {
+            "id": "c0ca640fceaaf971a60ef625608e665b3569b4bbd94b12deb2f71e04c465a714",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_4",
+            "type": "semantically_related"
+        },
+        {
+            "id": "52a7f60ce03b1e05ddcfafae0c1dd4d746bf28ad8e4bb17ea28b1fa5c5bc0b36",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_4",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
+            "type": "semantically_related"
+        },
+        {
+            "id": "ca68bd563dec0b990fada6bced6d6a650aee8a36975567fdba13e41b15ff7ee2",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_4",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
+            "type": "child_of"
+        },
+        {
+            "id": "1ffbfe150922274b0c63d654a6c04127de80eda9a1c381938529e03b1af77619",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
+            "type": "child_of"
+        },
+        {
+            "id": "c367f0df5d92032e6e5a2cdf029cb5d220aae8e22737b5b6f52dd66df7444f3a",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
+            "type": "semantically_related"
+        },
+        {
+            "id": "14645d41dbc86caa1e3e955df0f8ccb7c4584f84101c58457faf1488562ed921",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
+            "type": "semantically_related"
+        },
+        {
+            "id": "7bd56cefa5afd8820648690065c26dc3cc0cde8e8add9524201b11fb6674f31c",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
+            "type": "child_of"
+        },
+        {
+            "id": "12ebf2cef514a7473d2922ffedac703e5d7337599d4be6eb5fe087a710c5468b",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_7",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
+            "type": "child_of"
+        },
+        {
+            "id": "7b4d07a9aff98d4d09dcf8ecbcf898ed2283d40c784a2fd381f6cabb1ab07e67",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_7",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_8",
+            "type": "semantically_related"
+        },
+        {
+            "id": "6a8df5b4acd755d11b6f11ecc173dcc9049013bfa9b94edea8da167e22c91f14",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_8",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_7",
+            "type": "child_of"
+        },
+        {
+            "id": "827e71ef3efab3203f30ced1f46b13d3fa01ec37fce489839aeaba9354208fdf",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_8",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_7",
+            "type": "semantically_related"
+        },
+        {
+            "id": "86818c3704700e4199adc58ec9697ff6f622605ef6c2ce6b22b9cd0c8b56cca4",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_10",
+            "type": "semantically_related"
+        },
+        {
+            "id": "55f3b62e01039f75259ba5989e90f065c4947fd1bb6da254712153c2840cc465",
+            "method": "heading_hierarchy",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
+            "type": "child_of"
+        }
+    ],
     "nodes": [
         {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "type": "heading",
-            "title": "Core Protocol - AG Kit",
             "content": "# Core Protocol - AG Kit",
-            "raw_content": "# Core Protocol - AG Kit",
+            "content_hash": "cdb0022380c9a4de9bd8a39bc816fcd7cbf9f3cb73452793034506a7e99918eb",
             "heading_path": [],
-            "content_hash": "cdb0022380c9a4de9bd8a39bc816fcd7cbf9f3cb73452793034506a7e99918eb"
-        },
-        {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
-            "type": "paragraph",
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
+            "raw_content": "# Core Protocol - AG Kit",
             "title": "Core Protocol - AG Kit",
-            "content": "The highest-priority workspace rules. How the AI loads agents/skills and what it must do before any implementation.\n\n---",
-            "raw_content": "The highest-priority workspace rules. How the AI loads agents/skills and what it must do before any implementation.\n\n---",
-            "heading_path": [
-                "Core Protocol - AG Kit"
-            ],
-            "content_hash": "93c3dec0c2b0814a0f91d7dcf31ee92897140a196de4c55600ee8adfe7ffb53a"
+            "type": "heading"
         },
         {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
-            "type": "heading",
-            "title": "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
-            "content": "## CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
-            "raw_content": "## CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
-            "heading_path": [
-                "Core Protocol - AG Kit"
-            ],
-            "content_hash": "40491ca68632879df938dece4f7f9913ac30d89dda07ba4070bd03f994cdc73e"
-        },
-        {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_4",
-            "type": "paragraph",
-            "title": "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
-            "content": "**MANDATORY:** You MUST read the appropriate agent file and its skills BEFORE performing any implementation. This is the highest priority rule.",
-            "raw_content": "**MANDATORY:** You MUST read the appropriate agent file and its skills BEFORE performing any implementation. This is the highest priority rule.",
-            "heading_path": [
-                "Core Protocol - AG Kit",
-                "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)"
-            ],
-            "content_hash": "e65d6893b42d9dfa351813ed37a9fc606e8a89fb938745fa174b86e29227d19d"
-        },
-        {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
-            "type": "heading",
-            "title": "1. Modular Skill Loading Protocol",
-            "content": "### 1. Modular Skill Loading Protocol",
-            "raw_content": "### 1. Modular Skill Loading Protocol",
-            "heading_path": [
-                "Core Protocol - AG Kit",
-                "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)"
-            ],
-            "content_hash": "541ceceb44cf5b091108e8808f5d0be969efdc33f7ee9daec9b8598bed6dc58c"
-        },
-        {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
-            "type": "list",
-            "title": "1. Modular Skill Loading Protocol",
-            "content": "Agent activated → Check frontmatter \"skills:\" → Read SKILL.md (INDEX) → Read specific sections.\n\n- **Selective Reading:** DO NOT read ALL files in a skill folder. Read `SKILL.md` first, then only read sections matching the user's request.\n- **Rule Priority:** P0 (Workspace Rules in `.agents/rules/`) > P1 (Agent `.md`) > P2 (SKILL.md). All rules are binding.",
-            "raw_content": "Agent activated → Check frontmatter \"skills:\" → Read SKILL.md (INDEX) → Read specific sections.\n\n- **Selective Reading:** DO NOT read ALL files in a skill folder. Read `SKILL.md` first, then only read sections matching the user's request.\n- **Rule Priority:** P0 (Workspace Rules in `.agents/rules/`) > P1 (Agent `.md`) > P2 (SKILL.md). All rules are binding.",
-            "heading_path": [
-                "Core Protocol - AG Kit",
-                "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
-                "1. Modular Skill Loading Protocol"
-            ],
-            "content_hash": "1fcc60d36936cec6841d3abca83b238146b21c7b54ca34c3f8b93dc3a518f09a"
-        },
-        {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_7",
-            "type": "heading",
-            "title": "1.1 Skill Announcement (MANDATORY)",
-            "content": "### 1.1 Skill Announcement (MANDATORY)",
-            "raw_content": "### 1.1 Skill Announcement (MANDATORY)",
-            "heading_path": [
-                "Core Protocol - AG Kit",
-                "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)"
-            ],
-            "content_hash": "783b3a142d1f1b7b5fc96d9031b3603a7d259542b993ce09a53155c680a470c5"
-        },
-        {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_8",
-            "type": "code_block",
-            "title": "1.1 Skill Announcement (MANDATORY)",
-            "content": "**Every time you load and apply a skill, announce it BEFORE using it** — so the user can verify which knowledge is active.\n\n```markdown\n📚 **Using skill: `@[skill-name]`...**\n```\n\n- List multiple skills together: `📚 Using skills: @frontend-design + @minimalist-ui...`\n- Announce on-demand skills too (e.g. a companion skill pulled from a hub, or `app-builder` for a new app), not just frontmatter ones.\n- ❌ Applying a skill without announcing it = **USER CANNOT VERIFY THE SKILL WAS USED**.",
-            "raw_content": "**Every time you load and apply a skill, announce it BEFORE using it** — so the user can verify which knowledge is active.\n\n```markdown\n📚 **Using skill: `@[skill-name]`...**\n```\n\n- List multiple skills together: `📚 Using skills: @frontend-design + @minimalist-ui...`\n- Announce on-demand skills too (e.g. a companion skill pulled from a hub, or `app-builder` for a new app), not just frontmatter ones.\n- ❌ Applying a skill without announcing it = **USER CANNOT VERIFY THE SKILL WAS USED**.",
-            "heading_path": [
-                "Core Protocol - AG Kit",
-                "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
-                "1.1 Skill Announcement (MANDATORY)"
-            ],
-            "content_hash": "096ef8d03d43181de57f221c1e94cfcb919edd1dd48826f88aec20b5501fcbb6"
-        },
-        {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
-            "type": "heading",
-            "title": "2. Enforcement Protocol",
-            "content": "### 2. Enforcement Protocol",
-            "raw_content": "### 2. Enforcement Protocol",
-            "heading_path": [
-                "Core Protocol - AG Kit",
-                "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)"
-            ],
-            "content_hash": "8418ad2ce15cb5f39535b5da105a8038bfd5811db228d0d0d85254298a977692"
-        },
-        {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_10",
-            "type": "list",
-            "title": "2. Enforcement Protocol",
             "content": "1. **When agent is activated:**\n    - ✅ Activate: Read Rules → Check Frontmatter → Load SKILL.md → Apply All.\n2. **Forbidden:** Never skip reading agent rules or skill instructions. \"Read → Understand → Apply\" is mandatory.\n\n---",
-            "raw_content": "1. **When agent is activated:**\n    - ✅ Activate: Read Rules → Check Frontmatter → Load SKILL.md → Apply All.\n2. **Forbidden:** Never skip reading agent rules or skill instructions. \"Read → Understand → Apply\" is mandatory.\n\n---",
+            "content_hash": "b1362131785cd5599cf7858e09a93ad5d05aa57446985d046d738bc2ba598ad2",
             "heading_path": [
                 "Core Protocol - AG Kit",
                 "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
                 "2. Enforcement Protocol"
             ],
-            "content_hash": "b1362131785cd5599cf7858e09a93ad5d05aa57446985d046d738bc2ba598ad2"
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_10",
+            "raw_content": "1. **When agent is activated:**\n    - ✅ Activate: Read Rules → Check Frontmatter → Load SKILL.md → Apply All.\n2. **Forbidden:** Never skip reading agent rules or skill instructions. \"Read → Understand → Apply\" is mandatory.\n\n---",
+            "title": "2. Enforcement Protocol",
+            "type": "list"
         },
         {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_11",
-            "type": "heading",
-            "title": "📁 File Dependency Awareness",
             "content": "## 📁 File Dependency Awareness",
-            "raw_content": "## 📁 File Dependency Awareness",
+            "content_hash": "129431728c1706c479192623a7367167d9bbb4ab12f65a6984a4368a72d1a588",
             "heading_path": [
                 "Core Protocol - AG Kit"
             ],
-            "content_hash": "129431728c1706c479192623a7367167d9bbb4ab12f65a6984a4368a72d1a588"
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_11",
+            "raw_content": "## 📁 File Dependency Awareness",
+            "title": "📁 File Dependency Awareness",
+            "type": "heading"
         },
         {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_12",
-            "type": "list",
-            "title": "📁 File Dependency Awareness",
             "content": "**Before modifying ANY file:**\n\n1. Check `CODEBASE.md` → File Dependencies\n2. Identify dependent files\n3. Update ALL affected files together\n\n---",
-            "raw_content": "**Before modifying ANY file:**\n\n1. Check `CODEBASE.md` → File Dependencies\n2. Identify dependent files\n3. Update ALL affected files together\n\n---",
+            "content_hash": "3941cedcb044ed05c7aed9c8158caa312ebe7ea5a424527468f39f82d324d02e",
             "heading_path": [
                 "Core Protocol - AG Kit",
                 "📁 File Dependency Awareness"
             ],
-            "content_hash": "3941cedcb044ed05c7aed9c8158caa312ebe7ea5a424527468f39f82d324d02e"
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_12",
+            "raw_content": "**Before modifying ANY file:**\n\n1. Check `CODEBASE.md` → File Dependencies\n2. Identify dependent files\n3. Update ALL affected files together\n\n---",
+            "title": "📁 File Dependency Awareness",
+            "type": "list"
         },
         {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_13",
-            "type": "heading",
-            "title": "🗺️ System Map & Memory Read",
             "content": "## 🗺️ System Map & Memory Read",
-            "raw_content": "## 🗺️ System Map & Memory Read",
+            "content_hash": "e8ac3baac34ed29812fa4147cad2153aae8e0859f45b3305d02db50f14c75b46",
             "heading_path": [
                 "Core Protocol - AG Kit"
             ],
-            "content_hash": "e8ac3baac34ed29812fa4147cad2153aae8e0859f45b3305d02db50f14c75b46"
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_13",
+            "raw_content": "## 🗺️ System Map & Memory Read",
+            "title": "🗺️ System Map & Memory Read",
+            "type": "heading"
         },
         {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_14",
-            "type": "list",
-            "title": "🗺️ System Map & Memory Read",
             "content": "🔴 **MANDATORY:** At session start, you MUST read `.agents/memory/MEMORY.md` to load persistent project conventions, user preferences, and decisions.\n\n📚 **Catalog lookup (on-demand, NOT every session):** Need the full list of Agents / Skills / Scripts? The `quick-reference` rule has the essentials. For the complete catalog, read `.agents/ARCHITECTURE.md` only when you actually need it (e.g. orchestration, or discovering a skill you're unsure exists) — do NOT load it on every request.\n\n**Path Awareness (Note: the project directory name is `.agents` plural):**\n\n- Agents: `.agents/agent/` (Project)\n- Skills: `.agents/skills/` (Project)\n- Memory: `.agents/memory/` (Project)\n- Runtime Scripts: `.agents/skills/<skill>/scripts/`\n\n---",
-            "raw_content": "🔴 **MANDATORY:** At session start, you MUST read `.agents/memory/MEMORY.md` to load persistent project conventions, user preferences, and decisions.\n\n📚 **Catalog lookup (on-demand, NOT every session):** Need the full list of Agents / Skills / Scripts? The `quick-reference` rule has the essentials. For the complete catalog, read `.agents/ARCHITECTURE.md` only when you actually need it (e.g. orchestration, or discovering a skill you're unsure exists) — do NOT load it on every request.\n\n**Path Awareness (Note: the project directory name is `.agents` plural):**\n\n- Agents: `.agents/agent/` (Project)\n- Skills: `.agents/skills/` (Project)\n- Memory: `.agents/memory/` (Project)\n- Runtime Scripts: `.agents/skills/<skill>/scripts/`\n\n---",
+            "content_hash": "226aa212ea27170d494ee02fe6b8010a7ea0a3c6a1a45ca7929431e3892e1718",
             "heading_path": [
                 "Core Protocol - AG Kit",
                 "🗺️ System Map & Memory Read"
             ],
-            "content_hash": "226aa212ea27170d494ee02fe6b8010a7ea0a3c6a1a45ca7929431e3892e1718"
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_14",
+            "raw_content": "🔴 **MANDATORY:** At session start, you MUST read `.agents/memory/MEMORY.md` to load persistent project conventions, user preferences, and decisions.\n\n📚 **Catalog lookup (on-demand, NOT every session):** Need the full list of Agents / Skills / Scripts? The `quick-reference` rule has the essentials. For the complete catalog, read `.agents/ARCHITECTURE.md` only when you actually need it (e.g. orchestration, or discovering a skill you're unsure exists) — do NOT load it on every request.\n\n**Path Awareness (Note: the project directory name is `.agents` plural):**\n\n- Agents: `.agents/agent/` (Project)\n- Skills: `.agents/skills/` (Project)\n- Memory: `.agents/memory/` (Project)\n- Runtime Scripts: `.agents/skills/<skill>/scripts/`\n\n---",
+            "title": "🗺️ System Map & Memory Read",
+            "type": "list"
         },
         {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_15",
-            "type": "heading",
-            "title": "🧠 Read → Understand → Apply",
             "content": "## 🧠 Read → Understand → Apply",
-            "raw_content": "## 🧠 Read → Understand → Apply",
+            "content_hash": "0d60fd6d5eb0d7e64fe5ca1af84fbac8ae49e87572ed4f31b1d3dbd27aee2835",
             "heading_path": [
                 "Core Protocol - AG Kit"
             ],
-            "content_hash": "0d60fd6d5eb0d7e64fe5ca1af84fbac8ae49e87572ed4f31b1d3dbd27aee2835"
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_15",
+            "raw_content": "## 🧠 Read → Understand → Apply",
+            "title": "🧠 Read → Understand → Apply",
+            "type": "heading"
         },
         {
-            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_16",
-            "type": "code_block",
-            "title": "🧠 Read → Understand → Apply",
             "content": "```\n❌ WRONG: Read agent file → Start coding\n✅ CORRECT: Read → Understand WHY → Apply PRINCIPLES → Code\n```\n\n**Before coding, answer:**\n\n1. What is the GOAL of this agent/skill?\n2. What PRINCIPLES must I apply?\n3. How does this DIFFER from generic output?\n\n---",
-            "raw_content": "```\n❌ WRONG: Read agent file → Start coding\n✅ CORRECT: Read → Understand WHY → Apply PRINCIPLES → Code\n```\n\n**Before coding, answer:**\n\n1. What is the GOAL of this agent/skill?\n2. What PRINCIPLES must I apply?\n3. How does this DIFFER from generic output?\n\n---",
+            "content_hash": "3d325cd90be8b9154230c4f7c426769f6666c4f43f888b46d13c81e497792d42",
             "heading_path": [
                 "Core Protocol - AG Kit",
                 "🧠 Read → Understand → Apply"
             ],
-            "content_hash": "3d325cd90be8b9154230c4f7c426769f6666c4f43f888b46d13c81e497792d42"
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_16",
+            "raw_content": "```\n❌ WRONG: Read agent file → Start coding\n✅ CORRECT: Read → Understand WHY → Apply PRINCIPLES → Code\n```\n\n**Before coding, answer:**\n\n1. What is the GOAL of this agent/skill?\n2. What PRINCIPLES must I apply?\n3. How does this DIFFER from generic output?\n\n---",
+            "title": "🧠 Read → Understand → Apply",
+            "type": "code_block"
+        },
+        {
+            "content": "The highest-priority workspace rules. How the AI loads agents/skills and what it must do before any implementation.\n\n---",
+            "content_hash": "93c3dec0c2b0814a0f91d7dcf31ee92897140a196de4c55600ee8adfe7ffb53a",
+            "heading_path": [
+                "Core Protocol - AG Kit"
+            ],
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
+            "raw_content": "The highest-priority workspace rules. How the AI loads agents/skills and what it must do before any implementation.\n\n---",
+            "title": "Core Protocol - AG Kit",
+            "type": "paragraph"
+        },
+        {
+            "content": "## CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
+            "content_hash": "40491ca68632879df938dece4f7f9913ac30d89dda07ba4070bd03f994cdc73e",
+            "heading_path": [
+                "Core Protocol - AG Kit"
+            ],
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
+            "raw_content": "## CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
+            "title": "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
+            "type": "heading"
+        },
+        {
+            "content": "**MANDATORY:** You MUST read the appropriate agent file and its skills BEFORE performing any implementation. This is the highest priority rule.",
+            "content_hash": "e65d6893b42d9dfa351813ed37a9fc606e8a89fb938745fa174b86e29227d19d",
+            "heading_path": [
+                "Core Protocol - AG Kit",
+                "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)"
+            ],
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_4",
+            "raw_content": "**MANDATORY:** You MUST read the appropriate agent file and its skills BEFORE performing any implementation. This is the highest priority rule.",
+            "title": "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
+            "type": "paragraph"
+        },
+        {
+            "content": "### 1. Modular Skill Loading Protocol",
+            "content_hash": "541ceceb44cf5b091108e8808f5d0be969efdc33f7ee9daec9b8598bed6dc58c",
+            "heading_path": [
+                "Core Protocol - AG Kit",
+                "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)"
+            ],
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
+            "raw_content": "### 1. Modular Skill Loading Protocol",
+            "title": "1. Modular Skill Loading Protocol",
+            "type": "heading"
+        },
+        {
+            "content": "Agent activated → Check frontmatter \"skills:\" → Read SKILL.md (INDEX) → Read specific sections.\n\n- **Selective Reading:** DO NOT read ALL files in a skill folder. Read `SKILL.md` first, then only read sections matching the user's request.\n- **Rule Priority:** P0 (Workspace Rules in `.agents/rules/`) > P1 (Agent `.md`) > P2 (SKILL.md). All rules are binding.",
+            "content_hash": "1fcc60d36936cec6841d3abca83b238146b21c7b54ca34c3f8b93dc3a518f09a",
+            "heading_path": [
+                "Core Protocol - AG Kit",
+                "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
+                "1. Modular Skill Loading Protocol"
+            ],
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
+            "raw_content": "Agent activated → Check frontmatter \"skills:\" → Read SKILL.md (INDEX) → Read specific sections.\n\n- **Selective Reading:** DO NOT read ALL files in a skill folder. Read `SKILL.md` first, then only read sections matching the user's request.\n- **Rule Priority:** P0 (Workspace Rules in `.agents/rules/`) > P1 (Agent `.md`) > P2 (SKILL.md). All rules are binding.",
+            "title": "1. Modular Skill Loading Protocol",
+            "type": "list"
+        },
+        {
+            "content": "### 1.1 Skill Announcement (MANDATORY)",
+            "content_hash": "783b3a142d1f1b7b5fc96d9031b3603a7d259542b993ce09a53155c680a470c5",
+            "heading_path": [
+                "Core Protocol - AG Kit",
+                "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)"
+            ],
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_7",
+            "raw_content": "### 1.1 Skill Announcement (MANDATORY)",
+            "title": "1.1 Skill Announcement (MANDATORY)",
+            "type": "heading"
+        },
+        {
+            "content": "**Every time you load and apply a skill, announce it BEFORE using it** — so the user can verify which knowledge is active.\n\n```markdown\n📚 **Using skill: `@[skill-name]`...**\n```\n\n- List multiple skills together: `📚 Using skills: @frontend-design + @minimalist-ui...`\n- Announce on-demand skills too (e.g. a companion skill pulled from a hub, or `app-builder` for a new app), not just frontmatter ones.\n- ❌ Applying a skill without announcing it = **USER CANNOT VERIFY THE SKILL WAS USED**.",
+            "content_hash": "096ef8d03d43181de57f221c1e94cfcb919edd1dd48826f88aec20b5501fcbb6",
+            "heading_path": [
+                "Core Protocol - AG Kit",
+                "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)",
+                "1.1 Skill Announcement (MANDATORY)"
+            ],
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_8",
+            "raw_content": "**Every time you load and apply a skill, announce it BEFORE using it** — so the user can verify which knowledge is active.\n\n```markdown\n📚 **Using skill: `@[skill-name]`...**\n```\n\n- List multiple skills together: `📚 Using skills: @frontend-design + @minimalist-ui...`\n- Announce on-demand skills too (e.g. a companion skill pulled from a hub, or `app-builder` for a new app), not just frontmatter ones.\n- ❌ Applying a skill without announcing it = **USER CANNOT VERIFY THE SKILL WAS USED**.",
+            "title": "1.1 Skill Announcement (MANDATORY)",
+            "type": "code_block"
+        },
+        {
+            "content": "### 2. Enforcement Protocol",
+            "content_hash": "8418ad2ce15cb5f39535b5da105a8038bfd5811db228d0d0d85254298a977692",
+            "heading_path": [
+                "Core Protocol - AG Kit",
+                "CRITICAL: AGENT & SKILL PROTOCOL (START HERE)"
+            ],
+            "id": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
+            "raw_content": "### 2. Enforcement Protocol",
+            "title": "2. Enforcement Protocol",
+            "type": "heading"
         }
     ],
-    "edges": [
-        {
-            "id": "005a5958510fc9afebbecdf46da8aa3f8a78b7f27e8b8776e6273938a35276d6",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_16",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_15",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "081337a55ec79566530420e731336cd73e18f0c492525d9368089b7306100544",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_14",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_13",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "1148a4a06318fbbe8cdaf45f8a4d084ffe66a5ddabe2752a896cd9a0afb4f2f4",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_13",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "12acb9efa404f246dd607985130d28e372daec0ecf5e4b18e541d14a9217df4d",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_11",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_12",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "12ebf2cef514a7473d2922ffedac703e5d7337599d4be6eb5fe087a710c5468b",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_7",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "14645d41dbc86caa1e3e955df0f8ccb7c4584f84101c58457faf1488562ed921",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "1ffbfe150922274b0c63d654a6c04127de80eda9a1c381938529e03b1af77619",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "45b88e8dfc01d473f6fa37722770593edcbdb3c317c0f8d368980922605a8743",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_10",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "49ea8eda6da7d61056bcf2e0be73caeab8a5f98539373b40595e64987e5d283d",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_15",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "52a7f60ce03b1e05ddcfafae0c1dd4d746bf28ad8e4bb17ea28b1fa5c5bc0b36",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_4",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "55f3b62e01039f75259ba5989e90f065c4947fd1bb6da254712153c2840cc465",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "5a7c334899ce6c8b803ac6a1a26947d999f30c5691f0c1747acc2df75695b7f9",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_13",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_14",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "5d053393694de09b4b98012199bde32a0ba3719e0e53ee6d047f63dc9eb3b25d",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_15",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_16",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "62ebbc1a4c60ec50ee716ceb4cccb276de01e86f56ccd9a53c5a4162acab2225",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_10",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "6a8df5b4acd755d11b6f11ecc173dcc9049013bfa9b94edea8da167e22c91f14",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_8",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_7",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "79a3a588dc27b00b2973a9978b542d3ba965f3545dc5fcf357dba29a4fb85ef6",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_12",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_11",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "7b4d07a9aff98d4d09dcf8ecbcf898ed2283d40c784a2fd381f6cabb1ab07e67",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_7",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_8",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "7bd56cefa5afd8820648690065c26dc3cc0cde8e8add9524201b11fb6674f31c",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "827e71ef3efab3203f30ced1f46b13d3fa01ec37fce489839aeaba9354208fdf",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_8",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_7",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "86818c3704700e4199adc58ec9697ff6f622605ef6c2ce6b22b9cd0c8b56cca4",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_10",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "9d2f991998b28c8af8a824f9accd86ce2d5bf357dfb0601481dd6217925b4b50",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_11",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "a3731aef6fd8cd4ebd18b2f11dc7c5735272e48770e894ffd175520247a7fe53",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_14",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_13",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "b32e2b3916017a6f684c7cbab02f43012eda8a571f70878a0c9730c458a5a36c",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_12",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_11",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "b3f228ddeb83e04494742bf4a125ca1c65dc9171f2ea63cccec462b0f9efda4c",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "bd654791642e941f79f307fc26cbd36a03cf552fa8a174ab471d419ac42da895",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_10",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "bf0c6b3433d5b7de3962817dd9d4f5cf9bd108d4e32009995ed18d906b6c3bee",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "c0ca640fceaaf971a60ef625608e665b3569b4bbd94b12deb2f71e04c465a714",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_4",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "c367f0df5d92032e6e5a2cdf029cb5d220aae8e22737b5b6f52dd66df7444f3a",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "ca68bd563dec0b990fada6bced6d6a650aee8a36975567fdba13e41b15ff7ee2",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_4",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "ccd5640bb8c18a49fe46e2e6da6c209325e2db8e9d47f8612a4649b0826eedf2",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_16",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_15",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "cde9e36495f2b6e2d32342f5eaef0341ef51fce1aed34e1714904c122dd692ae",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "d4f8680dee2e4f638f5df9eb3fca604bfd9fd8df31068f45070ee5ca10d864f5",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "ea51b05d916a15276fce7af73544327b5edd2d0a5d898c4fa1c82060436a6634",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
-            "id": "f26e106821126977f29b1f8ddba8a69183846a9a9227bf5c75c41b46e48b6424",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_3",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "type": "child_of",
-            "method": "heading_hierarchy"
-        },
-        {
-            "id": "fd75882b53e99700d2f34b9ecb8654ccfba5b5328922706be121bad27655c8e5",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        }
-    ]
+    "parser_version": "2.0-native",
+    "schema_version": "1.0.0",
+    "truncated": false
 }

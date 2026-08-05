@@ -1,23 +1,6 @@
-Crate:     pyo3
-Version:   0.21.2
-Title:     Risk of buffer overflow in `PyString::from_object`
-Date:      2025-04-01
-ID:        RUSTSEC-2025-0020
-URL:       https://rustsec.org/advisories/RUSTSEC-2025-0020
-Solution:  Upgrade to >=0.24.1
-
-Crate:     pyo3
-Version:   0.21.2
-Title:     Missing `Sync` bound on `PyCFunction::new_closure` closures
-Date:      2026-06-11
-ID:        RUSTSEC-2026-0177
-URL:       https://rustsec.org/advisories/RUSTSEC-2026-0177
-Solution:  Upgrade to >=0.29.0
-
     Fetching advisory database from `https://github.com/RustSec/advisory-db.git`
       Loaded 1189 security advisories (from C:\Users\icaro\.cargo\advisory-db)
     Updating crates.io index
     Scanning Cargo.lock for vulnerabilities (56 crate dependencies)
-error: 2 vulnerabilities found!
 
-Exit code: 1
+Exit code: 0

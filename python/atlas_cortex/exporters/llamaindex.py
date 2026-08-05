@@ -9,7 +9,7 @@ the semantic graph topology for downstream retrieval.
 import json
 import logging
 from pathlib import Path
-from typing import List, Optional
+from typing import Optional
 
 logger = logging.getLogger("atlas_cortex.exporters.llamaindex")
 
