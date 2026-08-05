@@ -1,5 +1,8 @@
+import subprocess
+from unittest import mock
 import pytest
-from atlas_cortex import SecurityError, parse_file, parse_text
+
+from atlas_cortex import SecurityError, parse_file, parse_text, reconcile_graphs
 
 
 def test_path_traversal_blocked(tmp_path):
@@ -38,14 +41,9 @@ def test_markdown_bomb_degrades_gracefully():
         nodes = parse_text(payload)
         # Se o PyO3 conseguir lidar com isso nativamente e rápido, então passou.
         assert len(nodes["nodes"]) > 0
-    except Exception as exc:
+    except (RuntimeError, ValueError, OSError) as exc:
         # Se cair no limite de AST ou timeout do subprocess, passou também.
         assert "Engine failed" in str(exc) or "limit exceeded" in str(exc) or "Parse error" in str(exc)
-
-import subprocess  # noqa: E402
-from unittest import mock  # noqa: E402
-
-from atlas_cortex import reconcile_graphs  # noqa: E402
 
 
 def test_parse_timeout_kills_subprocess():
@@ -96,6 +94,7 @@ def test_invalid_utf8_file(tmp_path):
     invalid_file = base / "invalid.txt"
     invalid_file.write_bytes(b"\xff\xfe\x00\x00")
     
-    with pytest.raises(Exception):
+    with pytest.raises((UnicodeDecodeError, RuntimeError, SecurityError, ValueError)):
         parse_file(base, "invalid.txt")
+
     # Rust should reject the file or python will fail reading it, but it shouldn't crash the interpreter

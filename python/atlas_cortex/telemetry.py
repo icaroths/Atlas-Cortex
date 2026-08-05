@@ -6,6 +6,8 @@ Activated via ATLAS_TELEMETRY=1 environment variable (off by default).
 Emits JSON to stderr so it doesn't pollute stdout/pipeline output.
 """
 
+from __future__ import annotations
+
 import json
 import logging
 import os
@@ -74,8 +76,8 @@ class ParseMetrics:
             return
         try:
             print(self.to_json(), file=sys.stderr, flush=True)
-        except Exception:
-            pass  # Telemetry must never crash the application
+        except Exception as exc:
+            logger.debug("Failed to emit telemetry metrics: %s", exc)
 
 
 class ParseTimer:
