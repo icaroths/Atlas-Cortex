@@ -63,7 +63,7 @@ jobs:
         pip install pytest ruff mypy pip-audit bandit langchain_core
 
     - name: Pip Audit
-      run: pip-audit
+      run: pip-audit -r requirements.txt
 
     - name: Bandit Security Scan
       run: |
