@@ -1,6 +1,6 @@
 {
     "schema_version": "1.0.0",
-    "parser_version": "2.0",
+    "parser_version": "2.0-native",
     "doc_id": "ed07139956d973d7",
     "truncated": false,
     "nodes": [
@@ -334,13 +334,6 @@
             "method": "knn_semantic"
         },
         {
-            "id": "94d965ae4d63a4ff308a7578acce2e725b0b97aa4d87aa99ee99412648c092ac",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
             "id": "9d2f991998b28c8af8a824f9accd86ce2d5bf357dfb0601481dd6217925b4b50",
             "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_11",
             "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
@@ -390,13 +383,6 @@
             "method": "knn_semantic"
         },
         {
-            "id": "c2fe2e42f365c2962129e8fe77e9249e5301bc1ad7a898d6f216fb9de9266aaa",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
-            "type": "semantically_related",
-            "method": "knn_semantic"
-        },
-        {
             "id": "c367f0df5d92032e6e5a2cdf029cb5d220aae8e22737b5b6f52dd66df7444f3a",
             "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
             "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
@@ -425,9 +411,16 @@
             "method": "knn_semantic"
         },
         {
-            "id": "d8c6bc87302a511a007ebfb097e91c6e3fdd1aa8e2319ec2ed61165a05764901",
+            "id": "d4f8680dee2e4f638f5df9eb3fca604bfd9fd8df31068f45070ee5ca10d864f5",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
+            "type": "semantically_related",
+            "method": "knn_semantic"
+        },
+        {
+            "id": "ea51b05d916a15276fce7af73544327b5edd2d0a5d898c4fa1c82060436a6634",
             "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
             "type": "semantically_related",
             "method": "knn_semantic"
         },
@@ -437,6 +430,13 @@
             "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
             "type": "child_of",
             "method": "heading_hierarchy"
+        },
+        {
+            "id": "fd75882b53e99700d2f34b9ecb8654ccfba5b5328922706be121bad27655c8e5",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
+            "type": "semantically_related",
+            "method": "knn_semantic"
         }
     ]
 }
