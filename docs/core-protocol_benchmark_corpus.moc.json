@@ -142,10 +142,10 @@
             "type": "semantically_related"
         },
         {
-            "id": "bf0c6b3433d5b7de3962817dd9d4f5cf9bd108d4e32009995ed18d906b6c3bee",
+            "id": "d4f8680dee2e4f638f5df9eb3fca604bfd9fd8df31068f45070ee5ca10d864f5",
             "method": "knn_semantic",
             "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_6",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
             "type": "semantically_related"
         },
         {
