@@ -55,6 +55,12 @@ markers = [
     "stress: marca testes de estresse pesados (rodar apenas com -m stress)"
 ]
 
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
 [tool.ruff.lint]
-ignore = ["BLE001", "I001"]
+select = ["E", "F", "W"]
+ignore = ["BLE001", "I001", "E501"]
+
 
