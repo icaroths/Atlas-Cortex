@@ -39,6 +39,8 @@ stdout, stderr, code = run(["cargo", "clippy", "--all-targets", "--all-features"
 stdout, stderr, code = run(["cargo", "test", "--release"], cwd="engine")
 (EVIDENCE_DIR / "cargo-test.txt").write_text(stdout + stderr + f"\nExit code: {code}", encoding="utf-8")
 
+# Ignorando RUSTSEC-2025-0020 e RUSTSEC-2026-0177 (pyo3 v0.21.2) por quebra de build em versões superiores.
+# Documentado em SECURITY.md.
 stdout, stderr, code = run(["cargo", "audit", "--ignore", "RUSTSEC-2025-0020", "--ignore", "RUSTSEC-2026-0177"], cwd="engine")
 (EVIDENCE_DIR / "cargo-audit.txt").write_text(stdout + stderr + f"\nExit code: {code}", encoding="utf-8")
 
