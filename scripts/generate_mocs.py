@@ -29,7 +29,7 @@ def generate_moc(base_dir: str, md_name: str, output_path: str):
             
         print(f"Sucesso: {output_path} atualizado.")
         return True
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         print(f"Falha ao gerar MOC para {markdown_path}: {e}")
         return False
 

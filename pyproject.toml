@@ -54,3 +54,7 @@ include = ["atlas_cortex*"]
 markers = [
     "stress: marca testes de estresse pesados (rodar apenas com -m stress)"
 ]
+
+[tool.ruff.lint]
+ignore = ["BLE001"]
+
