@@ -16,10 +16,10 @@
             "type": "semantically_related"
         },
         {
-            "id": "ea51b05d916a15276fce7af73544327b5edd2d0a5d898c4fa1c82060436a6634",
+            "id": "d8c6bc87302a511a007ebfb097e91c6e3fdd1aa8e2319ec2ed61165a05764901",
             "method": "knn_semantic",
             "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
             "type": "semantically_related"
         },
         {
@@ -128,6 +128,13 @@
             "type": "child_of"
         },
         {
+            "id": "cde9e36495f2b6e2d32342f5eaef0341ef51fce1aed34e1714904c122dd692ae",
+            "method": "knn_semantic",
+            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
+            "type": "semantically_related"
+        },
+        {
             "id": "96f63b5651495c5c581e70a5e3ed39381a2d16f8575a7d31ebc8d64c4d3e76a1",
             "method": "knn_semantic",
             "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
@@ -139,13 +146,6 @@
             "method": "knn_semantic",
             "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
             "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
-            "type": "semantically_related"
-        },
-        {
-            "id": "d4f8680dee2e4f638f5df9eb3fca604bfd9fd8df31068f45070ee5ca10d864f5",
-            "method": "knn_semantic",
-            "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
             "type": "semantically_related"
         },
         {
@@ -436,7 +436,7 @@
             "type": "heading"
         }
     ],
-    "parser_version": "2.0-native",
+    "parser_version": "2.0",
     "schema_version": "1.0.0",
     "truncated": false
 }

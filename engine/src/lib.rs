@@ -432,7 +432,7 @@ pub fn extract_semantic_edges(nodes: &[SemanticNode]) -> Vec<GraphEdge> {
                 }
             }
 
-            related.sort_by_key(|b| std::cmp::Reverse(b.0));
+            related.sort_by(|a, b| b.0.cmp(&a.0).then_with(|| a.1.cmp(&b.1)));
             for (_, target_id) in related.into_iter().take(3) {
                 let edge_id = format!(
                     "{:x}",
