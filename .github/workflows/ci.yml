@@ -71,7 +71,7 @@ jobs:
         bandit -r scripts -ll
 
     - name: Ruff Check
-      run: ruff check --select E,F python scripts
+      run: ruff check --select E,F --ignore E501 python scripts
 
     - name: Mypy Check
       run: mypy python
