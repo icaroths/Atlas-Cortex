@@ -1,6 +1,6 @@
 {
     "schema_version": "1.0.0",
-    "parser_version": "2.0-native",
+    "parser_version": "2.0",
     "doc_id": "ed07139956d973d7",
     "truncated": false,
     "nodes": [
@@ -334,9 +334,9 @@
             "method": "knn_semantic"
         },
         {
-            "id": "96f63b5651495c5c581e70a5e3ed39381a2d16f8575a7d31ebc8d64c4d3e76a1",
+            "id": "94d965ae4d63a4ff308a7578acce2e725b0b97aa4d87aa99ee99412648c092ac",
             "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_10",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_5",
             "type": "semantically_related",
             "method": "knn_semantic"
         },
@@ -418,9 +418,9 @@
             "method": "knn_semantic"
         },
         {
-            "id": "d4f8680dee2e4f638f5df9eb3fca604bfd9fd8df31068f45070ee5ca10d864f5",
+            "id": "cde9e36495f2b6e2d32342f5eaef0341ef51fce1aed34e1714904c122dd692ae",
             "source": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_2",
-            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_9",
+            "target": "4c394716be575ad2fa5264eb94faba6d4b74bf6bd868e162d88809943a858add_1",
             "type": "semantically_related",
             "method": "knn_semantic"
         },
