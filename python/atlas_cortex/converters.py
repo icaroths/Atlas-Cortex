@@ -225,7 +225,7 @@ def convert_epub(content: bytes) -> ConversionResult:
 # ---------------------------------------------------------------------------
 
 # Maps file extension → converter function
-_REGISTRY: dict[str, Callable[..., ConversionResult]] = {
+_REGISTRY: dict[str, Callable[..., ConversionResult] | None] = {
     ".txt": convert_txt,
     ".text": convert_txt,
     ".html": convert_html,

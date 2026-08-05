@@ -63,7 +63,7 @@ def to_cypher(moc_graph: dict, batch_size: int = 500) -> str:
     edges = moc_graph.get("edges", [])
     if edges:
         # Group edges by type for cleaner Cypher
-        edge_types = {}
+        edge_types: dict[str, list[dict]] = {}
         for edge in edges:
             et = edge.get("type", "RELATED_TO").upper().replace(" ", "_")
             if et not in edge_types:

@@ -74,15 +74,15 @@ stdout_moc, stderr_moc, code_moc = run(["git", "diff", "--exit-code", "docs/core
 
 # Generate Scorecard Base
 scorecard = f"""
-P0-01 (target fora do git): {'PASS' if not (EVIDENCE_DIR/'git-ls-files-target.txt').read_text().strip() else 'FAIL'}
+P0-01 (target fora do git): {'PASS' if not (EVIDENCE_DIR/'git-ls-files-target.txt').read_text(encoding="utf-8").strip() else 'FAIL'}
 P0-02 (.gitignore UTF-8): {'PASS' if 'UTF-8' in git_enc else 'FAIL'}
-P0-04 (cargo fmt): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'cargo-fmt.txt').read_text() else 'FAIL'}
-P0-05 (cargo clippy): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'cargo-clippy.txt').read_text() else 'FAIL'}
-P0-06 (cargo test): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'cargo-test.txt').read_text() else 'FAIL'}
-P0-07 (cargo audit): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'cargo-audit.txt').read_text() else 'FAIL'}
+P0-04 (cargo fmt): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'cargo-fmt.txt').read_text(encoding="utf-8") else 'FAIL'}
+P0-05 (cargo clippy): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'cargo-clippy.txt').read_text(encoding="utf-8") else 'FAIL'}
+P0-06 (cargo test): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'cargo-test.txt').read_text(encoding="utf-8") else 'FAIL'}
+P0-07 (cargo audit): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'cargo-audit.txt').read_text(encoding="utf-8") else 'FAIL'}
 P0-10 (sem shell=True): {'PASS' if not shell_true_issues else 'FAIL'}
 P0-11 (sem os.system): {'PASS' if not os_system_issues else 'FAIL'}
-P0-15 (benchmark sem drift): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'bench-drift.txt').read_text() else 'FAIL'}
-P0-16 (MOC artifact sem drift): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'moc-drift.txt').read_text() else 'FAIL'}
+P0-15 (benchmark sem drift): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'bench-drift.txt').read_text(encoding="utf-8") else 'FAIL'}
+P0-16 (MOC artifact sem drift): {'PASS' if 'Exit code: 0' in (EVIDENCE_DIR/'moc-drift.txt').read_text(encoding="utf-8") else 'FAIL'}
 """
 print(scorecard)

@@ -7,7 +7,7 @@ with UUIDv5 derived from SHA-256 content hashes (Qdrant requires UUID, not hex).
 
 import logging
 import uuid
-from typing import Optional
+from typing import Any, Optional
 
 logger = logging.getLogger("atlas_cortex.exporters.qdrant")
 
@@ -81,7 +81,7 @@ def to_qdrant_points(
             payload["table_header"] = node["table"].get("header", [])
             payload["table_row_count"] = len(node["table"].get("rows", []))
 
-        point = {
+        point: dict[str, Any] = {
             "id": point_id,
             "payload": payload,
         }

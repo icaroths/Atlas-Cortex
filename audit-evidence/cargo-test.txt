@@ -1,8 +1,8 @@
 
 running 6 tests
+test tests::test_atlas_parser_initialization ... ok
 test tests::test_github_slugify_basic ... ok
 test tests::test_github_slugify_special_chars ... ok
-test tests::test_atlas_parser_initialization ... ok
 test tests::test_parse_markdown_basic ... ok
 test tests::test_edge_extraction_idempotency ... ok
 test tests::test_parse_markdown_deterministic ... ok
@@ -19,7 +19,8 @@ running 0 tests
 
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-    Finished `release` profile [optimized] target(s) in 0.19s
+    Blocking waiting for file lock on build directory
+    Finished `release` profile [optimized] target(s) in 2.07s
      Running unittests src\lib.rs (target\release\deps\_engine-ed06f2699a402549.exe)
      Running unittests src\main.rs (target\release\deps\engine-e0721093f545ec7d.exe)
    Doc-tests _engine
